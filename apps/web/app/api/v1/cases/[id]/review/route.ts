@@ -7,7 +7,7 @@ export async function POST(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const session = await getSessionFromCookie();
+  const session = await getSessionFromCookie(request.headers.get("authorization"));
   if (!session) {
     return NextResponse.json(
       { success: false, error: "401_UNAUTHORIZED: Authentication required" },

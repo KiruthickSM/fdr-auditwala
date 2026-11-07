@@ -271,11 +271,16 @@ export function verifySessionToken(token: string): SessionPayload | null {
   }
 }
 
-export async function getSessionFromCookie(): Promise<SessionPayload | null> {
+export async function getSessionFromCookie(authHeader?: string | null): Promise<SessionPayload | null> {
   try {
+    if (authHeader && authHeader.startsWith("Bearer ")) {
+      const bearerToken = authHeader.substring(7).trim();
+      const verified = verifySessionToken(bearerToken);
+      if (verified) return verified;
+    }
     const { cookies } = await import("next/headers");
     const cookieStore = cookies();
-    const token = cookieStore.get("fdr_session_token")?.value;
+    const token = cookieStore.get("fdrguard_session")?.value || cookieStore.get("fdr_session_token")?.value;
     if (!token) return null;
     return verifySessionToken(token);
   } catch {

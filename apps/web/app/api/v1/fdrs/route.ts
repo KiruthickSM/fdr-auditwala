@@ -3,7 +3,7 @@ import { ALL_SEED_FDRS } from "@/lib/seedData";
 import { getSessionFromCookie } from "@/lib/auth";
 
 export async function GET(request: NextRequest) {
-  const session = await getSessionFromCookie();
+  const session = await getSessionFromCookie(request.headers.get("authorization"));
   const searchParams = request.nextUrl.searchParams;
   const lifecycle = searchParams.get("lifecycle");
   const institutionId = searchParams.get("institution_id");
