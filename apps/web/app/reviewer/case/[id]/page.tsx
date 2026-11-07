@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useStore } from "@/lib/store";
 import { StatusBadge } from "@/components/StatusBadge";
+import { maskFdrNumber } from "@/lib/formatters";
 import { RiskScoreGauge } from "@/components/RiskScoreGauge";
 import {
   FileText,
@@ -18,29 +19,37 @@ import {
   HelpCircle,
   AlertOctagon,
   Eye,
+  EyeOff,
   Building,
   Scale,
   Send,
   Sparkles,
-  Lock
+  Lock,
+  X
 } from "lucide-react";
 
 export default function ReviewerCaseHeroScreen() {
   const params = useParams();
   const router = useRouter();
   const caseId = params.id as string;
-  const { cases, fdrs, recordDecision, submitFeedback, triggerReVerification } = useStore();
+  const { cases, fdrs, currentUser, recordDecision, recordFdrReveal, submitFeedback, triggerReVerification } = useStore();
 
   const c = cases.find(item => item.id === caseId || item.caseNumber === caseId || item.fdrId === caseId);
   const fdr = fdrs.find(item => item.id === c?.fdrId || item.id === caseId);
 
   // Active highlighted field
   const [activeField, setActiveField] = useState<string | null>("amount");
+  const [isFdrRevealed, setIsFdrRevealed] = useState(false);
   const [editingField, setEditingField] = useState<string | null>(null);
   const [editValue, setEditValue] = useState<string>("");
+  const [activeTab, setActiveTab] = useState<"twin" | "extracted">("twin");
+  const [selectedFinding, setSelectedFinding] = useState<any>(null);
+  const [showApprovalModal, setShowApprovalModal] = useState(false);
+  const [concurrencyError, setConcurrencyError] = useState<string | null>(null);
+  const [decisionMessage, setDecisionMessage] = useState<string>("");
 
   // Sticky Decision Bar State
-  const [decisionAction, setDecisionAction] = useState<"Approve" | "Reject" | "Request Clarification" | "Escalate" | null>(null);
+  const [decisionAction, setDecisionAction] = useState<string | null>(null);
   const [overrideAI, setOverrideAI] = useState(false);
   const [justification, setJustification] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -48,7 +57,33 @@ export default function ReviewerCaseHeroScreen() {
   const [isReVerifying, setIsReVerifying] = useState(false);
 
   if (!fdr) {
-    return (
+    const findingsList = fdr.findings && fdr.findings.length > 0 ? fdr.findings : [
+    {
+      id: "fnd-1",
+      code: fdr.verificationStatus === "MISMATCH" ? "AMOUNT_MISMATCH" : "REGULATORY_COMPLIANCE_VERIFIED",
+      category: fdr.verificationStatus === "MISMATCH" ? "VERIFICATION" : "REGULATORY_COMPLIANCE",
+      severity: fdr.verificationStatus === "MISMATCH" ? "CRITICAL" : "LOW",
+      status: "OPEN",
+      ruleId: "AICTE-APH-CH4-v2026.1",
+      ruleVersion: "2026.1",
+      title: fdr.verificationStatus === "MISMATCH" ? "Authoritative CBS Amount Discrepancy (-₹5,00,000)" : "Lien & Tenure Compliance Verified",
+      explanation: fdr.verificationStatus === "MISMATCH"
+        ? "Authoritative bank integration response reported ₹45,00,000 balance against ₹50,00,000 claimed."
+        : "FDR tenor exceeds mandatory 60-month threshold and includes AICTE joint lien endorsement.",
+      evidenceRefs: [
+        {
+          pageNumber: 1,
+          fieldName: "amount",
+          sourceText: `Extracted Claim: ₹${fdr.amount.toLocaleString("en-IN")} vs Gateway: ₹45,00,000`
+        }
+      ],
+      nextRecommendedStep: fdr.verificationStatus === "MISMATCH"
+        ? "Issue clarification notice to institution requesting reconciliation certificate."
+        : "Proceed with scheduled compliance review."
+    }
+  ];
+
+  return (
       <div className="max-w-4xl mx-auto py-16 text-center space-y-4">
         <h2 className="text-xl font-bold text-slate-800">Case Not Found</h2>
         <p className="text-xs text-slate-500">The requested FDR case reference does not exist.</p>
@@ -88,23 +123,52 @@ export default function ReviewerCaseHeroScreen() {
     setEditingField(null);
   };
 
+  const isApprovingAuthority = currentUser?.role === "APPROVING_AUTHORITY";
+  const isCaseOfficer = currentUser?.role === "CASE_OFFICER" || currentUser?.role === "REVIEWER";
+
+  const handleRevealToggle = async () => {
+    const nextState = !isFdrRevealed;
+    setIsFdrRevealed(nextState);
+    if (nextState) {
+      await recordFdrReveal(fdr.id, fdr.fdrNumber, "Officer unmasked FDR identifier for audit inspection");
+    }
+  };
+
   const handleDecisionSubmit = async () => {
     if (!decisionAction) return;
     if (!justification.trim()) {
-      alert("Mandatory justification required for every consequential reviewer decision.");
+      alert("Mandatory justification required for every consequential decision.");
       return;
     }
 
+    if (isApprovingAuthority && (decisionAction === "Approve" || decisionAction === "Reject") && !showApprovalModal) {
+      setShowApprovalModal(true);
+      return;
+    }
+
+    setConcurrencyError(null);
     setIsSubmitting(true);
-    await recordDecision(
+    const res = await recordDecision(
       c?.id || `case-${Date.now()}`,
       fdr.id,
       decisionAction,
       overrideAI,
-      justification
+      justification,
+      fdr.record_version
     );
     setIsSubmitting(false);
-    setDecisionSubmitted(true);
+    setShowApprovalModal(false);
+
+    if (res?.error) {
+      setConcurrencyError(res.error);
+    } else {
+      setDecisionSubmitted(true);
+      setDecisionMessage(
+        isApprovingAuthority
+          ? `Statutory Decision recorded (${decisionAction}). Sealed in SHA-256 audit ledger.`
+          : `Case recommendation submitted (${decisionAction}) for Approving Authority review.`
+      );
+    }
   };
 
   const handleTriggerReVerification = async () => {
@@ -112,6 +176,32 @@ export default function ReviewerCaseHeroScreen() {
     await triggerReVerification(fdr.id);
     setIsReVerifying(false);
   };
+
+  const findingsList = fdr.findings && fdr.findings.length > 0 ? fdr.findings : [
+    {
+      id: "fnd-1",
+      code: fdr.verificationStatus === "MISMATCH" ? "AMOUNT_MISMATCH" : "REGULATORY_COMPLIANCE_VERIFIED",
+      category: fdr.verificationStatus === "MISMATCH" ? "VERIFICATION" : "REGULATORY_COMPLIANCE",
+      severity: fdr.verificationStatus === "MISMATCH" ? "CRITICAL" : "LOW",
+      status: "OPEN",
+      ruleId: "AICTE-APH-CH4-v2026.1",
+      ruleVersion: "2026.1",
+      title: fdr.verificationStatus === "MISMATCH" ? "Authoritative CBS Amount Discrepancy (-₹5,00,000)" : "Lien & Tenure Compliance Verified",
+      explanation: fdr.verificationStatus === "MISMATCH"
+        ? "Authoritative bank integration response reported ₹45,00,000 balance against ₹50,00,000 claimed."
+        : "FDR tenor exceeds mandatory 60-month threshold and includes AICTE joint lien endorsement.",
+      evidenceRefs: [
+        {
+          pageNumber: 1,
+          fieldName: "amount",
+          sourceText: `Extracted Claim: ₹${fdr.amount.toLocaleString("en-IN")} vs Gateway: ₹45,00,000`
+        }
+      ],
+      nextRecommendedStep: fdr.verificationStatus === "MISMATCH"
+        ? "Issue clarification notice to institution requesting reconciliation certificate."
+        : "Proceed with scheduled compliance review."
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-slate-100 flex flex-col pb-32">
@@ -128,8 +218,16 @@ export default function ReviewerCaseHeroScreen() {
             </Link>
             <div>
               <div className="flex items-center space-x-2">
-                <span className="font-bold text-slate-900 text-base">
-                  {c?.caseNumber || "CASE-INSPECTION"} • {fdr.fdrNumber}
+                <span className="font-bold text-slate-900 text-base flex items-center space-x-1.5">
+                  <span>{c?.caseNumber || "CASE-INSPECTION"} • {maskFdrNumber(fdr.fdrNumber, isFdrRevealed)}</span>
+                  <button
+                    type="button"
+                    onClick={handleRevealToggle}
+                    className="p-1 text-slate-400 hover:text-slate-700 rounded transition-colors"
+                    title={isFdrRevealed ? "Mask FDR number" : "Reveal full FDR number (audit logged)"}
+                  >
+                    {isFdrRevealed ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+                  </button>
                 </span>
                 <StatusBadge status={fdr.lifecycleStatus} size="sm" />
                 {fdr.verificationStatus === "MISMATCH" && (
@@ -165,6 +263,14 @@ export default function ReviewerCaseHeroScreen() {
 
       {/* Hero 3-Pane Reviewer Workspace */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
+        {concurrencyError && (
+          <div className="mb-4 p-3.5 bg-amber-50 border border-amber-300 text-amber-900 rounded-xl text-xs font-bold flex items-center justify-between shadow-xs">
+            <span>{concurrencyError}</span>
+            <button type="button" onClick={() => window.location.reload()} className="underline text-blue-700 hover:text-blue-900 ml-4">
+              Reload Latest Record
+            </button>
+          </div>
+        )}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           
           {/* PANE 1: ORIGINAL DOCUMENT VISUALIZER (4 cols) */}
@@ -206,7 +312,7 @@ export default function ReviewerCaseHeroScreen() {
                     }`}
                   >
                     <span className="font-sans font-semibold text-slate-500 text-[8px] uppercase block">Deposit Certificate No:</span>
-                    <span className="font-mono font-bold text-slate-900">{fdr.fdrNumber}</span>
+                    <span className="font-mono font-bold text-slate-900">{maskFdrNumber(fdr.fdrNumber, isFdrRevealed)}</span>
                   </div>
 
                   {/* Principal Amount (Highlights Altered Numerics if Mismatch) */}
@@ -290,25 +396,120 @@ export default function ReviewerCaseHeroScreen() {
             </div>
           </div>
 
-          {/* PANE 2: EXTRACTED FIELDS & INLINE CORRECTION (4 cols) */}
+          {/* PANE 2: DIGITAL TWIN (CLAIMS VS AUTHORITATIVE FACTS) (4 cols) */}
           <div className="lg:col-span-4 bg-white border rounded-2xl shadow-sm p-5 space-y-4 h-[750px] overflow-y-auto">
             <div className="flex items-center justify-between border-b pb-3">
               <div>
-                <h3 className="font-bold text-sm text-slate-900">Extracted Fields</h3>
-                <p className="text-xs text-slate-500">Field-level OCR confidence with bounding coordinate tags</p>
+                <h3 className="font-bold text-sm text-slate-900">FDR Digital Twin</h3>
+                <p className="text-xs text-slate-500">Claims vs Authoritative Facts</p>
               </div>
-              <span className="text-xs font-semibold bg-blue-50 text-blue-800 px-2 py-0.5 rounded-full">
-                {fdr.extractedFields.length} Fields
-              </span>
+              <div className="flex rounded-lg border bg-slate-100 p-0.5 text-xs font-semibold">
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("twin")}
+                  className={`px-2.5 py-1 rounded-md transition-colors ${activeTab === "twin" ? "bg-white text-slate-900 shadow-sm" : "text-slate-600 hover:text-slate-900"}`}
+                >
+                  Twin
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("extracted")}
+                  className={`px-2.5 py-1 rounded-md transition-colors ${activeTab === "extracted" ? "bg-white text-slate-900 shadow-sm" : "text-slate-600 hover:text-slate-900"}`}
+                >
+                  Fields ({fdr.extractedFields.length})
+                </button>
+              </div>
             </div>
 
-            <div className="space-y-3">
+            {activeTab === "twin" ? (
+              <div className="space-y-3">
+                <div className="text-[11px] text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-200 leading-relaxed">
+                  <strong>Digital Twin Invariant:</strong> Extracted document values remain claims until verified. Discrepancies preserve both values side by side.
+                </div>
+
+                {[
+                  { field: "amount", label: "Principal Amount", extracted: `₹${fdr.amount.toLocaleString("en-IN")}`, auth: fdr.verificationStatus === "MISMATCH" ? "₹45,00,000" : `₹${fdr.amount.toLocaleString("en-IN")}`, conflict: fdr.verificationStatus === "MISMATCH" },
+                  { field: "fdrNumber", label: "FDR Number", extracted: maskFdrNumber(fdr.fdrNumber, isFdrRevealed), auth: maskFdrNumber(fdr.fdrNumber, isFdrRevealed), conflict: false },
+                  { field: "maturityDate", label: "Maturity Date", extracted: fdr.maturityDate, auth: fdr.maturityDate, conflict: false },
+                  { field: "jointBeneficiary", label: "Lien Holder", extracted: fdr.jointBeneficiary, auth: "Secretary AICTE", conflict: !fdr.jointBeneficiary.toLowerCase().includes("aicte") },
+                  { field: "bankName", label: "Issuing Bank", extracted: fdr.bankName, auth: fdr.bankName, conflict: false }
+                ].map(item => (
+                  <div
+                    key={item.field}
+                    onClick={() => setActiveField(item.field)}
+                    className={`p-3 rounded-xl border transition-all cursor-pointer ${
+                      item.conflict
+                        ? "bg-rose-50/70 border-rose-300 ring-1 ring-rose-300"
+                        : activeField === item.field
+                        ? "bg-blue-50/70 border-blue-400 ring-1 ring-blue-300"
+                        : "bg-white border-slate-200 hover:border-slate-300"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between text-xs mb-2">
+                      <span className="font-bold text-slate-800">{item.label}</span>
+                      {item.conflict ? (
+                        <span className="text-[10px] font-bold text-rose-700 bg-rose-100 border border-rose-300 px-2 py-0.5 rounded-full">
+                          Unresolved Conflict
+                        </span>
+                      ) : (
+                        <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
+                          Authoritative Match
+                        </span>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div className="p-2 bg-slate-50 rounded-lg border border-slate-200">
+                        <div className="text-[9px] font-bold text-slate-500 uppercase tracking-wider mb-0.5 flex items-center justify-between">
+                          <span>Document Claim</span>
+                          <span className="text-[8px] bg-slate-200 text-slate-700 px-1 rounded">Claim</span>
+                        </div>
+                        <div className="font-bold text-slate-900 truncate">{item.extracted}</div>
+                      </div>
+                      <div className={`p-2 rounded-lg border ${item.conflict ? "bg-rose-100/50 border-rose-200" : "bg-blue-50/50 border-blue-200"}`}>
+                        <div className="text-[9px] font-bold text-slate-500 uppercase tracking-wider mb-0.5 flex items-center justify-between">
+                          <span>Authoritative Fact</span>
+                          <span className="text-[8px] bg-blue-100 text-blue-800 px-1 rounded">Gateway</span>
+                        </div>
+                        <div className={`font-bold truncate ${item.conflict ? "text-rose-900" : "text-slate-900"}`}>{item.auth}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="space-y-3">
               {fdr.extractedFields.map(field => {
                 const isSelected = activeField === field.fieldName;
                 const isEditing = editingField === field.fieldName;
                 const isMismatchField = fdr.verificationStatus === "MISMATCH" && field.fieldName === "amount";
 
-                return (
+                const findingsList = fdr.findings && fdr.findings.length > 0 ? fdr.findings : [
+    {
+      id: "fnd-1",
+      code: fdr.verificationStatus === "MISMATCH" ? "AMOUNT_MISMATCH" : "REGULATORY_COMPLIANCE_VERIFIED",
+      category: fdr.verificationStatus === "MISMATCH" ? "VERIFICATION" : "REGULATORY_COMPLIANCE",
+      severity: fdr.verificationStatus === "MISMATCH" ? "CRITICAL" : "LOW",
+      status: "OPEN",
+      ruleId: "AICTE-APH-CH4-v2026.1",
+      ruleVersion: "2026.1",
+      title: fdr.verificationStatus === "MISMATCH" ? "Authoritative CBS Amount Discrepancy (-₹5,00,000)" : "Lien & Tenure Compliance Verified",
+      explanation: fdr.verificationStatus === "MISMATCH"
+        ? "Authoritative bank integration response reported ₹45,00,000 balance against ₹50,00,000 claimed."
+        : "FDR tenor exceeds mandatory 60-month threshold and includes AICTE joint lien endorsement.",
+      evidenceRefs: [
+        {
+          pageNumber: 1,
+          fieldName: "amount",
+          sourceText: `Extracted Claim: ₹${fdr.amount.toLocaleString("en-IN")} vs Gateway: ₹45,00,000`
+        }
+      ],
+      nextRecommendedStep: fdr.verificationStatus === "MISMATCH"
+        ? "Issue clarification notice to institution requesting reconciliation certificate."
+        : "Proceed with scheduled compliance review."
+    }
+  ];
+
+  return (
                   <div
                     key={field.fieldName}
                     onClick={() => setActiveField(field.fieldName)}
@@ -389,7 +590,8 @@ export default function ReviewerCaseHeroScreen() {
                   </div>
                 );
               })}
-            </div>
+              </div>
+            )}
           </div>
 
           {/* PANE 3: AI INTELLIGENCE & RULES PANEL (4 cols) */}
@@ -412,6 +614,45 @@ export default function ReviewerCaseHeroScreen() {
               <div className="mt-3 pt-2.5 border-t border-blue-800/80 flex items-center justify-between text-[11px] text-blue-300">
                 <span>Confidence: {((fdr.aiRecommendation?.confidence || 0.95) * 100).toFixed(0)}%</span>
                 <span className="font-mono text-amber-300">{fdr.aiRecommendation?.applicableRuleId}</span>
+              </div>
+            </div>
+
+            {/* Findings & Explainability Trace Card */}
+            <div className="bg-white border rounded-xl p-4 shadow-sm space-y-3">
+              <div className="flex items-center justify-between border-b pb-2">
+                <span className="text-xs font-bold uppercase text-slate-700 flex items-center space-x-1">
+                  <ShieldAlert className="w-3.5 h-3.5 mr-1 text-rose-600" />
+                  Findings & Trace ({findingsList.length})
+                </span>
+                <span className="text-[10px] text-slate-400">Click Why? for trace</span>
+              </div>
+              <div className="space-y-2">
+                {findingsList.map((fnd) => (
+                  <div key={fnd.id} className="p-3 rounded-xl border bg-slate-50 hover:bg-slate-100/80 transition-colors text-xs">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono font-bold text-[10px] text-slate-700">{fnd.code}</span>
+                      <span className={`text-[9px] font-bold px-1.5 py-0.2 rounded ${
+                        fnd.severity === "CRITICAL" ? "bg-rose-100 text-rose-800" :
+                        fnd.severity === "HIGH" ? "bg-orange-100 text-orange-800" : "bg-blue-100 text-blue-800"
+                      }`}>
+                        {fnd.severity}
+                      </span>
+                    </div>
+                    <div className="font-semibold text-slate-900 text-xs mt-1">{fnd.title}</div>
+                    <p className="text-slate-600 text-[11px] mt-0.5 line-clamp-2">{fnd.explanation}</p>
+                    <div className="mt-2 pt-2 border-t border-slate-200 flex items-center justify-between">
+                      <span className="text-[10px] text-slate-400 font-mono">Rule: {fnd.ruleId || "APH-2026"}</span>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedFinding(fnd)}
+                        className="text-[10px] font-bold text-blue-700 hover:text-blue-900 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 flex items-center space-x-1"
+                      >
+                        <HelpCircle className="w-3 h-3" />
+                        <span>Why?</span>
+                      </button>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -530,81 +771,271 @@ export default function ReviewerCaseHeroScreen() {
             />
           </div>
 
-          {/* Action Buttons */}
+          {/* Action Buttons: Gated by Separation of Duties */}
           <div className="flex items-center space-x-2 flex-shrink-0">
-            <button
-              onClick={() => {
-                setDecisionAction("Approve");
-                setJustification(overrideAI ? "Overridden: Certificate verified through offline branch contact." : "Verified against authoritative core banking records.");
-              }}
-              className={`px-4 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all ${
-                decisionAction === "Approve"
-                  ? "bg-emerald-700 text-white ring-2 ring-emerald-500"
-                  : "bg-emerald-600 hover:bg-emerald-700 text-white"
-              }`}
-            >
-              Approve Deposit
-            </button>
+            {isApprovingAuthority ? (
+              <>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setDecisionAction("Approve");
+                    setJustification("Statutory approval granted: Deposit satisfies AICTE Chapter IV regulatory requirements.");
+                  }}
+                  className={`px-4 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all ${
+                    decisionAction === "Approve"
+                      ? "bg-emerald-700 text-white ring-2 ring-emerald-500"
+                      : "bg-emerald-600 hover:bg-emerald-700 text-white"
+                  }`}
+                >
+                  Approve Deposit
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setDecisionAction("Reject");
+                    setJustification("Statutory rejection: Deposit non-compliant with regulatory norms.");
+                  }}
+                  className={`px-4 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all ${
+                    decisionAction === "Reject"
+                      ? "bg-rose-700 text-white ring-2 ring-rose-500"
+                      : "bg-rose-600 hover:bg-rose-700 text-white"
+                  }`}
+                >
+                  Reject Deposit
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setDecisionAction("RECOMMEND_APPROVAL");
+                    setJustification("Case Officer recommends approval: Verified against authoritative records.");
+                  }}
+                  className={`px-3 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all ${
+                    decisionAction === "RECOMMEND_APPROVAL"
+                      ? "bg-emerald-700 text-white ring-2 ring-emerald-500"
+                      : "bg-emerald-600 hover:bg-emerald-700 text-white"
+                  }`}
+                >
+                  Recommend Approval
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setDecisionAction("REQUEST_INFORMATION");
+                    setJustification("Clarification notice: Please provide bank certificate resolving discrepancy.");
+                  }}
+                  className={`px-3 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all ${
+                    decisionAction === "REQUEST_INFORMATION"
+                      ? "bg-amber-600 text-white ring-2 ring-amber-400"
+                      : "bg-amber-500 hover:bg-amber-600 text-white"
+                  }`}
+                >
+                  Request Info
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setDecisionAction("MARK_EVIDENCE_INCORRECT");
+                    setJustification("Scanned document glyph anomaly detected on numeric denomination.");
+                  }}
+                  className={`px-3 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all ${
+                    decisionAction === "MARK_EVIDENCE_INCORRECT"
+                      ? "bg-slate-700 text-white ring-2 ring-slate-500"
+                      : "bg-slate-600 hover:bg-slate-700 text-white"
+                  }`}
+                >
+                  Evidence Incorrect
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setDecisionAction("ESCALATE");
+                    setJustification("Case escalated to Vigilance Committee for in-depth inspection.");
+                  }}
+                  className={`px-3 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all ${
+                    decisionAction === "ESCALATE"
+                      ? "bg-purple-700 text-white ring-2 ring-purple-500"
+                      : "bg-purple-600 hover:bg-purple-700 text-white"
+                  }`}
+                >
+                  Escalate
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setDecisionAction("RECOMMEND_REJECTION");
+                    setJustification("Case Officer recommends rejection: Critical shortfall on security deposit requirement.");
+                  }}
+                  className={`px-3 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all ${
+                    decisionAction === "RECOMMEND_REJECTION"
+                      ? "bg-rose-700 text-white ring-2 ring-rose-500"
+                      : "bg-rose-600 hover:bg-rose-700 text-white"
+                  }`}
+                >
+                  Recommend Rejection
+                </button>
+              </>
+            )}
 
             <button
-              onClick={() => {
-                setDecisionAction("Request Clarification");
-                setJustification("Deficit detected between bank record and certificate. Please submit bank confirmation letter.");
-              }}
-              className={`px-4 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all ${
-                decisionAction === "Request Clarification"
-                  ? "bg-amber-600 text-white ring-2 ring-amber-400"
-                  : "bg-amber-500 hover:bg-amber-600 text-white"
-              }`}
-            >
-              Request Clarification
-            </button>
-
-            <button
-              onClick={() => {
-                setDecisionAction("Escalate");
-                setJustification("High risk anomaly detected in certificate metadata. Escalated to Executive Committee.");
-              }}
-              className={`px-4 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all ${
-                decisionAction === "Escalate"
-                  ? "bg-purple-700 text-white ring-2 ring-purple-500"
-                  : "bg-purple-600 hover:bg-purple-700 text-white"
-              }`}
-            >
-              Escalate to Committee
-            </button>
-
-            <button
-              onClick={() => {
-                setDecisionAction("Reject");
-                setJustification("Failed mandatory AICTE regulatory requirements.");
-              }}
-              className={`px-4 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all ${
-                decisionAction === "Reject"
-                  ? "bg-rose-700 text-white ring-2 ring-rose-500"
-                  : "bg-rose-600 hover:bg-rose-700 text-white"
-              }`}
-            >
-              Reject
-            </button>
-
-            <button
+              type="button"
               onClick={handleDecisionSubmit}
               disabled={isSubmitting || !decisionAction}
               className="bg-slate-900 hover:bg-slate-800 disabled:opacity-50 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md transition-all flex items-center space-x-1.5"
             >
               <Send className="w-3.5 h-3.5" />
-              <span>{isSubmitting ? "Recording..." : "Record Decision"}</span>
+              <span>{isSubmitting ? "Recording..." : isApprovingAuthority ? "Confirm Decision" : "Submit Recommendation"}</span>
             </button>
           </div>
         </div>
 
         {decisionSubmitted && (
           <div className="max-w-7xl mx-auto mt-2 text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-300 rounded p-2 text-center animate-fade-in">
-            ✓ Reviewer decision successfully recorded in immutable SHA-256 hash-chained audit ledger.
+            ✓ {decisionMessage || "Decision successfully recorded in immutable SHA-256 hash-chained audit ledger."}
           </div>
         )}
       </div>
+
+      {/* WHY? EXPLAINABILITY MODAL */}
+      {selectedFinding && (
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full border border-slate-200 overflow-hidden animate-scale-in">
+            <div className="bg-slate-900 text-white px-5 py-4 flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <HelpCircle className="w-5 h-5 text-blue-400" />
+                <div>
+                  <h3 className="font-bold text-sm">Explainability Trace</h3>
+                  <p className="text-[10px] text-slate-400 font-mono">Code: {selectedFinding.code}</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedFinding(null)}
+                className="text-slate-400 hover:text-white p-1 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="p-5 space-y-4 max-h-[80vh] overflow-y-auto text-xs">
+              <div>
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Finding Title</span>
+                <p className="font-bold text-slate-900 text-sm">{selectedFinding.title}</p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-200">
+                  <span className="text-[9px] font-bold text-slate-500 uppercase block mb-0.5">Severity</span>
+                  <span className="font-bold text-slate-800">{selectedFinding.severity}</span>
+                </div>
+                <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-200">
+                  <span className="text-[9px] font-bold text-slate-500 uppercase block mb-0.5">Category</span>
+                  <span className="font-bold text-slate-800">{selectedFinding.category}</span>
+                </div>
+              </div>
+
+              <div>
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Plain-Language Explanation</span>
+                <p className="text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200">
+                  {selectedFinding.explanation}
+                </p>
+              </div>
+
+              <div className="p-3 bg-blue-50/70 border border-blue-200 rounded-xl space-y-1.5">
+                <span className="text-[10px] font-bold text-blue-900 uppercase tracking-wider block">Regulatory Rule Reference</span>
+                <div className="flex items-center justify-between text-blue-950 font-mono text-[11px]">
+                  <span>Rule ID: {selectedFinding.ruleId || "AICTE-APH-CH4"}</span>
+                  <span>Version: {selectedFinding.ruleVersion || "2026.1"}</span>
+                </div>
+              </div>
+
+              {selectedFinding.evidenceRefs && selectedFinding.evidenceRefs.length > 0 && (
+                <div>
+                  <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Evidence Reference</span>
+                  <div className="space-y-1.5">
+                    {selectedFinding.evidenceRefs.map((ref: any, i: number) => (
+                      <div key={i} className="p-2.5 bg-amber-50/60 border border-amber-200 rounded-lg text-amber-950 font-mono text-[11px]">
+                        <div>Page: {ref.pageNumber || 1} • Field: {ref.fieldName || "N/A"}</div>
+                        {ref.sourceText && <div className="mt-1 text-[10px] text-amber-900 font-sans">Snippet: &ldquo;{ref.sourceText}&rdquo;</div>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {selectedFinding.nextRecommendedStep && (
+                <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
+                  <span className="text-[10px] font-bold text-emerald-900 uppercase tracking-wider block mb-1">Next Recommended Step</span>
+                  <p className="text-emerald-800 text-xs font-medium">{selectedFinding.nextRecommendedStep}</p>
+                </div>
+              )}
+            </div>
+
+            <div className="px-5 py-3 bg-slate-50 border-t flex justify-end">
+              <button
+                type="button"
+                onClick={() => setSelectedFinding(null)}
+                className="px-4 py-2 bg-slate-900 text-white rounded-xl font-bold text-xs hover:bg-slate-800 transition-colors"
+              >
+                Close Trace
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* APPROVING AUTHORITY CONFIRMATION MODAL */}
+      {showApprovalModal && (
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full border border-slate-200 p-6 space-y-4 animate-scale-in">
+            <div className="flex items-center space-x-3 text-slate-900">
+              <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-900 font-bold">
+                <Scale className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="font-bold text-base">Confirm Statutory Decision</h3>
+                <p className="text-xs text-slate-500">Approving Authority Formal Adjudication</p>
+              </div>
+            </div>
+
+            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs space-y-1.5 text-slate-700">
+              <div><strong>Action:</strong> {decisionAction} Deposit</div>
+              <div><strong>FDR Reference:</strong> {fdr.fdrNumber}</div>
+              <div><strong>Institution:</strong> {fdr.institutionName}</div>
+              <div><strong>Mandatory Justification:</strong> {justification}</div>
+            </div>
+
+            <p className="text-[11px] text-slate-500 leading-relaxed">
+              By confirming, this decision is permanently sealed into the immutable cryptographic audit ledger under your statutory credentials ({currentUser.name}).
+            </p>
+
+            <div className="flex items-center justify-end space-x-2 pt-2">
+              <button
+                type="button"
+                onClick={() => setShowApprovalModal(false)}
+                className="px-4 py-2 border rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleDecisionSubmit}
+                disabled={isSubmitting}
+                className="px-4 py-2 bg-blue-950 text-white rounded-xl text-xs font-bold hover:bg-blue-900 shadow"
+              >
+                {isSubmitting ? "Sealing Decision..." : "Confirm & Seal Decision"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

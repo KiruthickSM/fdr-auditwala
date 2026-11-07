@@ -6,7 +6,7 @@ interface SessionPayload {
   userId: string;
   email: string;
   name: string;
-  role: "INSTITUTION" | "REVIEWER" | "ADMIN" | "MANAGEMENT";
+  role: string;
   institutionId?: string;
   exp: number;
 }
@@ -80,21 +80,23 @@ export function middleware(req: NextRequest) {
   const role = session.role;
 
   // 3. RBAC Route Protection
-  // Reviewer routes
+  // Reviewer routes (Case Officer, Approving Authority, Admin)
   if (pathname.startsWith("/reviewer")) {
-    if (role !== "REVIEWER" && role !== "ADMIN") {
+    const allowed = ["CASE_OFFICER", "APPROVING_AUTHORITY", "SYSTEM_ADMIN", "REVIEWER", "ADMIN"];
+    if (!allowed.includes(role)) {
       return NextResponse.redirect(new URL("/403", req.url));
     }
   }
 
   // Institution routes & Tenant Isolation
   if (pathname.startsWith("/institution")) {
-    if (role !== "INSTITUTION" && role !== "ADMIN") {
+    const allowed = ["APPLICANT", "SYSTEM_ADMIN", "INSTITUTION", "ADMIN"];
+    if (!allowed.includes(role)) {
       return NextResponse.redirect(new URL("/403", req.url));
     }
 
     // Tenant Isolation check
-    if (role === "INSTITUTION") {
+    if (role === "APPLICANT" || role === "INSTITUTION") {
       const match = pathname.match(/\/institution\/([^\/]+)/);
       if (match && match[1]) {
         const requestedInstId = match[1];
@@ -106,16 +108,18 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  // Admin routes
+  // Admin routes (System Admin, Policy Admin, Auditor, Admin)
   if (pathname.startsWith("/admin")) {
-    if (role !== "ADMIN") {
+    const allowed = ["SYSTEM_ADMIN", "POLICY_ADMIN", "AUDITOR", "ADMIN"];
+    if (!allowed.includes(role)) {
       return NextResponse.redirect(new URL("/403", req.url));
     }
   }
 
-  // Management routes
+  // Management routes (Management, Finance Officer, Approving Authority, System Admin)
   if (pathname.startsWith("/management")) {
-    if (role !== "MANAGEMENT" && role !== "ADMIN") {
+    const allowed = ["MANAGEMENT", "FINANCE_OFFICER", "APPROVING_AUTHORITY", "SYSTEM_ADMIN", "ADMIN"];
+    if (!allowed.includes(role)) {
       return NextResponse.redirect(new URL("/403", req.url));
     }
   }

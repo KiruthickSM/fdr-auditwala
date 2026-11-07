@@ -83,11 +83,11 @@ export const Navbar: React.FC = () => {
   };
 
   const navLinks = [
-    { href: "/institution", label: "Institution Portal", icon: Building2, roles: ["INSTITUTION", "ADMIN"] },
-    { href: "/reviewer", label: "Reviewer Inbox", icon: FileCheck2, roles: ["REVIEWER", "ADMIN"] },
-    { href: "/management", label: "Portfolio Analytics", icon: BarChart3, roles: ["MANAGEMENT", "ADMIN", "REVIEWER"] },
-    { href: "/admin", label: "Rules & Governance", icon: Sliders, roles: ["ADMIN"] },
-    { href: "/policy", label: "AICTE RAG Search", icon: BookOpen, roles: ["INSTITUTION", "REVIEWER", "ADMIN", "MANAGEMENT"] }
+    { href: "/institution", label: "Institution Portal", icon: Building2, roles: ["APPLICANT", "INSTITUTION", "SYSTEM_ADMIN", "ADMIN"] },
+    { href: "/reviewer", label: "Reviewer Inbox", icon: FileCheck2, roles: ["CASE_OFFICER", "APPROVING_AUTHORITY", "REVIEWER", "SYSTEM_ADMIN", "ADMIN"] },
+    { href: "/management", label: "Portfolio Analytics", icon: BarChart3, roles: ["MANAGEMENT", "FINANCE_OFFICER", "APPROVING_AUTHORITY", "SYSTEM_ADMIN", "ADMIN", "CASE_OFFICER", "REVIEWER"] },
+    { href: "/admin", label: "Rules & Governance", icon: Sliders, roles: ["SYSTEM_ADMIN", "POLICY_ADMIN", "AUDITOR", "ADMIN"] },
+    { href: "/policy", label: "AICTE RAG Search", icon: BookOpen, roles: ["APPLICANT", "CASE_OFFICER", "APPROVING_AUTHORITY", "FINANCE_OFFICER", "AUDITOR", "SYSTEM_ADMIN", "POLICY_ADMIN", "MANAGEMENT", "INSTITUTION", "REVIEWER", "ADMIN"] }
   ];
 
   const visibleLinks = navLinks.filter(l => l.roles.includes(currentUser.role));

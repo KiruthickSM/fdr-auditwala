@@ -1452,7 +1452,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "SBI API returned matching principal under lien to AICTE."
     },
     "createdAt": "2024-03-15T09:00:00Z",
-    "updatedAt": "2024-03-16T11:00:00Z"
+    "updatedAt": "2024-03-16T11:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-benchmark-1-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-SBI-2024-81729",
+        "normalized_value": "FDR-SBI-2024-81729",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from SBI_FDR_35L_Aryabhata_Clean.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-1-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "3500000",
+        "normalized_value": 3500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from SBI_FDR_35L_Aryabhata_Clean.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-1-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "State Bank of India",
+        "normalized_value": "State Bank of India",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from SBI_FDR_35L_Aryabhata_Clean.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-1-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Koramangala Branch, Bengaluru",
+        "normalized_value": "Koramangala Branch, Bengaluru",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from SBI_FDR_35L_Aryabhata_Clean.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-1-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2024-03-15",
+        "normalized_value": "2024-03-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from SBI_FDR_35L_Aryabhata_Clean.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-1-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2029-03-15",
+        "normalized_value": "2029-03-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from SBI_FDR_35L_Aryabhata_Clean.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-1-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Aryabhata Institute of Technology",
+        "normalized_value": "Aryabhata Institute of Technology",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from SBI_FDR_35L_Aryabhata_Clean.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-1-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from SBI_FDR_35L_Aryabhata_Clean.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-benchmark-1-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "SBI_FDR_35L_Aryabhata_Clean.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b93,500,000"
+          },
+          {
+            "source": "State Bank of India Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b93,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2024-03-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-benchmark-2",
@@ -1637,7 +1769,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "PNB CBS API account reflects \u20b945,00,000. OCR glyph anomaly on '50,00,000'."
     },
     "createdAt": "2024-06-10T08:15:00Z",
-    "updatedAt": "2024-06-11T14:30:00Z"
+    "updatedAt": "2024-06-11T14:30:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-benchmark-2-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-PNB-2024-9981",
+        "normalized_value": "FDR-PNB-2024-9981",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from PNB_FDR_50L_Altered_Scan.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-2-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "5000000",
+        "normalized_value": 5000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from PNB_FDR_50L_Altered_Scan.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-2-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Punjab National Bank",
+        "normalized_value": "Punjab National Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from PNB_FDR_50L_Altered_Scan.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-2-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Ashram Road Branch, Ahmedabad",
+        "normalized_value": "Ashram Road Branch, Ahmedabad",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from PNB_FDR_50L_Altered_Scan.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-2-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2024-06-10",
+        "normalized_value": "2024-06-10",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from PNB_FDR_50L_Altered_Scan.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-2-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2029-06-10",
+        "normalized_value": "2029-06-10",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from PNB_FDR_50L_Altered_Scan.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-2-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Sardar Patel Management Academy",
+        "normalized_value": "Sardar Patel Management Academy",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from PNB_FDR_50L_Altered_Scan.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-2-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from PNB_FDR_50L_Altered_Scan.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-bench-2-1",
+        "code": "AMOUNT_MISMATCH",
+        "category": "mismatch",
+        "severity": "high",
+        "status": "open",
+        "explanation": "Extracted certificate claim of \u20b950,00,000 conflicts with simulated bank CBS verification response of \u20b945,00,000 (Deficit: \u20b95,00,000).",
+        "evidenceRefs": [
+          {
+            "source": "PNB_Deposit_Receipt_50L.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b950,00,000"
+          },
+          {
+            "source": "PNB CBS Gateway (Simulated)",
+            "provenance": "authoritative integration response",
+            "value": "\u20b945,00,000"
+          }
+        ],
+        "nextStep": "Request certified bank confirmation letter from issuing branch.",
+        "ruleOrModelVersion": "RULE-FDR-AMOUNT-004 (v1.0.0)",
+        "createdAt": "2024-06-11T14:30:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-benchmark-3",
@@ -1810,7 +2074,134 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Maturity countdown active: 18 days remaining. Replacement certificate required."
     },
     "createdAt": "2019-12-01T10:00:00Z",
-    "updatedAt": "2026-11-01T08:00:00Z"
+    "updatedAt": "2026-11-01T08:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-benchmark-3-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-BOB-2019-44120",
+        "normalized_value": "FDR-BOB-2019-44120",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from BOB_FDR_50L_MaturityImminent.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-3-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "5000000",
+        "normalized_value": 5000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from BOB_FDR_50L_MaturityImminent.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-3-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Bank of Baroda",
+        "normalized_value": "Bank of Baroda",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from BOB_FDR_50L_MaturityImminent.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-3-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Hazratganj Branch, Lucknow",
+        "normalized_value": "Hazratganj Branch, Lucknow",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from BOB_FDR_50L_MaturityImminent.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-3-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2019-12-01",
+        "normalized_value": "2019-12-01",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from BOB_FDR_50L_MaturityImminent.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-3-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2026-11-25",
+        "normalized_value": "2026-11-25",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from BOB_FDR_50L_MaturityImminent.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-3-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Kalam Technical Campus",
+        "normalized_value": "Kalam Technical Campus",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from BOB_FDR_50L_MaturityImminent.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-3-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from BOB_FDR_50L_MaturityImminent.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-bench-3-1",
+        "code": "MATURITY_APPROACHING_RENEWAL_REQUIRED",
+        "category": "lifecycle",
+        "severity": "medium",
+        "status": "open",
+        "explanation": "Maturity in 18 days: renewal required under regulatory tenure policy.",
+        "evidenceRefs": [
+          {
+            "source": "BOB_FixedDeposit_2019.pdf",
+            "provenance": "extracted claim",
+            "value": "Maturity: 2026-11-25"
+          }
+        ],
+        "nextStep": "Serve Chapter IV renewal notice to institution registrar.",
+        "ruleOrModelVersion": "RULE-FDR-EXP-003 (v1.0.0)",
+        "createdAt": "2026-11-01T08:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-benchmark-4",
@@ -1993,7 +2384,134 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Metadata contains software signature 'Photoshop 24.1'; stamp DPI is 4x background scan DPI."
     },
     "createdAt": "2024-05-18T10:00:00Z",
-    "updatedAt": "2024-05-19T12:00:00Z"
+    "updatedAt": "2024-05-19T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-benchmark-4-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-HDFC-2024-55190",
+        "normalized_value": "FDR-HDFC-2024-55190",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Deposit_Vidyasagar_ScanArtifacts.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-4-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "2500000",
+        "normalized_value": 2500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Deposit_Vidyasagar_ScanArtifacts.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-4-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "HDFC Bank",
+        "normalized_value": "HDFC Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Deposit_Vidyasagar_ScanArtifacts.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-4-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Midnapore Main Branch",
+        "normalized_value": "Midnapore Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Deposit_Vidyasagar_ScanArtifacts.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-4-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2024-05-18",
+        "normalized_value": "2024-05-18",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Deposit_Vidyasagar_ScanArtifacts.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-4-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2029-05-18",
+        "normalized_value": "2029-05-18",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Deposit_Vidyasagar_ScanArtifacts.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-4-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Vidyasagar Technical Academy",
+        "normalized_value": "Vidyasagar Technical Academy",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Deposit_Vidyasagar_ScanArtifacts.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-4-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Deposit_Vidyasagar_ScanArtifacts.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-bench-4-1",
+        "code": "DOCUMENT_ANALYSIS_METADATA_INCONSISTENCY",
+        "category": "risk",
+        "severity": "high",
+        "status": "open",
+        "explanation": "Document analysis: review recommended (metadata inconsistency in PDF creation tags).",
+        "evidenceRefs": [
+          {
+            "source": "HDFC_Deposit_Receipt_25L.pdf",
+            "provenance": "official document",
+            "value": "Creator tool tag: Adobe Photoshop 2023"
+          }
+        ],
+        "nextStep": "Manual forensic inspection by Case Officer.",
+        "ruleOrModelVersion": "FORENSIC-META-002 (v1.0.0)",
+        "createdAt": "2024-05-19T12:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-benchmark-5",
@@ -2170,7 +2688,134 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Lien release prerequisites confirmed by Canara Bank and AICTE WRO."
     },
     "createdAt": "2016-08-10T11:00:00Z",
-    "updatedAt": "2024-08-12T16:30:00Z"
+    "updatedAt": "2024-08-12T16:30:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-benchmark-5-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-CAN-2016-10291",
+        "normalized_value": "FDR-CAN-2016-10291",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_FDR_100L_ReleaseEligible.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-5-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "10000000",
+        "normalized_value": 10000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_FDR_100L_ReleaseEligible.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-5-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Canara Bank",
+        "normalized_value": "Canara Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_FDR_100L_ReleaseEligible.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-5-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Shivaji Nagar Branch, Pune",
+        "normalized_value": "Shivaji Nagar Branch, Pune",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_FDR_100L_ReleaseEligible.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-5-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2016-08-10",
+        "normalized_value": "2016-08-10",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_FDR_100L_ReleaseEligible.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-5-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2024-08-10",
+        "normalized_value": "2024-08-10",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_FDR_100L_ReleaseEligible.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-5-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Shivaji Research Institute",
+        "normalized_value": "Shivaji Research Institute",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_FDR_100L_ReleaseEligible.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-benchmark-5-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_FDR_100L_ReleaseEligible.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-bench-5-1",
+        "code": "MISSING_JOINT_BENEFICIARY_LIEN",
+        "category": "compliance",
+        "severity": "medium",
+        "status": "open",
+        "explanation": "Mandatory second holder 'Regional Officer, AICTE' notation missing on deposit certificate.",
+        "evidenceRefs": [
+          {
+            "source": "Canara_Deposit_Receipt.pdf",
+            "provenance": "extracted claim",
+            "value": "Joint Beneficiary: None"
+          }
+        ],
+        "nextStep": "Request lien-marked endorsement certificate from institution.",
+        "ruleOrModelVersion": "RULE-FDR-BENEFICIARY-001 (v1.0.0)",
+        "createdAt": "2024-08-12T16:30:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-6",
@@ -2352,7 +2997,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2021-07-15T09:00:00Z",
-    "updatedAt": "2021-07-15T12:00:00Z"
+    "updatedAt": "2021-07-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-6-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-ICI-2021-10222",
+        "normalized_value": "FDR-ICI-2021-10222",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-6-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "1500000",
+        "normalized_value": 1500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-6-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "ICICI Bank",
+        "normalized_value": "ICICI Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-6-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Bengaluru Main Branch",
+        "normalized_value": "Bengaluru Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-6-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2021-07-15",
+        "normalized_value": "2021-07-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-6-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2026-07-15",
+        "normalized_value": "2026-07-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-6-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Aryabhata Institute of Technology",
+        "normalized_value": "Aryabhata Institute of Technology",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-6-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-6-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "ICICI_Bank_FDR_15L_Bengaluru.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b91,500,000"
+          },
+          {
+            "source": "ICICI Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b91,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2021-07-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-7",
@@ -2534,7 +3311,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2022-08-15T09:00:00Z",
-    "updatedAt": "2022-08-15T12:00:00Z"
+    "updatedAt": "2022-08-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-7-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-IND-2022-10259",
+        "normalized_value": "FDR-IND-2022-10259",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-7-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "2500000",
+        "normalized_value": 2500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-7-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Indian Bank",
+        "normalized_value": "Indian Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-7-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Ahmedabad Main Branch",
+        "normalized_value": "Ahmedabad Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-7-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2022-08-15",
+        "normalized_value": "2022-08-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-7-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2027-08-15",
+        "normalized_value": "2027-08-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-7-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Sardar Patel Management Academy",
+        "normalized_value": "Sardar Patel Management Academy",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-7-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-7-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Indian_Bank_FDR_25L_Ahmedabad.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b92,500,000"
+          },
+          {
+            "source": "Indian Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b92,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2022-08-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-8",
@@ -2716,7 +3625,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2023-01-15T09:00:00Z",
-    "updatedAt": "2023-01-15T12:00:00Z"
+    "updatedAt": "2023-01-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-8-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-STA-2023-10296",
+        "normalized_value": "FDR-STA-2023-10296",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_35L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-8-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "3500000",
+        "normalized_value": 3500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_35L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-8-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "State Bank of India",
+        "normalized_value": "State Bank of India",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_35L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-8-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Lucknow Main Branch",
+        "normalized_value": "Lucknow Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_35L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-8-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2023-01-15",
+        "normalized_value": "2023-01-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_35L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-8-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2028-01-15",
+        "normalized_value": "2028-01-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_35L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-8-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Kalam Technical Campus",
+        "normalized_value": "Kalam Technical Campus",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_35L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-8-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_35L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-8-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "State_Bank_of_India_FDR_35L_Lucknow.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b93,500,000"
+          },
+          {
+            "source": "State Bank of India Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b93,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2023-01-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-9",
@@ -2898,7 +3939,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2024-02-15T09:00:00Z",
-    "updatedAt": "2024-02-15T12:00:00Z"
+    "updatedAt": "2024-02-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-9-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-PUN-2024-10333",
+        "normalized_value": "FDR-PUN-2024-10333",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_50L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-9-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "5000000",
+        "normalized_value": 5000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_50L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-9-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Punjab National Bank",
+        "normalized_value": "Punjab National Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_50L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-9-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Rohtak Main Branch",
+        "normalized_value": "Rohtak Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_50L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-9-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2024-02-15",
+        "normalized_value": "2024-02-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_50L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-9-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2029-02-15",
+        "normalized_value": "2029-02-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_50L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-9-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Maharshi Dayanand College",
+        "normalized_value": "Maharshi Dayanand College",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_50L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-9-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_50L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-9-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Punjab_National_Bank_FDR_50L_Rohtak.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b95,000,000"
+          },
+          {
+            "source": "Punjab National Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b95,000,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2024-02-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-10",
@@ -3080,7 +4253,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2020-03-15T09:00:00Z",
-    "updatedAt": "2020-03-15T12:00:00Z"
+    "updatedAt": "2020-03-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-10-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-BAN-2020-10370",
+        "normalized_value": "FDR-BAN-2020-10370",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_75L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-10-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "7500000",
+        "normalized_value": 7500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_75L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-10-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Bank of Baroda",
+        "normalized_value": "Bank of Baroda",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_75L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-10-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Kolkata Main Branch",
+        "normalized_value": "Kolkata Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_75L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-10-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2020-03-15",
+        "normalized_value": "2020-03-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_75L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-10-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2025-03-15",
+        "normalized_value": "2025-03-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_75L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-10-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Tagore Architecture Institute",
+        "normalized_value": "Tagore Architecture Institute",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_75L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-10-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_75L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-10-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Bank_of_Baroda_FDR_75L_Kolkata.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b97,500,000"
+          },
+          {
+            "source": "Bank of Baroda Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b97,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2020-03-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-11",
@@ -3262,7 +4567,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2021-04-15T09:00:00Z",
-    "updatedAt": "2021-04-15T12:00:00Z"
+    "updatedAt": "2021-04-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-11-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-CAN-2021-10407",
+        "normalized_value": "FDR-CAN-2021-10407",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_100L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-11-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "10000000",
+        "normalized_value": 10000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_100L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-11-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Canara Bank",
+        "normalized_value": "Canara Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_100L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-11-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Ernakulam Main Branch",
+        "normalized_value": "Ernakulam Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_100L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-11-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2021-04-15",
+        "normalized_value": "2021-04-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_100L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-11-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2026-04-15",
+        "normalized_value": "2026-04-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_100L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-11-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "St. Xavier Polytechnic",
+        "normalized_value": "St. Xavier Polytechnic",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_100L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-11-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_100L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-11-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Canara_Bank_FDR_100L_Ernakulam.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b910,000,000"
+          },
+          {
+            "source": "Canara Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b910,000,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2021-04-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-12",
@@ -3444,7 +4881,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2022-05-15T09:00:00Z",
-    "updatedAt": "2022-05-15T12:00:00Z"
+    "updatedAt": "2022-05-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-12-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-UNI-2022-10444",
+        "normalized_value": "FDR-UNI-2022-10444",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_15L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-12-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "1500000",
+        "normalized_value": 1500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_15L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-12-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Union Bank of India",
+        "normalized_value": "Union Bank of India",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_15L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-12-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Pune Main Branch",
+        "normalized_value": "Pune Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_15L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-12-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2022-05-15",
+        "normalized_value": "2022-05-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_15L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-12-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2027-05-15",
+        "normalized_value": "2027-05-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_15L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-12-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Shivaji Research Institute",
+        "normalized_value": "Shivaji Research Institute",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_15L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-12-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_15L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-12-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Union_Bank_of_India_FDR_15L_Pune.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b91,500,000"
+          },
+          {
+            "source": "Union Bank of India Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b91,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2022-05-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-13",
@@ -3626,7 +5195,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2023-06-15T09:00:00Z",
-    "updatedAt": "2023-06-15T12:00:00Z"
+    "updatedAt": "2023-06-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-13-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-HDF-2023-10481",
+        "normalized_value": "FDR-HDF-2023-10481",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_25L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-13-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "2500000",
+        "normalized_value": 2500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_25L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-13-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "HDFC Bank",
+        "normalized_value": "HDFC Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_25L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-13-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Puducherry Main Branch",
+        "normalized_value": "Puducherry Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_25L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-13-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2023-06-15",
+        "normalized_value": "2023-06-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_25L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-13-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2028-06-15",
+        "normalized_value": "2028-06-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_25L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-13-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Aurobindo Business School",
+        "normalized_value": "Aurobindo Business School",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_25L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-13-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_25L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-13-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "HDFC_Bank_FDR_25L_Puducherry.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b92,500,000"
+          },
+          {
+            "source": "HDFC Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b92,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2023-06-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-14",
@@ -3808,7 +5509,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2024-07-15T09:00:00Z",
-    "updatedAt": "2024-07-15T12:00:00Z"
+    "updatedAt": "2024-07-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-14-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-ICI-2024-10518",
+        "normalized_value": "FDR-ICI-2024-10518",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_35L_Ranchi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-14-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "3500000",
+        "normalized_value": 3500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_35L_Ranchi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-14-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "ICICI Bank",
+        "normalized_value": "ICICI Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_35L_Ranchi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-14-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Ranchi Main Branch",
+        "normalized_value": "Ranchi Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_35L_Ranchi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-14-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2024-07-15",
+        "normalized_value": "2024-07-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_35L_Ranchi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-14-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2029-07-15",
+        "normalized_value": "2029-07-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_35L_Ranchi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-14-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Birsa Munda Technical College",
+        "normalized_value": "Birsa Munda Technical College",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_35L_Ranchi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-14-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_35L_Ranchi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-14-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "ICICI_Bank_FDR_35L_Ranchi.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b93,500,000"
+          },
+          {
+            "source": "ICICI Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b93,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2024-07-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-15",
@@ -3990,7 +5823,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2020-08-15T09:00:00Z",
-    "updatedAt": "2020-08-15T12:00:00Z"
+    "updatedAt": "2020-08-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-15-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-IND-2020-10555",
+        "normalized_value": "FDR-IND-2020-10555",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_50L_Bhubaneswar.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-15-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "5000000",
+        "normalized_value": 5000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_50L_Bhubaneswar.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-15-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Indian Bank",
+        "normalized_value": "Indian Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_50L_Bhubaneswar.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-15-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Bhubaneswar Main Branch",
+        "normalized_value": "Bhubaneswar Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_50L_Bhubaneswar.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-15-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2020-08-15",
+        "normalized_value": "2020-08-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_50L_Bhubaneswar.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-15-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2025-08-15",
+        "normalized_value": "2025-08-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_50L_Bhubaneswar.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-15-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Netaji Subhash Pharmacy College",
+        "normalized_value": "Netaji Subhash Pharmacy College",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_50L_Bhubaneswar.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-15-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_50L_Bhubaneswar.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-15-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Indian_Bank_FDR_50L_Bhubaneswar.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b95,000,000"
+          },
+          {
+            "source": "Indian Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b95,000,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2020-08-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-16",
@@ -4172,7 +6137,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2021-01-15T09:00:00Z",
-    "updatedAt": "2021-01-15T12:00:00Z"
+    "updatedAt": "2021-01-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-16-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-STA-2021-10592",
+        "normalized_value": "FDR-STA-2021-10592",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_75L_New Delhi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-16-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "7500000",
+        "normalized_value": 7500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_75L_New Delhi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-16-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "State Bank of India",
+        "normalized_value": "State Bank of India",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_75L_New Delhi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-16-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "New Delhi Main Branch",
+        "normalized_value": "New Delhi Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_75L_New Delhi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-16-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2021-01-15",
+        "normalized_value": "2021-01-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_75L_New Delhi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-16-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2026-01-15",
+        "normalized_value": "2026-01-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_75L_New Delhi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-16-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Delhi Advanced Engineering College",
+        "normalized_value": "Delhi Advanced Engineering College",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_75L_New Delhi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-16-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_75L_New Delhi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-16-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "State_Bank_of_India_FDR_75L_New Delhi.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b97,500,000"
+          },
+          {
+            "source": "State Bank of India Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b97,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2021-01-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-17",
@@ -4354,7 +6451,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2022-02-15T09:00:00Z",
-    "updatedAt": "2022-02-15T12:00:00Z"
+    "updatedAt": "2022-02-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-17-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-PUN-2022-10629",
+        "normalized_value": "FDR-PUN-2022-10629",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_100L_Chennai.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-17-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "10000000",
+        "normalized_value": 10000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_100L_Chennai.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-17-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Punjab National Bank",
+        "normalized_value": "Punjab National Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_100L_Chennai.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-17-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Chennai Main Branch",
+        "normalized_value": "Chennai Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_100L_Chennai.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-17-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2022-02-15",
+        "normalized_value": "2022-02-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_100L_Chennai.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-17-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2027-02-15",
+        "normalized_value": "2027-02-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_100L_Chennai.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-17-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Thiruvalluvar Institute",
+        "normalized_value": "Thiruvalluvar Institute",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_100L_Chennai.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-17-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_100L_Chennai.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-17-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Punjab_National_Bank_FDR_100L_Chennai.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b910,000,000"
+          },
+          {
+            "source": "Punjab National Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b910,000,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2022-02-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-18",
@@ -4536,7 +6765,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2023-03-15T09:00:00Z",
-    "updatedAt": "2023-03-15T12:00:00Z"
+    "updatedAt": "2023-03-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-18-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-BAN-2023-10666",
+        "normalized_value": "FDR-BAN-2023-10666",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_15L_Bhopal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-18-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "1500000",
+        "normalized_value": 1500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_15L_Bhopal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-18-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Bank of Baroda",
+        "normalized_value": "Bank of Baroda",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_15L_Bhopal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-18-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Bhopal Main Branch",
+        "normalized_value": "Bhopal Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_15L_Bhopal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-18-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2023-03-15",
+        "normalized_value": "2023-03-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_15L_Bhopal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-18-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2028-03-15",
+        "normalized_value": "2028-03-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_15L_Bhopal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-18-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Vidyasagar Technical Academy",
+        "normalized_value": "Vidyasagar Technical Academy",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_15L_Bhopal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-18-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_15L_Bhopal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-18-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Bank_of_Baroda_FDR_15L_Bhopal.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b91,500,000"
+          },
+          {
+            "source": "Bank of Baroda Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b91,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2023-03-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-19",
@@ -4718,7 +7079,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2024-04-15T09:00:00Z",
-    "updatedAt": "2024-04-15T12:00:00Z"
+    "updatedAt": "2024-04-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-19-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-CAN-2024-10703",
+        "normalized_value": "FDR-CAN-2024-10703",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_25L_Warangal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-19-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "2500000",
+        "normalized_value": 2500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_25L_Warangal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-19-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Canara Bank",
+        "normalized_value": "Canara Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_25L_Warangal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-19-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Warangal Main Branch",
+        "normalized_value": "Warangal Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_25L_Warangal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-19-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2024-04-15",
+        "normalized_value": "2024-04-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_25L_Warangal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-19-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2029-04-15",
+        "normalized_value": "2029-04-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_25L_Warangal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-19-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Shastri Management Institute",
+        "normalized_value": "Shastri Management Institute",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_25L_Warangal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-19-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_25L_Warangal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-19-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Canara_Bank_FDR_25L_Warangal.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b92,500,000"
+          },
+          {
+            "source": "Canara Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b92,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2024-04-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-20",
@@ -4900,7 +7393,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2020-05-15T09:00:00Z",
-    "updatedAt": "2020-05-15T12:00:00Z"
+    "updatedAt": "2020-05-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-20-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-UNI-2020-10740",
+        "normalized_value": "FDR-UNI-2020-10740",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_35L_Ludhiana.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-20-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "3500000",
+        "normalized_value": 3500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_35L_Ludhiana.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-20-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Union Bank of India",
+        "normalized_value": "Union Bank of India",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_35L_Ludhiana.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-20-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Ludhiana Main Branch",
+        "normalized_value": "Ludhiana Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_35L_Ludhiana.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-20-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2020-05-15",
+        "normalized_value": "2020-05-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_35L_Ludhiana.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-20-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2025-05-15",
+        "normalized_value": "2025-05-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_35L_Ludhiana.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-20-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Kakatiya Pharmaceutical Institute",
+        "normalized_value": "Kakatiya Pharmaceutical Institute",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_35L_Ludhiana.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-20-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_35L_Ludhiana.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-20-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Union_Bank_of_India_FDR_35L_Ludhiana.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b93,500,000"
+          },
+          {
+            "source": "Union Bank of India Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b93,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2020-05-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-21",
@@ -5082,7 +7707,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2021-06-15T09:00:00Z",
-    "updatedAt": "2021-06-15T12:00:00Z"
+    "updatedAt": "2021-06-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-21-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-HDF-2021-10777",
+        "normalized_value": "FDR-HDF-2021-10777",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_50L_Panaji.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-21-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "5000000",
+        "normalized_value": 5000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_50L_Panaji.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-21-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "HDFC Bank",
+        "normalized_value": "HDFC Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_50L_Panaji.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-21-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Panaji Main Branch",
+        "normalized_value": "Panaji Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_50L_Panaji.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-21-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2021-06-15",
+        "normalized_value": "2021-06-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_50L_Panaji.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-21-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2026-06-15",
+        "normalized_value": "2026-06-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_50L_Panaji.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-21-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Rani Laxmibai Engineering Campus",
+        "normalized_value": "Rani Laxmibai Engineering Campus",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_50L_Panaji.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-21-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_50L_Panaji.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-21-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "HDFC_Bank_FDR_50L_Panaji.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b95,000,000"
+          },
+          {
+            "source": "HDFC Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b95,000,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2021-06-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-22",
@@ -5264,7 +8021,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2022-07-15T09:00:00Z",
-    "updatedAt": "2022-07-15T12:00:00Z"
+    "updatedAt": "2022-07-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-22-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-ICI-2022-10814",
+        "normalized_value": "FDR-ICI-2022-10814",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_75L_Guwahati.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-22-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "7500000",
+        "normalized_value": 7500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_75L_Guwahati.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-22-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "ICICI Bank",
+        "normalized_value": "ICICI Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_75L_Guwahati.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-22-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Guwahati Main Branch",
+        "normalized_value": "Guwahati Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_75L_Guwahati.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-22-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2022-07-15",
+        "normalized_value": "2022-07-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_75L_Guwahati.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-22-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2027-07-15",
+        "normalized_value": "2027-07-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_75L_Guwahati.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-22-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Visvesvaraya School of Planning",
+        "normalized_value": "Visvesvaraya School of Planning",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_75L_Guwahati.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-22-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_75L_Guwahati.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-22-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "ICICI_Bank_FDR_75L_Guwahati.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b97,500,000"
+          },
+          {
+            "source": "ICICI Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b97,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2022-07-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-23",
@@ -5446,7 +8335,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2023-08-15T09:00:00Z",
-    "updatedAt": "2023-08-15T12:00:00Z"
+    "updatedAt": "2023-08-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-23-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-IND-2023-10851",
+        "normalized_value": "FDR-IND-2023-10851",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_100L_Jaipur.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-23-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "10000000",
+        "normalized_value": 10000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_100L_Jaipur.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-23-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Indian Bank",
+        "normalized_value": "Indian Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_100L_Jaipur.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-23-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Jaipur Main Branch",
+        "normalized_value": "Jaipur Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_100L_Jaipur.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-23-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2023-08-15",
+        "normalized_value": "2023-08-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_100L_Jaipur.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-23-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2028-08-15",
+        "normalized_value": "2028-08-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_100L_Jaipur.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-23-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Punjab Applied Science College",
+        "normalized_value": "Punjab Applied Science College",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_100L_Jaipur.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-23-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_100L_Jaipur.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-23-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Indian_Bank_FDR_100L_Jaipur.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b910,000,000"
+          },
+          {
+            "source": "Indian Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b910,000,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2023-08-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-24",
@@ -5628,7 +8649,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2024-01-15T09:00:00Z",
-    "updatedAt": "2024-01-15T12:00:00Z"
+    "updatedAt": "2024-01-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-24-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-STA-2024-10888",
+        "normalized_value": "FDR-STA-2024-10888",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_15L_Patna.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-24-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "1500000",
+        "normalized_value": 1500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_15L_Patna.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-24-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "State Bank of India",
+        "normalized_value": "State Bank of India",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_15L_Patna.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-24-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Patna Main Branch",
+        "normalized_value": "Patna Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_15L_Patna.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-24-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2024-01-15",
+        "normalized_value": "2024-01-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_15L_Patna.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-24-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2029-01-15",
+        "normalized_value": "2029-01-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_15L_Patna.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-24-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Goa Marine & Technical College",
+        "normalized_value": "Goa Marine & Technical College",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_15L_Patna.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-24-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_15L_Patna.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-24-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "State_Bank_of_India_FDR_15L_Patna.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b91,500,000"
+          },
+          {
+            "source": "State Bank of India Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b91,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2024-01-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-25",
@@ -5810,7 +8963,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2020-02-15T09:00:00Z",
-    "updatedAt": "2020-02-15T12:00:00Z"
+    "updatedAt": "2020-02-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-25-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-PUN-2020-10925",
+        "normalized_value": "FDR-PUN-2020-10925",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_25L_Vijayawada.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-25-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "2500000",
+        "normalized_value": 2500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_25L_Vijayawada.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-25-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Punjab National Bank",
+        "normalized_value": "Punjab National Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_25L_Vijayawada.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-25-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Vijayawada Main Branch",
+        "normalized_value": "Vijayawada Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_25L_Vijayawada.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-25-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2020-02-15",
+        "normalized_value": "2020-02-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_25L_Vijayawada.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-25-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2025-02-15",
+        "normalized_value": "2025-02-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_25L_Vijayawada.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-25-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Assam Valley Management Campus",
+        "normalized_value": "Assam Valley Management Campus",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_25L_Vijayawada.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-25-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_25L_Vijayawada.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-25-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Punjab_National_Bank_FDR_25L_Vijayawada.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b92,500,000"
+          },
+          {
+            "source": "Punjab National Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b92,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2020-02-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-26",
@@ -5992,7 +9277,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2021-03-15T09:00:00Z",
-    "updatedAt": "2021-03-15T12:00:00Z"
+    "updatedAt": "2021-03-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-26-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-BAN-2021-10962",
+        "normalized_value": "FDR-BAN-2021-10962",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_35L_Dehradun.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-26-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "3500000",
+        "normalized_value": 3500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_35L_Dehradun.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-26-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Bank of Baroda",
+        "normalized_value": "Bank of Baroda",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_35L_Dehradun.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-26-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Dehradun Main Branch",
+        "normalized_value": "Dehradun Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_35L_Dehradun.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-26-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2021-03-15",
+        "normalized_value": "2021-03-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_35L_Dehradun.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-26-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2026-03-15",
+        "normalized_value": "2026-03-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_35L_Dehradun.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-26-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Rajasthan Institute of Technology",
+        "normalized_value": "Rajasthan Institute of Technology",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_35L_Dehradun.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-26-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_35L_Dehradun.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-26-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Bank_of_Baroda_FDR_35L_Dehradun.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b93,500,000"
+          },
+          {
+            "source": "Bank of Baroda Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b93,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2021-03-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-27",
@@ -6174,7 +9591,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2022-04-15T09:00:00Z",
-    "updatedAt": "2022-04-15T12:00:00Z"
+    "updatedAt": "2022-04-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-27-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-CAN-2022-10999",
+        "normalized_value": "FDR-CAN-2022-10999",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_50L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-27-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "5000000",
+        "normalized_value": 5000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_50L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-27-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Canara Bank",
+        "normalized_value": "Canara Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_50L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-27-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Bengaluru Main Branch",
+        "normalized_value": "Bengaluru Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_50L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-27-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2022-04-15",
+        "normalized_value": "2022-04-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_50L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-27-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2027-04-15",
+        "normalized_value": "2027-04-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_50L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-27-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Aryabhata Institute of Technology",
+        "normalized_value": "Aryabhata Institute of Technology",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_50L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-27-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_50L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-27-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Canara_Bank_FDR_50L_Bengaluru.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b95,000,000"
+          },
+          {
+            "source": "Canara Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b95,000,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2022-04-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-28",
@@ -6356,7 +9905,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2023-05-15T09:00:00Z",
-    "updatedAt": "2023-05-15T12:00:00Z"
+    "updatedAt": "2023-05-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-28-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-UNI-2023-11036",
+        "normalized_value": "FDR-UNI-2023-11036",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_75L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-28-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "7500000",
+        "normalized_value": 7500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_75L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-28-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Union Bank of India",
+        "normalized_value": "Union Bank of India",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_75L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-28-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Ahmedabad Main Branch",
+        "normalized_value": "Ahmedabad Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_75L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-28-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2023-05-15",
+        "normalized_value": "2023-05-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_75L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-28-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2028-05-15",
+        "normalized_value": "2028-05-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_75L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-28-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Sardar Patel Management Academy",
+        "normalized_value": "Sardar Patel Management Academy",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_75L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-28-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_75L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-28-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Union_Bank_of_India_FDR_75L_Ahmedabad.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b97,500,000"
+          },
+          {
+            "source": "Union Bank of India Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b97,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2023-05-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-29",
@@ -6538,7 +10219,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2024-06-15T09:00:00Z",
-    "updatedAt": "2024-06-15T12:00:00Z"
+    "updatedAt": "2024-06-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-29-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-HDF-2024-11073",
+        "normalized_value": "FDR-HDF-2024-11073",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_100L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-29-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "10000000",
+        "normalized_value": 10000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_100L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-29-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "HDFC Bank",
+        "normalized_value": "HDFC Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_100L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-29-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Lucknow Main Branch",
+        "normalized_value": "Lucknow Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_100L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-29-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2024-06-15",
+        "normalized_value": "2024-06-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_100L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-29-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2029-06-15",
+        "normalized_value": "2029-06-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_100L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-29-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Kalam Technical Campus",
+        "normalized_value": "Kalam Technical Campus",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_100L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-29-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_100L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-29-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "HDFC_Bank_FDR_100L_Lucknow.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b910,000,000"
+          },
+          {
+            "source": "HDFC Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b910,000,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2024-06-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-30",
@@ -6720,7 +10533,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2020-07-15T09:00:00Z",
-    "updatedAt": "2020-07-15T12:00:00Z"
+    "updatedAt": "2020-07-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-30-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-ICI-2020-11110",
+        "normalized_value": "FDR-ICI-2020-11110",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-30-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "1500000",
+        "normalized_value": 1500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-30-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "ICICI Bank",
+        "normalized_value": "ICICI Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-30-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Rohtak Main Branch",
+        "normalized_value": "Rohtak Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-30-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2020-07-15",
+        "normalized_value": "2020-07-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-30-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2025-07-15",
+        "normalized_value": "2025-07-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-30-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Maharshi Dayanand College",
+        "normalized_value": "Maharshi Dayanand College",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-30-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-30-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "ICICI_Bank_FDR_15L_Rohtak.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b91,500,000"
+          },
+          {
+            "source": "ICICI Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b91,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2020-07-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-31",
@@ -6902,7 +10847,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2021-08-15T09:00:00Z",
-    "updatedAt": "2021-08-15T12:00:00Z"
+    "updatedAt": "2021-08-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-31-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-IND-2021-11147",
+        "normalized_value": "FDR-IND-2021-11147",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-31-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "2500000",
+        "normalized_value": 2500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-31-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Indian Bank",
+        "normalized_value": "Indian Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-31-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Kolkata Main Branch",
+        "normalized_value": "Kolkata Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-31-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2021-08-15",
+        "normalized_value": "2021-08-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-31-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2026-08-15",
+        "normalized_value": "2026-08-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-31-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Tagore Architecture Institute",
+        "normalized_value": "Tagore Architecture Institute",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-31-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-31-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Indian_Bank_FDR_25L_Kolkata.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b92,500,000"
+          },
+          {
+            "source": "Indian Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b92,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2021-08-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-32",
@@ -7084,7 +11161,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2022-01-15T09:00:00Z",
-    "updatedAt": "2022-01-15T12:00:00Z"
+    "updatedAt": "2022-01-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-32-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-STA-2022-11184",
+        "normalized_value": "FDR-STA-2022-11184",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_35L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-32-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "3500000",
+        "normalized_value": 3500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_35L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-32-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "State Bank of India",
+        "normalized_value": "State Bank of India",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_35L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-32-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Ernakulam Main Branch",
+        "normalized_value": "Ernakulam Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_35L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-32-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2022-01-15",
+        "normalized_value": "2022-01-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_35L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-32-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2027-01-15",
+        "normalized_value": "2027-01-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_35L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-32-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "St. Xavier Polytechnic",
+        "normalized_value": "St. Xavier Polytechnic",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_35L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-32-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_35L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-32-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "State_Bank_of_India_FDR_35L_Ernakulam.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b93,500,000"
+          },
+          {
+            "source": "State Bank of India Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b93,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2022-01-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-33",
@@ -7266,7 +11475,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2023-02-15T09:00:00Z",
-    "updatedAt": "2023-02-15T12:00:00Z"
+    "updatedAt": "2023-02-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-33-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-PUN-2023-11221",
+        "normalized_value": "FDR-PUN-2023-11221",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_50L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-33-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "5000000",
+        "normalized_value": 5000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_50L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-33-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Punjab National Bank",
+        "normalized_value": "Punjab National Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_50L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-33-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Pune Main Branch",
+        "normalized_value": "Pune Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_50L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-33-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2023-02-15",
+        "normalized_value": "2023-02-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_50L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-33-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2028-02-15",
+        "normalized_value": "2028-02-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_50L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-33-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Shivaji Research Institute",
+        "normalized_value": "Shivaji Research Institute",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_50L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-33-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_50L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-33-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Punjab_National_Bank_FDR_50L_Pune.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b95,000,000"
+          },
+          {
+            "source": "Punjab National Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b95,000,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2023-02-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-34",
@@ -7448,7 +11789,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2024-03-15T09:00:00Z",
-    "updatedAt": "2024-03-15T12:00:00Z"
+    "updatedAt": "2024-03-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-34-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-BAN-2024-11258",
+        "normalized_value": "FDR-BAN-2024-11258",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_75L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-34-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "7500000",
+        "normalized_value": 7500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_75L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-34-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Bank of Baroda",
+        "normalized_value": "Bank of Baroda",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_75L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-34-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Puducherry Main Branch",
+        "normalized_value": "Puducherry Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_75L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-34-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2024-03-15",
+        "normalized_value": "2024-03-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_75L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-34-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2029-03-15",
+        "normalized_value": "2029-03-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_75L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-34-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Aurobindo Business School",
+        "normalized_value": "Aurobindo Business School",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_75L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-34-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_75L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-34-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Bank_of_Baroda_FDR_75L_Puducherry.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b97,500,000"
+          },
+          {
+            "source": "Bank of Baroda Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b97,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2024-03-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-35",
@@ -7630,7 +12103,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2020-04-15T09:00:00Z",
-    "updatedAt": "2020-04-15T12:00:00Z"
+    "updatedAt": "2020-04-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-35-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-CAN-2020-11295",
+        "normalized_value": "FDR-CAN-2020-11295",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_100L_Ranchi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-35-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "10000000",
+        "normalized_value": 10000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_100L_Ranchi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-35-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Canara Bank",
+        "normalized_value": "Canara Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_100L_Ranchi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-35-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Ranchi Main Branch",
+        "normalized_value": "Ranchi Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_100L_Ranchi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-35-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2020-04-15",
+        "normalized_value": "2020-04-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_100L_Ranchi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-35-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2025-04-15",
+        "normalized_value": "2025-04-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_100L_Ranchi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-35-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Birsa Munda Technical College",
+        "normalized_value": "Birsa Munda Technical College",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_100L_Ranchi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-35-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_100L_Ranchi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-35-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Canara_Bank_FDR_100L_Ranchi.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b910,000,000"
+          },
+          {
+            "source": "Canara Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b910,000,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2020-04-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-36",
@@ -7812,7 +12417,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2021-05-15T09:00:00Z",
-    "updatedAt": "2021-05-15T12:00:00Z"
+    "updatedAt": "2021-05-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-36-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-UNI-2021-11332",
+        "normalized_value": "FDR-UNI-2021-11332",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_15L_Bhubaneswar.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-36-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "1500000",
+        "normalized_value": 1500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_15L_Bhubaneswar.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-36-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Union Bank of India",
+        "normalized_value": "Union Bank of India",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_15L_Bhubaneswar.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-36-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Bhubaneswar Main Branch",
+        "normalized_value": "Bhubaneswar Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_15L_Bhubaneswar.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-36-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2021-05-15",
+        "normalized_value": "2021-05-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_15L_Bhubaneswar.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-36-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2026-05-15",
+        "normalized_value": "2026-05-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_15L_Bhubaneswar.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-36-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Netaji Subhash Pharmacy College",
+        "normalized_value": "Netaji Subhash Pharmacy College",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_15L_Bhubaneswar.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-36-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_15L_Bhubaneswar.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-36-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Union_Bank_of_India_FDR_15L_Bhubaneswar.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b91,500,000"
+          },
+          {
+            "source": "Union Bank of India Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b91,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2021-05-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-37",
@@ -7994,7 +12731,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2022-06-15T09:00:00Z",
-    "updatedAt": "2022-06-15T12:00:00Z"
+    "updatedAt": "2022-06-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-37-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-HDF-2022-11369",
+        "normalized_value": "FDR-HDF-2022-11369",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_25L_New Delhi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-37-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "2500000",
+        "normalized_value": 2500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_25L_New Delhi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-37-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "HDFC Bank",
+        "normalized_value": "HDFC Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_25L_New Delhi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-37-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "New Delhi Main Branch",
+        "normalized_value": "New Delhi Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_25L_New Delhi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-37-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2022-06-15",
+        "normalized_value": "2022-06-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_25L_New Delhi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-37-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2027-06-15",
+        "normalized_value": "2027-06-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_25L_New Delhi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-37-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Delhi Advanced Engineering College",
+        "normalized_value": "Delhi Advanced Engineering College",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_25L_New Delhi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-37-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_25L_New Delhi.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-37-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "HDFC_Bank_FDR_25L_New Delhi.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b92,500,000"
+          },
+          {
+            "source": "HDFC Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b92,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2022-06-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-38",
@@ -8176,7 +13045,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2023-07-15T09:00:00Z",
-    "updatedAt": "2023-07-15T12:00:00Z"
+    "updatedAt": "2023-07-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-38-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-ICI-2023-11406",
+        "normalized_value": "FDR-ICI-2023-11406",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_35L_Chennai.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-38-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "3500000",
+        "normalized_value": 3500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_35L_Chennai.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-38-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "ICICI Bank",
+        "normalized_value": "ICICI Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_35L_Chennai.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-38-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Chennai Main Branch",
+        "normalized_value": "Chennai Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_35L_Chennai.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-38-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2023-07-15",
+        "normalized_value": "2023-07-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_35L_Chennai.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-38-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2028-07-15",
+        "normalized_value": "2028-07-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_35L_Chennai.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-38-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Thiruvalluvar Institute",
+        "normalized_value": "Thiruvalluvar Institute",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_35L_Chennai.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-38-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_35L_Chennai.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-38-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "ICICI_Bank_FDR_35L_Chennai.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b93,500,000"
+          },
+          {
+            "source": "ICICI Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b93,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2023-07-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-39",
@@ -8358,7 +13359,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2024-08-15T09:00:00Z",
-    "updatedAt": "2024-08-15T12:00:00Z"
+    "updatedAt": "2024-08-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-39-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-IND-2024-11443",
+        "normalized_value": "FDR-IND-2024-11443",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_50L_Bhopal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-39-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "5000000",
+        "normalized_value": 5000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_50L_Bhopal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-39-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Indian Bank",
+        "normalized_value": "Indian Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_50L_Bhopal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-39-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Bhopal Main Branch",
+        "normalized_value": "Bhopal Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_50L_Bhopal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-39-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2024-08-15",
+        "normalized_value": "2024-08-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_50L_Bhopal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-39-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2029-08-15",
+        "normalized_value": "2029-08-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_50L_Bhopal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-39-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Vidyasagar Technical Academy",
+        "normalized_value": "Vidyasagar Technical Academy",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_50L_Bhopal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-39-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_50L_Bhopal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-39-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Indian_Bank_FDR_50L_Bhopal.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b95,000,000"
+          },
+          {
+            "source": "Indian Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b95,000,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2024-08-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-40",
@@ -8540,7 +13673,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2020-01-15T09:00:00Z",
-    "updatedAt": "2020-01-15T12:00:00Z"
+    "updatedAt": "2020-01-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-40-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-STA-2020-11480",
+        "normalized_value": "FDR-STA-2020-11480",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_75L_Warangal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-40-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "7500000",
+        "normalized_value": 7500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_75L_Warangal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-40-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "State Bank of India",
+        "normalized_value": "State Bank of India",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_75L_Warangal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-40-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Warangal Main Branch",
+        "normalized_value": "Warangal Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_75L_Warangal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-40-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2020-01-15",
+        "normalized_value": "2020-01-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_75L_Warangal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-40-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2025-01-15",
+        "normalized_value": "2025-01-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_75L_Warangal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-40-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Shastri Management Institute",
+        "normalized_value": "Shastri Management Institute",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_75L_Warangal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-40-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_75L_Warangal.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-40-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "State_Bank_of_India_FDR_75L_Warangal.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b97,500,000"
+          },
+          {
+            "source": "State Bank of India Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b97,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2020-01-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-41",
@@ -8722,7 +13987,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2021-02-15T09:00:00Z",
-    "updatedAt": "2021-02-15T12:00:00Z"
+    "updatedAt": "2021-02-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-41-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-PUN-2021-11517",
+        "normalized_value": "FDR-PUN-2021-11517",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_100L_Ludhiana.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-41-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "10000000",
+        "normalized_value": 10000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_100L_Ludhiana.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-41-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Punjab National Bank",
+        "normalized_value": "Punjab National Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_100L_Ludhiana.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-41-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Ludhiana Main Branch",
+        "normalized_value": "Ludhiana Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_100L_Ludhiana.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-41-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2021-02-15",
+        "normalized_value": "2021-02-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_100L_Ludhiana.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-41-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2026-02-15",
+        "normalized_value": "2026-02-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_100L_Ludhiana.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-41-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Kakatiya Pharmaceutical Institute",
+        "normalized_value": "Kakatiya Pharmaceutical Institute",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_100L_Ludhiana.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-41-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_100L_Ludhiana.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-41-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Punjab_National_Bank_FDR_100L_Ludhiana.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b910,000,000"
+          },
+          {
+            "source": "Punjab National Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b910,000,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2021-02-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-42",
@@ -8904,7 +14301,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2022-03-15T09:00:00Z",
-    "updatedAt": "2022-03-15T12:00:00Z"
+    "updatedAt": "2022-03-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-42-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-BAN-2022-11554",
+        "normalized_value": "FDR-BAN-2022-11554",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_15L_Panaji.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-42-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "1500000",
+        "normalized_value": 1500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_15L_Panaji.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-42-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Bank of Baroda",
+        "normalized_value": "Bank of Baroda",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_15L_Panaji.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-42-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Panaji Main Branch",
+        "normalized_value": "Panaji Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_15L_Panaji.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-42-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2022-03-15",
+        "normalized_value": "2022-03-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_15L_Panaji.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-42-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2027-03-15",
+        "normalized_value": "2027-03-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_15L_Panaji.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-42-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Rani Laxmibai Engineering Campus",
+        "normalized_value": "Rani Laxmibai Engineering Campus",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_15L_Panaji.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-42-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_15L_Panaji.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-42-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Bank_of_Baroda_FDR_15L_Panaji.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b91,500,000"
+          },
+          {
+            "source": "Bank of Baroda Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b91,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2022-03-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-43",
@@ -9086,7 +14615,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2023-04-15T09:00:00Z",
-    "updatedAt": "2023-04-15T12:00:00Z"
+    "updatedAt": "2023-04-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-43-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-CAN-2023-11591",
+        "normalized_value": "FDR-CAN-2023-11591",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_25L_Guwahati.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-43-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "2500000",
+        "normalized_value": 2500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_25L_Guwahati.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-43-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Canara Bank",
+        "normalized_value": "Canara Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_25L_Guwahati.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-43-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Guwahati Main Branch",
+        "normalized_value": "Guwahati Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_25L_Guwahati.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-43-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2023-04-15",
+        "normalized_value": "2023-04-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_25L_Guwahati.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-43-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2028-04-15",
+        "normalized_value": "2028-04-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_25L_Guwahati.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-43-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Visvesvaraya School of Planning",
+        "normalized_value": "Visvesvaraya School of Planning",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_25L_Guwahati.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-43-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_25L_Guwahati.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-43-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Canara_Bank_FDR_25L_Guwahati.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b92,500,000"
+          },
+          {
+            "source": "Canara Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b92,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2023-04-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-44",
@@ -9268,7 +14929,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2024-05-15T09:00:00Z",
-    "updatedAt": "2024-05-15T12:00:00Z"
+    "updatedAt": "2024-05-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-44-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-UNI-2024-11628",
+        "normalized_value": "FDR-UNI-2024-11628",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_35L_Jaipur.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-44-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "3500000",
+        "normalized_value": 3500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_35L_Jaipur.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-44-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Union Bank of India",
+        "normalized_value": "Union Bank of India",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_35L_Jaipur.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-44-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Jaipur Main Branch",
+        "normalized_value": "Jaipur Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_35L_Jaipur.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-44-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2024-05-15",
+        "normalized_value": "2024-05-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_35L_Jaipur.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-44-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2029-05-15",
+        "normalized_value": "2029-05-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_35L_Jaipur.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-44-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Punjab Applied Science College",
+        "normalized_value": "Punjab Applied Science College",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_35L_Jaipur.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-44-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_35L_Jaipur.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-44-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Union_Bank_of_India_FDR_35L_Jaipur.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b93,500,000"
+          },
+          {
+            "source": "Union Bank of India Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b93,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2024-05-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-45",
@@ -9450,7 +15243,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2020-06-15T09:00:00Z",
-    "updatedAt": "2020-06-15T12:00:00Z"
+    "updatedAt": "2020-06-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-45-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-HDF-2020-11665",
+        "normalized_value": "FDR-HDF-2020-11665",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_50L_Patna.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-45-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "5000000",
+        "normalized_value": 5000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_50L_Patna.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-45-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "HDFC Bank",
+        "normalized_value": "HDFC Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_50L_Patna.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-45-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Patna Main Branch",
+        "normalized_value": "Patna Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_50L_Patna.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-45-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2020-06-15",
+        "normalized_value": "2020-06-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_50L_Patna.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-45-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2025-06-15",
+        "normalized_value": "2025-06-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_50L_Patna.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-45-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Goa Marine & Technical College",
+        "normalized_value": "Goa Marine & Technical College",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_50L_Patna.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-45-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_50L_Patna.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-45-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "HDFC_Bank_FDR_50L_Patna.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b95,000,000"
+          },
+          {
+            "source": "HDFC Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b95,000,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2020-06-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-46",
@@ -9632,7 +15557,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2021-07-15T09:00:00Z",
-    "updatedAt": "2021-07-15T12:00:00Z"
+    "updatedAt": "2021-07-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-46-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-ICI-2021-11702",
+        "normalized_value": "FDR-ICI-2021-11702",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_75L_Vijayawada.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-46-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "7500000",
+        "normalized_value": 7500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_75L_Vijayawada.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-46-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "ICICI Bank",
+        "normalized_value": "ICICI Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_75L_Vijayawada.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-46-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Vijayawada Main Branch",
+        "normalized_value": "Vijayawada Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_75L_Vijayawada.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-46-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2021-07-15",
+        "normalized_value": "2021-07-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_75L_Vijayawada.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-46-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2026-07-15",
+        "normalized_value": "2026-07-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_75L_Vijayawada.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-46-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Assam Valley Management Campus",
+        "normalized_value": "Assam Valley Management Campus",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_75L_Vijayawada.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-46-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_75L_Vijayawada.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-46-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "ICICI_Bank_FDR_75L_Vijayawada.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b97,500,000"
+          },
+          {
+            "source": "ICICI Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b97,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2021-07-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-47",
@@ -9814,7 +15871,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2022-08-15T09:00:00Z",
-    "updatedAt": "2022-08-15T12:00:00Z"
+    "updatedAt": "2022-08-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-47-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-IND-2022-11739",
+        "normalized_value": "FDR-IND-2022-11739",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_100L_Dehradun.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-47-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "10000000",
+        "normalized_value": 10000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_100L_Dehradun.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-47-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Indian Bank",
+        "normalized_value": "Indian Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_100L_Dehradun.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-47-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Dehradun Main Branch",
+        "normalized_value": "Dehradun Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_100L_Dehradun.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-47-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2022-08-15",
+        "normalized_value": "2022-08-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_100L_Dehradun.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-47-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2027-08-15",
+        "normalized_value": "2027-08-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_100L_Dehradun.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-47-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Rajasthan Institute of Technology",
+        "normalized_value": "Rajasthan Institute of Technology",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_100L_Dehradun.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-47-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_100L_Dehradun.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-47-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Indian_Bank_FDR_100L_Dehradun.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b910,000,000"
+          },
+          {
+            "source": "Indian Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b910,000,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2022-08-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-48",
@@ -9996,7 +16185,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2023-01-15T09:00:00Z",
-    "updatedAt": "2023-01-15T12:00:00Z"
+    "updatedAt": "2023-01-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-48-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-STA-2023-11776",
+        "normalized_value": "FDR-STA-2023-11776",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_15L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-48-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "1500000",
+        "normalized_value": 1500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_15L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-48-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "State Bank of India",
+        "normalized_value": "State Bank of India",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_15L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-48-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Bengaluru Main Branch",
+        "normalized_value": "Bengaluru Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_15L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-48-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2023-01-15",
+        "normalized_value": "2023-01-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_15L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-48-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2028-01-15",
+        "normalized_value": "2028-01-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_15L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-48-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Aryabhata Institute of Technology",
+        "normalized_value": "Aryabhata Institute of Technology",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_15L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-48-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from State_Bank_of_India_FDR_15L_Bengaluru.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-48-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "State_Bank_of_India_FDR_15L_Bengaluru.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b91,500,000"
+          },
+          {
+            "source": "State Bank of India Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b91,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2023-01-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-49",
@@ -10178,7 +16499,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2024-02-15T09:00:00Z",
-    "updatedAt": "2024-02-15T12:00:00Z"
+    "updatedAt": "2024-02-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-49-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-PUN-2024-11813",
+        "normalized_value": "FDR-PUN-2024-11813",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_25L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-49-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "2500000",
+        "normalized_value": 2500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_25L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-49-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Punjab National Bank",
+        "normalized_value": "Punjab National Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_25L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-49-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Ahmedabad Main Branch",
+        "normalized_value": "Ahmedabad Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_25L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-49-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2024-02-15",
+        "normalized_value": "2024-02-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_25L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-49-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2029-02-15",
+        "normalized_value": "2029-02-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_25L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-49-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Sardar Patel Management Academy",
+        "normalized_value": "Sardar Patel Management Academy",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_25L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-49-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Punjab_National_Bank_FDR_25L_Ahmedabad.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-49-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Punjab_National_Bank_FDR_25L_Ahmedabad.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b92,500,000"
+          },
+          {
+            "source": "Punjab National Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b92,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2024-02-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-50",
@@ -10360,7 +16813,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2020-03-15T09:00:00Z",
-    "updatedAt": "2020-03-15T12:00:00Z"
+    "updatedAt": "2020-03-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-50-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-BAN-2020-11850",
+        "normalized_value": "FDR-BAN-2020-11850",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_35L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-50-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "3500000",
+        "normalized_value": 3500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_35L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-50-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Bank of Baroda",
+        "normalized_value": "Bank of Baroda",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_35L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-50-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Lucknow Main Branch",
+        "normalized_value": "Lucknow Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_35L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-50-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2020-03-15",
+        "normalized_value": "2020-03-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_35L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-50-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2025-03-15",
+        "normalized_value": "2025-03-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_35L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-50-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Kalam Technical Campus",
+        "normalized_value": "Kalam Technical Campus",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_35L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-50-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Bank_of_Baroda_FDR_35L_Lucknow.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-50-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Bank_of_Baroda_FDR_35L_Lucknow.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b93,500,000"
+          },
+          {
+            "source": "Bank of Baroda Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b93,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2020-03-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-51",
@@ -10542,7 +17127,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2021-04-15T09:00:00Z",
-    "updatedAt": "2021-04-15T12:00:00Z"
+    "updatedAt": "2021-04-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-51-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-CAN-2021-11887",
+        "normalized_value": "FDR-CAN-2021-11887",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_50L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-51-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "5000000",
+        "normalized_value": 5000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_50L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-51-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Canara Bank",
+        "normalized_value": "Canara Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_50L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-51-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Rohtak Main Branch",
+        "normalized_value": "Rohtak Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_50L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-51-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2021-04-15",
+        "normalized_value": "2021-04-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_50L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-51-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2026-04-15",
+        "normalized_value": "2026-04-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_50L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-51-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Maharshi Dayanand College",
+        "normalized_value": "Maharshi Dayanand College",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_50L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-51-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Canara_Bank_FDR_50L_Rohtak.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-51-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Canara_Bank_FDR_50L_Rohtak.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b95,000,000"
+          },
+          {
+            "source": "Canara Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b95,000,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2021-04-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-52",
@@ -10724,7 +17441,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2022-05-15T09:00:00Z",
-    "updatedAt": "2022-05-15T12:00:00Z"
+    "updatedAt": "2022-05-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-52-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-UNI-2022-11924",
+        "normalized_value": "FDR-UNI-2022-11924",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_75L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-52-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "7500000",
+        "normalized_value": 7500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_75L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-52-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Union Bank of India",
+        "normalized_value": "Union Bank of India",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_75L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-52-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Kolkata Main Branch",
+        "normalized_value": "Kolkata Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_75L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-52-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2022-05-15",
+        "normalized_value": "2022-05-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_75L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-52-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2027-05-15",
+        "normalized_value": "2027-05-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_75L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-52-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Tagore Architecture Institute",
+        "normalized_value": "Tagore Architecture Institute",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_75L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-52-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Union_Bank_of_India_FDR_75L_Kolkata.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-52-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Union_Bank_of_India_FDR_75L_Kolkata.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b97,500,000"
+          },
+          {
+            "source": "Union Bank of India Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b97,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2022-05-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-53",
@@ -10906,7 +17755,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2023-06-15T09:00:00Z",
-    "updatedAt": "2023-06-15T12:00:00Z"
+    "updatedAt": "2023-06-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-53-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-HDF-2023-11961",
+        "normalized_value": "FDR-HDF-2023-11961",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_100L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-53-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "10000000",
+        "normalized_value": 10000000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_100L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-53-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "HDFC Bank",
+        "normalized_value": "HDFC Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_100L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-53-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Ernakulam Main Branch",
+        "normalized_value": "Ernakulam Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_100L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-53-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2023-06-15",
+        "normalized_value": "2023-06-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_100L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-53-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2028-06-15",
+        "normalized_value": "2028-06-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_100L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-53-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "St. Xavier Polytechnic",
+        "normalized_value": "St. Xavier Polytechnic",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_100L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-53-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from HDFC_Bank_FDR_100L_Ernakulam.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-53-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "HDFC_Bank_FDR_100L_Ernakulam.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b910,000,000"
+          },
+          {
+            "source": "HDFC Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b910,000,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2023-06-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-54",
@@ -11088,7 +18069,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2024-07-15T09:00:00Z",
-    "updatedAt": "2024-07-15T12:00:00Z"
+    "updatedAt": "2024-07-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-54-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-ICI-2024-11998",
+        "normalized_value": "FDR-ICI-2024-11998",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-54-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "1500000",
+        "normalized_value": 1500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-54-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "ICICI Bank",
+        "normalized_value": "ICICI Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-54-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Pune Main Branch",
+        "normalized_value": "Pune Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-54-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2024-07-15",
+        "normalized_value": "2024-07-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-54-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2029-07-15",
+        "normalized_value": "2029-07-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-54-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Shivaji Research Institute",
+        "normalized_value": "Shivaji Research Institute",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-54-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from ICICI_Bank_FDR_15L_Pune.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-54-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "ICICI_Bank_FDR_15L_Pune.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b91,500,000"
+          },
+          {
+            "source": "ICICI Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b91,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2024-07-15T09:00:00Z"
+      }
+    ]
   },
   {
     "id": "fdr-extra-55",
@@ -11270,7 +18383,139 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "evidenceText": "Core banking verification confirmed."
     },
     "createdAt": "2020-08-15T09:00:00Z",
-    "updatedAt": "2020-08-15T12:00:00Z"
+    "updatedAt": "2020-08-15T12:00:00Z",
+    "record_version": 1,
+    "claims": [
+      {
+        "id": "claim-fdr-extra-55-1",
+        "field": "fdrNumber",
+        "label": "FDR / Certificate No.",
+        "extracted_value": "FDR-IND-2020-12035",
+        "normalized_value": "FDR-IND-2020-12035",
+        "confidence": 0.98,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-55-2",
+        "field": "amount",
+        "label": "Principal Deposit Amount",
+        "extracted_value": "2500000",
+        "normalized_value": 2500000,
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-55-3",
+        "field": "bankName",
+        "label": "Issuing Bank Name",
+        "extracted_value": "Indian Bank",
+        "normalized_value": "Indian Bank",
+        "confidence": 0.99,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-55-4",
+        "field": "branchName",
+        "label": "Branch Name",
+        "extracted_value": "Puducherry Main Branch",
+        "normalized_value": "Puducherry Main Branch",
+        "confidence": 0.94,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-55-5",
+        "field": "issueDate",
+        "label": "Issue / Deposit Date",
+        "extracted_value": "2020-08-15",
+        "normalized_value": "2020-08-15",
+        "confidence": 0.95,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-55-6",
+        "field": "maturityDate",
+        "label": "Maturity Date",
+        "extracted_value": "2025-08-15",
+        "normalized_value": "2025-08-15",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-55-7",
+        "field": "beneficiary",
+        "label": "Primary Account Holder",
+        "extracted_value": "Aurobindo Business School",
+        "normalized_value": "Aurobindo Business School",
+        "confidence": 0.96,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      },
+      {
+        "id": "claim-fdr-extra-55-8",
+        "field": "jointBeneficiary",
+        "label": "Mandatory Joint Holder",
+        "extracted_value": "Regional Officer AICTE",
+        "normalized_value": "Regional Officer AICTE",
+        "confidence": 0.97,
+        "page_number": 1,
+        "source_text": "Extracted from Indian_Bank_FDR_25L_Puducherry.pdf p.1",
+        "engine": "LayoutLMv3-Hybrid",
+        "engine_version": "v2.1",
+        "review_status": "UNREVIEWED"
+      }
+    ],
+    "findings": [
+      {
+        "id": "find-fdr-extra-55-1",
+        "code": "VERIFICATION_MATCH_COMPLIANT",
+        "category": "compliance",
+        "severity": "info",
+        "status": "resolved",
+        "explanation": "100% concordance between extracted certificate claims and simulated core banking verification response.",
+        "evidenceRefs": [
+          {
+            "source": "Indian_Bank_FDR_25L_Puducherry.pdf",
+            "provenance": "extracted claim",
+            "value": "\u20b92,500,000"
+          },
+          {
+            "source": "Indian Bank Gateway",
+            "provenance": "authoritative integration response",
+            "value": "\u20b92,500,000"
+          }
+        ],
+        "nextStep": "Completed. Active in regulatory custody.",
+        "ruleOrModelVersion": "RULE-FDR-BANK-005 (v1.0.0)",
+        "createdAt": "2020-08-15T09:00:00Z"
+      }
+    ]
   }
 ];
 
@@ -11290,7 +18535,8 @@ export const SEED_CASES: CaseRecord[] = [
     "assignedReviewerId": "rev-1",
     "assignedReviewerName": "Rajesh Sharma (Senior Reviewer)",
     "createdAt": "2024-06-11T14:30:00Z",
-    "updatedAt": "2024-06-11T14:30:00Z"
+    "updatedAt": "2024-06-11T14:30:00Z",
+    "record_version": 1
   },
   {
     "id": "CASE-2024-CRIT-004",
@@ -11307,7 +18553,8 @@ export const SEED_CASES: CaseRecord[] = [
     "assignedReviewerId": "rev-2",
     "assignedReviewerName": "Priya Nair (Forensic Analyst)",
     "createdAt": "2024-05-19T12:00:00Z",
-    "updatedAt": "2024-05-19T12:00:00Z"
+    "updatedAt": "2024-05-19T12:00:00Z",
+    "record_version": 1
   },
   {
     "id": "CASE-2026-HIGH-003",
@@ -11324,7 +18571,8 @@ export const SEED_CASES: CaseRecord[] = [
     "assignedReviewerId": "rev-1",
     "assignedReviewerName": "Rajesh Sharma (Senior Reviewer)",
     "createdAt": "2026-11-01T08:00:00Z",
-    "updatedAt": "2026-11-02T10:00:00Z"
+    "updatedAt": "2026-11-02T10:00:00Z",
+    "record_version": 1
   },
   {
     "id": "CASE-2024-MED-005",
@@ -11341,7 +18589,8 @@ export const SEED_CASES: CaseRecord[] = [
     "assignedReviewerId": "rev-3",
     "assignedReviewerName": "Anand Joshi (Officer)",
     "createdAt": "2024-08-12T16:30:00Z",
-    "updatedAt": "2024-08-12T16:30:00Z"
+    "updatedAt": "2024-08-12T16:30:00Z",
+    "record_version": 1
   },
   {
     "id": "CASE-2024-LOW-001",
@@ -11358,6 +18607,7 @@ export const SEED_CASES: CaseRecord[] = [
     "assignedReviewerId": "rev-1",
     "assignedReviewerName": "Rajesh Sharma (Senior Reviewer)",
     "createdAt": "2024-03-15T09:30:00Z",
-    "updatedAt": "2024-03-16T11:00:00Z"
+    "updatedAt": "2024-03-16T11:00:00Z",
+    "record_version": 1
   }
 ];

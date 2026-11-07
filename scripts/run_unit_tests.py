@@ -10,6 +10,7 @@ import test_risk_engine
 import test_data_consistency
 import test_priority_engine
 import test_auth_rbac
+import test_guidebook_compliance
 
 passed = 0
 failed = 0
@@ -29,7 +30,13 @@ tests = [
     test_priority_engine.test_priority_ranking_order,
     test_auth_rbac.test_safe_redirect,
     test_auth_rbac.test_rate_limit_lockout,
-    test_auth_rbac.test_rbac_and_tenant_boundary
+    test_auth_rbac.test_rbac_and_tenant_boundary,
+    test_guidebook_compliance.test_tenant_boundary_isolation,
+    test_guidebook_compliance.test_case_officer_cannot_issue_final_approval,
+    test_guidebook_compliance.test_system_admin_blocked_from_altering_case_decisions,
+    test_guidebook_compliance.test_optimistic_concurrency_conflict,
+    test_guidebook_compliance.test_source_unavailable_is_not_fraud,
+    test_guidebook_compliance.test_digital_twin_claims_never_overwrite_canonical_facts
 ]
 
 print('=== RUNNING UNIT TEST SUITE ===')

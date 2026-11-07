@@ -20,11 +20,13 @@ import {
 } from "lucide-react";
 
 export default function AdminConsolePage() {
-  const { auditEvents } = useStore();
+  const { auditEvents, currentUser } = useStore();
   const [integrityStatus, setIntegrityStatus] = useState<{ valid: boolean; details?: string } | null>(null);
   const [isVerifying, setIsVerifying] = useState(false);
   const [selectedRulePack, setSelectedRulePack] = useState<"v1.0.0" | "v1.1.0-draft">("v1.0.0");
   const [searchTerm, setSearchTerm] = useState("");
+  const [activeAdminTab, setActiveAdminTab] = useState<"governance" | "appendix_a">("governance");
+  const [policyAdminNotice, setPolicyAdminNotice] = useState<string | null>(null);
   const [usersList, setUsersList] = useState(SEEDED_DEMO_ACCOUNTS);
   const [selectedUserForReset, setSelectedUserForReset] = useState<DemoUserAccount | null>(null);
   const [resetSuccessMessage, setResetSuccessMessage] = useState<string | null>(null);
@@ -107,6 +109,41 @@ export default function AdminConsolePage() {
         </div>
       </div>
 
+      {/* Admin Subnav */}
+      <div className="flex items-center space-x-2 border-b pb-1 text-xs font-bold">
+        <button
+          type="button"
+          onClick={() => setActiveAdminTab("governance")}
+          className={`px-4 py-2 rounded-xl transition-all ${
+            activeAdminTab === "governance"
+              ? "bg-slate-900 text-white shadow-xs"
+              : "bg-white text-slate-600 hover:bg-slate-100 border"
+          }`}
+        >
+          Rules, Audit & Security Registry
+        </button>
+        <button
+          type="button"
+          onClick={() => setActiveAdminTab("appendix_a")}
+          className={`px-4 py-2 rounded-xl transition-all ${
+            activeAdminTab === "appendix_a"
+              ? "bg-slate-900 text-white shadow-xs"
+              : "bg-white text-slate-600 hover:bg-slate-100 border"
+          }`}
+        >
+          Assumptions & Placeholders to Confirm (Appendix A)
+        </button>
+      </div>
+
+      {policyAdminNotice && (
+        <div className="p-3 bg-amber-50 border border-amber-300 text-amber-900 rounded-xl text-xs font-bold flex items-center justify-between">
+          <span>{policyAdminNotice}</span>
+          <button type="button" onClick={() => setPolicyAdminNotice(null)} className="text-amber-700 hover:text-amber-900 font-bold ml-4">
+            Dismiss
+          </button>
+        </div>
+      )}
+
       {/* System Health Tiles */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
         <div className="bg-white border rounded-xl p-4 shadow-sm space-y-1">
@@ -176,18 +213,40 @@ export default function AdminConsolePage() {
           </div>
         </div>
 
+        <div className="flex items-center justify-between bg-slate-50 p-3 rounded-xl border text-xs">
+          <div className="text-slate-600">
+            <strong>Rule Authority:</strong> Current actor: <span className="font-bold text-slate-900">{currentUser?.name}</span> ({currentUser?.role})
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              if (currentUser?.role !== "POLICY_ADMIN") {
+                setPolicyAdminNotice("Action Blocked: Publishing new regulatory rules is strictly restricted to POLICY_ADMIN (Dr. H. C. Nagaraj). System Admins cannot modify rules.");
+              } else {
+                setPolicyAdminNotice("Regulatory Pack v1.1.0 published successfully under statutory policy authority.");
+              }
+            }}
+            className="px-3 py-1.5 bg-blue-900 hover:bg-blue-800 text-white rounded-lg font-bold text-xs shadow-xs"
+          >
+            Publish New Rule Pack
+          </button>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {REGULATORY_RULES.map(rule => (
             <div key={rule.id} className="p-4 rounded-xl border bg-slate-50 space-y-2 text-xs">
               <div className="flex items-center justify-between">
                 <span className="font-mono font-bold text-blue-900">{rule.id}</span>
-                <span className="font-semibold text-slate-500 text-[10px]">v{rule.version}</span>
+                <div className="flex items-center space-x-1.5">
+                  <span className="font-mono text-[9px] bg-slate-200 text-slate-700 px-1.5 py-0.5 rounded">v{rule.version}</span>
+                  <span className="text-[9px] font-bold bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded">APPROVED</span>
+                </div>
               </div>
               <h4 className="font-bold text-slate-900 text-sm">{rule.name}</h4>
               <p className="text-slate-600 text-[11px]">{rule.description}</p>
-              <div className="flex items-center justify-between pt-2 border-t text-[10px] text-slate-400 font-semibold">
-                <span>Category: {rule.category}</span>
-                <span className="text-rose-700 font-bold uppercase">{rule.severity}</span>
+              <div className="grid grid-cols-2 gap-1 pt-2 border-t text-[10px] text-slate-500 font-mono">
+                <div>Effective: 2026-01-01 to 2027-12-31</div>
+                <div className="text-right">Approved by: POLICY_ADMIN</div>
               </div>
             </div>
           ))}
@@ -345,6 +404,105 @@ export default function AdminConsolePage() {
           </table>
         </div>
       </div>
+
+            {/* APPENDIX A: ASSUMPTIONS & PLACEHOLDERS TO CONFIRM */}
+      {activeAdminTab === "appendix_a" && (
+        <div className="bg-white border rounded-2xl p-6 shadow-sm space-y-6">
+          <div className="border-b pb-4">
+            <h2 className="text-lg font-bold text-slate-900">Appendix A: Assumptions & Placeholders to Confirm</h2>
+            <p className="text-xs text-slate-500 mt-1">
+              Statutory and operational design baseline aligned with SIH26265 Technical Implementation Guidebook.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+            {/* Pillar 1 */}
+            <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2">
+              <div className="flex items-center space-x-2 font-bold text-slate-900 text-sm">
+                <span className="w-6 h-6 rounded-lg bg-blue-100 text-blue-900 flex items-center justify-center text-xs">1</span>
+                <span>Document Formats & Intake Constraints</span>
+              </div>
+              <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1 leading-relaxed">
+                <li>Primary format: Searchable PDF or high-resolution scan (minimum 300 DPI recommended).</li>
+                <li>Maximum intake payload size: 15 MB per certificate upload.</li>
+                <li>Supported image fallback: TIFF, JPEG/PNG with minimum 1024×768 resolution.</li>
+                <li>Pre-processing pipeline: Grayscale conversion, adaptive binarization, deskewing & OCR bounding extraction.</li>
+              </ul>
+            </div>
+
+            {/* Pillar 2 */}
+            <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2">
+              <div className="flex items-center space-x-2 font-bold text-slate-900 text-sm">
+                <span className="w-6 h-6 rounded-lg bg-blue-100 text-blue-900 flex items-center justify-center text-xs">2</span>
+                <span>Mandatory Regulatory Fields</span>
+              </div>
+              <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1 leading-relaxed">
+                <li>Fixed Deposit Receipt (FDR) number (retains leading zeros, exact matching only).</li>
+                <li>Principal deposit amount (stored as NUMERIC/Decimal in Indian Rupees ₹).</li>
+                <li>Issuing scheduled commercial bank name and branch IFSC code.</li>
+                <li>Joint lien endorsement explicitly naming &ldquo;Member Secretary, AICTE&rdquo;.</li>
+                <li>Maturity date and issuance date with explicit ISO 8601 parsing.</li>
+              </ul>
+            </div>
+
+            {/* Pillar 3 */}
+            <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2">
+              <div className="flex items-center space-x-2 font-bold text-slate-900 text-sm">
+                <span className="w-6 h-6 rounded-lg bg-blue-100 text-blue-900 flex items-center justify-center text-xs">3</span>
+                <span>Official Regulatory Rules (AICTE Chapter IV)</span>
+              </div>
+              <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1 leading-relaxed">
+                <li>Mandatory deposit tenure: Minimum 60 months (5 years) or 96 months (8 years) per programme category.</li>
+                <li>Security deposit amount thresholds: ₹15L, ₹35L, ₹50L, ₹1Cr based on institution tier.</li>
+                <li>Maturity Sentinel: Automated 45-day pre-expiry renewal alert trigger.</li>
+                <li>Deterministic rules engine: Hard regulatory checks evaluated strictly without probabilistic hallucination.</li>
+              </ul>
+            </div>
+
+            {/* Pillar 4 */}
+            <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2">
+              <div className="flex items-center space-x-2 font-bold text-slate-900 text-sm">
+                <span className="w-6 h-6 rounded-lg bg-blue-100 text-blue-900 flex items-center justify-center text-xs">4</span>
+                <span>Bank Verification Mechanisms</span>
+              </div>
+              <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1 leading-relaxed">
+                <li>Primary tier: Real-time Core Banking System (CBS) API integration via encrypted Gateway.</li>
+                <li>Secondary tier: Scheduled daily SFTP batch reconciliation using PGP encrypted envelopes.</li>
+                <li>Fallback tier: Simulated verification gateway returning standard Guidebook response states.</li>
+                <li>SOURCE_UNAVAILABLE status is treated as a temporary network issue, never as a fraud signal.</li>
+              </ul>
+            </div>
+
+            {/* Pillar 5 */}
+            <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2">
+              <div className="flex items-center space-x-2 font-bold text-slate-900 text-sm">
+                <span className="w-6 h-6 rounded-lg bg-blue-100 text-blue-900 flex items-center justify-center text-xs">5</span>
+                <span>Approval Hierarchy & Separation of Duties</span>
+              </div>
+              <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1 leading-relaxed">
+                <li>Case Officer (Reviewer): Conducts inspection, recommends approval/rejection, requests clarifications.</li>
+                <li>Approving Authority (Member Secretary): Holds sole statutory power to issue final approval or rejection.</li>
+                <li>System Admin: Maintains infrastructure and user accounts; strictly blocked from altering case decisions.</li>
+                <li>Policy Admin: Authors and publishes regulatory rule packs; cannot adjudicate live cases.</li>
+              </ul>
+            </div>
+
+            {/* Pillar 6 */}
+            <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2">
+              <div className="flex items-center space-x-2 font-bold text-slate-900 text-sm">
+                <span className="w-6 h-6 rounded-lg bg-blue-100 text-blue-900 flex items-center justify-center text-xs">6</span>
+                <span>Retention & Cryptographic Audit Requirements</span>
+              </div>
+              <ul className="list-disc list-inside space-y-1 text-slate-600 pl-1 leading-relaxed">
+                <li>Minimum retention period: 10 years beyond deposit release/refund.</li>
+                <li>SHA-256 hash chaining: Every lifecycle transition, review decision, and unmask action is cryptographically sealed.</li>
+                <li>Independent Auditor role: Full read-only ledger traversal and tamper verification capability.</li>
+                <li>Zero automated funds transfer: Release and refund workflows are strictly review-only advisory trails.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Reset Password Modal */}
       {selectedUserForReset && (

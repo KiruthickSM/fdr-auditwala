@@ -74,3 +74,11 @@ export function calculateSla(deadlineIso: string, isResolved = false): SlaInfo {
     totalMinutesLeft: totalMinutes
   };
 }
+
+
+export function maskFdrNumber(fdrNumber: string, isRevealed = false): string {
+  if (!fdrNumber) return "";
+  if (isRevealed) return fdrNumber;
+  if (fdrNumber.length <= 4) return "••••" + fdrNumber;
+  return "••••••••" + fdrNumber.slice(-4);
+}

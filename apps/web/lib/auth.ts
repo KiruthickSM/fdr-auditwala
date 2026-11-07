@@ -19,40 +19,29 @@ export const SEEDED_DEMO_ACCOUNTS: DemoUserAccount[] = [
     id: "usr-rev-1",
     name: "Rajesh Sharma",
     email: "rajesh.sharma@demo.fdrguard.test",
-    role: "REVIEWER",
-    title: "Senior Reviewer",
+    role: "CASE_OFFICER",
+    title: "Senior Case Officer / Reviewer",
     department: "FDR Verification & Inspection Cell",
     isActive: true,
     failedAttempts: 0,
     lastLoginAt: "2026-11-07T09:15:00Z"
   },
   {
-    id: "usr-rev-2",
-    name: "Priya Nair",
-    email: "priya.nair@demo.fdrguard.test",
-    role: "REVIEWER",
-    title: "Forensic Analyst",
-    department: "Document Authenticity & Forensics",
+    id: "usr-appr-1",
+    name: "Prof. K. Rajagopal",
+    email: "approving.authority@demo.fdrguard.test",
+    role: "APPROVING_AUTHORITY",
+    title: "Member Secretary / Approving Authority",
+    department: "AICTE Regulatory Approvals Board",
     isActive: true,
     failedAttempts: 0,
-    lastLoginAt: "2026-11-06T14:20:00Z"
-  },
-  {
-    id: "usr-rev-3",
-    name: "Anand Joshi",
-    email: "anand.joshi@demo.fdrguard.test",
-    role: "REVIEWER",
-    title: "Legal / Renewal Officer",
-    department: "Legal & Regulatory Compliance",
-    isActive: true,
-    failedAttempts: 0,
-    lastLoginAt: "2026-11-05T11:45:00Z"
+    lastLoginAt: "2026-11-07T08:30:00Z"
   },
   {
     id: "usr-inst-2",
     name: "Dr. Arvind Patel",
     email: "registrar.inst2@demo.fdrguard.test",
-    role: "INSTITUTION",
+    role: "APPLICANT",
     institutionId: "inst-2",
     title: "Registrar, Sardar Patel Management Academy",
     department: "Institutional Administration",
@@ -61,27 +50,48 @@ export const SEEDED_DEMO_ACCOUNTS: DemoUserAccount[] = [
     lastLoginAt: "2026-11-07T08:00:00Z"
   },
   {
-    id: "usr-inst-3",
-    name: "Prof. S. N. Mishra",
-    email: "registrar.inst3@demo.fdrguard.test",
-    role: "INSTITUTION",
-    institutionId: "inst-3",
-    title: "Registrar, Kalam Technical Campus",
-    department: "Institutional Administration",
+    id: "usr-fin-1",
+    name: "Shri M. K. Verma",
+    email: "finance.officer@demo.fdrguard.test",
+    role: "FINANCE_OFFICER",
+    title: "Chief Finance Officer",
+    department: "AICTE Security Deposit Custody & Accounts",
     isActive: true,
     failedAttempts: 0,
-    lastLoginAt: "2026-11-04T16:10:00Z"
+    lastLoginAt: "2026-11-06T15:40:00Z"
+  },
+  {
+    id: "usr-audit-1",
+    name: "Smt. Meenakshi Sundaram",
+    email: "auditor@demo.fdrguard.test",
+    role: "AUDITOR",
+    title: "Chief Vigilance & Internal Auditor",
+    department: "Independent Audit & Vigilance Cell",
+    isActive: true,
+    failedAttempts: 0,
+    lastLoginAt: "2026-11-06T11:20:00Z"
   },
   {
     id: "usr-admin-1",
     name: "Smt. Priya Sundaram",
     email: "admin@demo.fdrguard.test",
-    role: "ADMIN",
-    title: "Platform Administrator",
-    department: "AICTE Regulatory Governance Cell",
+    role: "SYSTEM_ADMIN",
+    title: "Platform System Administrator",
+    department: "AICTE Portal Infrastructure Cell",
     isActive: true,
     failedAttempts: 0,
     lastLoginAt: "2026-11-07T07:30:00Z"
+  },
+  {
+    id: "usr-policy-1",
+    name: "Dr. H. C. Nagaraj",
+    email: "policy.admin@demo.fdrguard.test",
+    role: "POLICY_ADMIN",
+    title: "Regulatory Policy Administrator",
+    department: "AICTE Approval Process Handbook (APH) Council",
+    isActive: true,
+    failedAttempts: 0,
+    lastLoginAt: "2026-11-05T14:15:00Z"
   },
   {
     id: "usr-mgmt-1",
@@ -93,6 +103,17 @@ export const SEEDED_DEMO_ACCOUNTS: DemoUserAccount[] = [
     isActive: true,
     failedAttempts: 0,
     lastLoginAt: "2026-11-06T17:00:00Z"
+  },
+  {
+    id: "usr-rev-2",
+    name: "Priya Nair",
+    email: "priya.nair@demo.fdrguard.test",
+    role: "CASE_OFFICER",
+    title: "Forensic Analyst",
+    department: "Document Authenticity & Forensics",
+    isActive: true,
+    failedAttempts: 0,
+    lastLoginAt: "2026-11-06T14:20:00Z"
   }
 ];
 
@@ -159,12 +180,19 @@ export function verifyPassword(providedPassword: string): boolean {
 
 export function getDefaultLandingRoute(role: UserRole): string {
   switch (role) {
+    case "APPLICANT":
     case "INSTITUTION":
       return "/institution";
+    case "CASE_OFFICER":
     case "REVIEWER":
+    case "APPROVING_AUTHORITY":
       return "/reviewer";
+    case "SYSTEM_ADMIN":
+    case "POLICY_ADMIN":
+    case "AUDITOR":
     case "ADMIN":
       return "/admin";
+    case "FINANCE_OFFICER":
     case "MANAGEMENT":
       return "/management";
     default:
@@ -238,6 +266,18 @@ export function verifySessionToken(token: string): SessionPayload | null {
     }
 
     return payload;
+  } catch {
+    return null;
+  }
+}
+
+export async function getSessionFromCookie(): Promise<SessionPayload | null> {
+  try {
+    const { cookies } = await import("next/headers");
+    const cookieStore = cookies();
+    const token = cookieStore.get("fdr_session_token")?.value;
+    if (!token) return null;
+    return verifySessionToken(token);
   } catch {
     return null;
   }

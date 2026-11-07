@@ -71,12 +71,15 @@ export function computePriorityScore(c: CaseRecord, fdr?: FDRRecord): PriorityBr
   if (vStat === "MISMATCH") {
     verifRaw = 100;
     verifLabel = "Bank CBS Mismatch";
-  } else if (vStat === "REQUIRES HUMAN REVIEW") {
+  } else if (vStat === "PENDING_HUMAN_REVIEW" || (vStat as string) === "REQUIRES HUMAN REVIEW") {
     verifRaw = 85;
     verifLabel = "Inspection Needed";
-  } else if (vStat === "SOURCE UNAVAILABLE") {
+  } else if (vStat === "SOURCE_UNAVAILABLE" || (vStat as string) === "SOURCE UNAVAILABLE") {
     verifRaw = 70;
     verifLabel = "Gateway Offline";
+  } else if (vStat === "SOURCE_ERROR") {
+    verifRaw = 60;
+    verifLabel = "Gateway Error";
   }
   const verifPoints = verifRaw * 0.10;
 

@@ -15,7 +15,7 @@ export class ExplainableRiskEngine {
         description: "Bank API verification confirmed discrepancy in principal amount, dates, or beneficiary."
       });
       score += 25;
-    } else if (fdr.verificationStatus === "REQUIRES HUMAN REVIEW") {
+    } else if (fdr.verificationStatus === "PENDING_HUMAN_REVIEW" || (fdr.verificationStatus as string) === "REQUIRES HUMAN REVIEW") {
       factors.push({
         factor: "Verification Anomaly / Manual Review Needed",
         points: 15,
@@ -24,7 +24,7 @@ export class ExplainableRiskEngine {
         description: "Partial match or manual bank branch validation needed."
       });
       score += 15;
-    } else if (fdr.verificationStatus === "SOURCE UNAVAILABLE") {
+    } else if (fdr.verificationStatus === "SOURCE_UNAVAILABLE" || (fdr.verificationStatus as string) === "SOURCE UNAVAILABLE") {
       factors.push({
         factor: "Bank Verification Source Unavailable",
         points: 10,

@@ -1,4 +1,16 @@
-﻿export type UserRole = "INSTITUTION" | "REVIEWER" | "ADMIN" | "MANAGEMENT";
+export type UserRole =
+  | "APPLICANT"
+  | "CASE_OFFICER"
+  | "APPROVING_AUTHORITY"
+  | "FINANCE_OFFICER"
+  | "AUDITOR"
+  | "SYSTEM_ADMIN"
+  | "POLICY_ADMIN"
+  | "MANAGEMENT"
+  // Backward-compatible role aliases
+  | "INSTITUTION"
+  | "REVIEWER"
+  | "ADMIN";
 
 export interface UserSession {
   id: string;
@@ -35,13 +47,45 @@ export type AuthenticityLevel =
 
 export type VerificationStatus =
   | "MATCH"
-  | "PARTIAL MATCH"
   | "MISMATCH"
-  | "SOURCE UNAVAILABLE"
+  | "NOT_CHECKED"
+  | "SOURCE_UNAVAILABLE"
+  | "SOURCE_ERROR"
+  | "INSUFFICIENT_EVIDENCE"
+  | "PENDING_HUMAN_REVIEW"
+  // Backward-compatible mappings
+  | "PARTIAL MATCH"
   | "REQUIRES HUMAN REVIEW";
 
 export type PriorityLevel = "Critical" | "High" | "Medium" | "Low";
 export type RiskLevel = "Low" | "Medium" | "High" | "Critical";
+
+export type ProvenanceLabel =
+  | "authoritative integration response"
+  | "official document"
+  | "extracted claim"
+  | "configured rule"
+  | "public reference"
+  | "synthetic demo data"
+  | "human observation";
+
+export interface ExtractionClaim {
+  id: string;
+  field: string;
+  label: string;
+  extracted_value: string;
+  normalized_value: string | number;
+  confidence: number; // 0.0 to 1.0
+  page_number: number;
+  source_text?: string;
+  engine: string;
+  engine_version: string;
+  review_status: "UNREVIEWED" | "ACCEPTED" | "CORRECTED" | "DISPUTED";
+  reviewed_by?: string;
+  reviewed_at?: string;
+  correction_reason?: string;
+  boundingBox?: { x: number; y: number; width: number; height: number };
+}
 
 export interface ExtractedField {
   fieldName: string;
@@ -71,6 +115,39 @@ export interface VerificationRecord {
   externalRef: string;
   bankBranch: string;
   isAuthorizedConnector: boolean;
+  checked_at?: string;
+  reference_id?: string;
+}
+
+export type FindingCategory =
+  | "completeness"
+  | "mismatch"
+  | "compliance"
+  | "risk"
+  | "lifecycle"
+  | "knowledge_gap";
+
+export type FindingSeverity = "info" | "low" | "medium" | "high";
+export type FindingStatus = "open" | "resolved" | "disputed";
+
+export interface FindingRecord {
+  id: string;
+  code: string; // e.g. "MATURITY_DATE_MISMATCH", "AMOUNT_MISMATCH", "MISSING_REQUIRED_DOCUMENT"
+  category: FindingCategory;
+  severity: FindingSeverity;
+  status: FindingStatus;
+  explanation: string;
+  evidenceRefs: Array<{
+    source: string;
+    provenance: ProvenanceLabel;
+    refId?: string;
+    value?: string | number;
+  }>;
+  nextStep: string;
+  ruleOrModelVersion: string;
+  createdAt: string;
+  resolvedAt?: string;
+  resolvedBy?: string;
 }
 
 export interface RuleEvaluation {
@@ -78,7 +155,7 @@ export interface RuleEvaluation {
   ruleName: string;
   ruleVersion: string;
   category: string;
-  status: "PASS" | "FAIL" | "WARNING";
+  status: "PASS" | "FAIL" | "WARNING" | "UNKNOWN" | "NEEDS_EVIDENCE" | "NEEDS_POLICY_REVIEW";
   severity: "CRITICAL" | "HIGH" | "MEDIUM" | "INFO";
   explanation: string;
   remedy?: string;
@@ -131,11 +208,14 @@ export interface FDRRecord {
   verificationStatus: VerificationStatus;
   riskScore: number;
   riskLevel: RiskLevel;
+  record_version?: number; // optimistic concurrency
   
-  // Document Refs
+  // Document Refs & Claims
   documentId: string;
   documentFileName: string;
   extractedFields: ExtractedField[];
+  claims?: ExtractionClaim[];
+  findings?: FindingRecord[];
   
   // Intelligence Outputs
   verification?: VerificationRecord;
@@ -143,7 +223,7 @@ export interface FDRRecord {
   ruleEvaluations: RuleEvaluation[];
   riskAssessment?: RiskAssessment;
   aiRecommendation?: {
-    action: "Approve" | "Request Clarification" | "Escalate" | "Reject";
+    action: "Approve" | "Request Clarification" | "Escalate" | "Reject" | "RECOMMEND_APPROVAL" | "RECOMMEND_REJECTION";
     confidence: number;
     rationale: string;
     applicableRuleId: string;
@@ -198,9 +278,21 @@ export interface CaseRecord {
   isSlaBreached: boolean;
   assignedReviewerId?: string;
   assignedReviewerName?: string;
+  record_version?: number; // optimistic concurrency
   createdAt: string;
   updatedAt: string;
 }
+
+export type ReviewerAction =
+  | "ACCEPT"
+  | "EDIT"
+  | "REQUEST_INFORMATION"
+  | "MARK_EVIDENCE_INCORRECT"
+  | "ESCALATE"
+  | "RECOMMEND_APPROVAL"
+  | "RECOMMEND_REJECTION"
+  | "APPROVE"
+  | "REJECT";
 
 export interface ReviewerDecision {
   id: string;
@@ -208,10 +300,11 @@ export interface ReviewerDecision {
   fdrId: string;
   reviewerId: string;
   reviewerName: string;
-  action: "Approve" | "Reject" | "Request Clarification" | "Escalate";
+  action: ReviewerAction | "Approve" | "Reject" | "Request Clarification" | "Escalate";
   overrideAI: boolean;
   justification: string;
   timestamp: string;
+  record_version?: number;
 }
 
 export interface AuditEvent {

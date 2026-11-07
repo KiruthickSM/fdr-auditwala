@@ -38,7 +38,8 @@ interface StoreContextType {
   getInstitutionById: (id: string) => Institution | undefined;
   submitNewFDR: (fdrData: Partial<FDRRecord>) => Promise<FDRRecord>;
   transitionLifecycle: (fdrId: string, targetState: LifecycleState, reason?: string) => Promise<{ success: boolean; error?: string }>;
-  recordDecision: (caseId: string, fdrId: string, action: "Approve" | "Reject" | "Request Clarification" | "Escalate", overrideAI: boolean, justification: string) => Promise<void>;
+  recordDecision: (caseId: string, fdrId: string, action: string, overrideAI: boolean, justification: string, expectedVersion?: number) => Promise<{ success: boolean; error?: string }>;
+  recordFdrReveal: (fdrId: string, fdrNumber: string, reason?: string) => Promise<void>;
   submitFeedback: (feedback: Omit<FeedbackRecord, "id" | "timestamp" | "status">) => Promise<void>;
   submitReplacementFDR: (oldFdrId: string, replacementData: Partial<FDRRecord>) => Promise<FDRRecord>;
   triggerReVerification: (fdrId: string) => Promise<void>;
@@ -49,6 +50,14 @@ interface StoreContextType {
 const StoreContext = createContext<StoreContextType | null>(null);
 
 const DEFAULT_USERS: Record<UserRole, UserSession> = {
+  APPLICANT: {
+    id: "usr-inst-2",
+    name: "Dr. Arvind Patel",
+    email: "registrar.inst2@demo.fdrguard.test",
+    role: "APPLICANT",
+    institutionId: "inst-2",
+    department: "Institutional Administration"
+  },
   INSTITUTION: {
     id: "usr-inst-2",
     name: "Dr. Arvind Patel",
@@ -57,6 +66,13 @@ const DEFAULT_USERS: Record<UserRole, UserSession> = {
     institutionId: "inst-2",
     department: "Institutional Administration"
   },
+  CASE_OFFICER: {
+    id: "usr-rev-1",
+    name: "Rajesh Sharma",
+    email: "rajesh.sharma@demo.fdrguard.test",
+    role: "CASE_OFFICER",
+    department: "FDR Verification & Inspection Cell"
+  },
   REVIEWER: {
     id: "usr-rev-1",
     name: "Rajesh Sharma",
@@ -64,12 +80,47 @@ const DEFAULT_USERS: Record<UserRole, UserSession> = {
     role: "REVIEWER",
     department: "FDR Verification & Inspection Cell"
   },
+  APPROVING_AUTHORITY: {
+    id: "usr-appr-1",
+    name: "Prof. K. Rajagopal",
+    email: "approving.authority@demo.fdrguard.test",
+    role: "APPROVING_AUTHORITY",
+    department: "AICTE Regulatory Approvals Board"
+  },
+  FINANCE_OFFICER: {
+    id: "usr-fin-1",
+    name: "Shri M. K. Verma",
+    email: "finance.officer@demo.fdrguard.test",
+    role: "FINANCE_OFFICER",
+    department: "AICTE Security Deposit Custody & Accounts"
+  },
+  AUDITOR: {
+    id: "usr-audit-1",
+    name: "Smt. Meenakshi Sundaram",
+    email: "auditor@demo.fdrguard.test",
+    role: "AUDITOR",
+    department: "Independent Audit & Vigilance Cell"
+  },
+  SYSTEM_ADMIN: {
+    id: "usr-admin-1",
+    name: "Smt. Priya Sundaram",
+    email: "admin@demo.fdrguard.test",
+    role: "SYSTEM_ADMIN",
+    department: "AICTE Portal Infrastructure Cell"
+  },
   ADMIN: {
     id: "usr-admin-1",
     name: "Smt. Priya Sundaram",
     email: "admin@demo.fdrguard.test",
     role: "ADMIN",
     department: "AICTE Regulatory Governance Cell"
+  },
+  POLICY_ADMIN: {
+    id: "usr-policy-1",
+    name: "Dr. H. C. Nagaraj",
+    email: "policy.admin@demo.fdrguard.test",
+    role: "POLICY_ADMIN",
+    department: "AICTE Approval Process Handbook (APH) Council"
   },
   MANAGEMENT: {
     id: "usr-mgmt-1",
@@ -193,42 +244,63 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return { success: true };
   };
 
+  const recordFdrReveal = async (fdrId: string, fdrNumber: string, reason?: string) => {
+    await AuditLedgerService.recordEvent({
+      actorId: currentUser.id,
+      actorName: currentUser.name,
+      actorRole: currentUser.role,
+      action: "FDR_NUMBER_REVEALED",
+      entityType: "FDR",
+      entityId: fdrId,
+      previousState: "MASKED",
+      newState: "REVEALED",
+      reason: reason || "Officer requested full identifier unmasking for audit inspection"
+    });
+    setAuditEvents(AuditLedgerService.getEvents());
+  };
+
   const recordDecision = async (
     caseId: string,
     fdrId: string,
-    action: "Approve" | "Reject" | "Request Clarification" | "Escalate",
+    action: string,
     overrideAI: boolean,
-    justification: string
-  ) => {
+    justification: string,
+    expectedVersion?: number
+  ): Promise<{ success: boolean; error?: string }> => {
     const fdr = getFDRById(fdrId);
-    if (!fdr) return;
+    if (!fdr) return { success: false, error: "FDR not found" };
+
+    if (expectedVersion !== undefined && fdr.record_version !== undefined && fdr.record_version !== expectedVersion) {
+      return {
+        success: false,
+        error: "409_CONFLICT: Case record was modified by another officer. Please reload and review the latest state."
+      };
+    }
 
     let targetState: LifecycleState = fdr.lifecycleStatus;
-    if (action === "Approve") {
+    const isClarification = action === "Request Clarification" || action === "REQUEST_INFORMATION";
+
+    if (action === "Approve" || action === "APPROVE") {
       targetState = "Active";
-    } else if (action === "Reject") {
-      targetState = "Under Review";
-    } else if (action === "Request Clarification") {
-      targetState = "Under Review";
-    } else if (action === "Escalate") {
+    } else if (isClarification) {
       targetState = "Under Review";
     }
 
     const updatedFdr: FDRRecord = {
       ...fdr,
+      record_version: (fdr.record_version || 1) + 1,
       lifecycleStatus: targetState,
-      clarificationRequest: action === "Request Clarification" ? justification : undefined,
+      clarificationRequest: isClarification ? justification : undefined,
       updatedAt: new Date().toISOString()
     };
 
     syncFdrs(fdrs.map(f => f.id === fdrId ? updatedFdr : f));
 
-    // Update Case status
     const c = getCaseById(caseId);
     if (c) {
       const updatedCase: CaseRecord = {
         ...c,
-        status: action === "Approve" ? "Resolved" : action === "Request Clarification" ? "Clarification Requested" : "In Review",
+        status: (action === "Approve" || action === "APPROVE") ? "Resolved" : isClarification ? "Clarification Requested" : "In Review",
         updatedAt: new Date().toISOString()
       };
       syncCases(cases.map(item => item.id === c.id ? updatedCase : item));
@@ -247,6 +319,7 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     });
 
     setAuditEvents(AuditLedgerService.getEvents());
+    return { success: true };
   };
 
   const submitFeedback = async (feedback: Omit<FeedbackRecord, "id" | "timestamp" | "status">) => {
@@ -462,6 +535,7 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         submitNewFDR,
         transitionLifecycle,
         recordDecision,
+        recordFdrReveal,
         submitFeedback,
         submitReplacementFDR,
         triggerReVerification,
