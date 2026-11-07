@@ -24,7 +24,7 @@ export default function LandingPage() {
 
   const benchmarkCases = [
     {
-      id: "case-bench-1",
+      id: "CASE-2024-LOW-001",
       fdrId: "fdr-benchmark-1",
       tag: "CASE 1: CLEAN MATCH",
       title: "Normal FDR (₹35 Lakhs, SBI)",
@@ -34,17 +34,17 @@ export default function LandingPage() {
       href: "/fdr/fdr-benchmark-1"
     },
     {
-      id: "case-bench-2",
+      id: "CASE-2024-CRIT-002",
       fdrId: "fdr-benchmark-2",
       tag: "CASE 2: AMOUNT MISMATCH",
       title: "₹50L Claimed vs ₹45L Bank CBS (PNB)",
       desc: "Flagged by Cross-Source Verification with ₹5L deficit. Altered numeric glyph detected by AI.",
       status: "CRITICAL / HUMAN REVIEW",
       statusColor: "bg-rose-50 text-rose-800 border-rose-300",
-      href: "/reviewer/case/case-bench-2"
+      href: "/reviewer/case/CASE-2024-CRIT-002"
     },
     {
-      id: "case-bench-3",
+      id: "CASE-2026-HIGH-003",
       fdrId: "fdr-benchmark-3",
       tag: "CASE 3: IMMINENT MATURITY",
       title: "Expiring in < 20 Days (Bank of Baroda)",
@@ -54,24 +54,24 @@ export default function LandingPage() {
       href: "/fdr/fdr-benchmark-3"
     },
     {
-      id: "case-bench-4",
+      id: "CASE-2024-CRIT-004",
       fdrId: "fdr-benchmark-4",
       tag: "CASE 4: SUSPICIOUS SCAN",
       title: "Tamper Artifacts & Metadata Skew (HDFC)",
       desc: "Photoshop edit tags in metadata, mismatched stamp DPI, and unverified branch certificate serial.",
       status: "HIGH CONCERN / ESCALATE",
       statusColor: "bg-rose-50 text-rose-800 border-rose-300",
-      href: "/reviewer/case/case-bench-4"
+      href: "/reviewer/case/CASE-2024-CRIT-004"
     },
     {
-      id: "case-bench-5",
+      id: "CASE-2024-MED-005",
       fdrId: "fdr-benchmark-5",
       tag: "CASE 5: RELEASE / REFUND",
       title: "10-Year Lock-in Complete (Canara Bank)",
       desc: "Full 8-year mandatory security deposit tenure completed with zero deficiencies. Cleared for refund.",
       status: "RELEASE ELIGIBLE",
       statusColor: "bg-purple-50 text-purple-800 border-purple-300",
-      href: "/reviewer/case/case-bench-5"
+      href: "/reviewer/case/CASE-2024-MED-005"
     }
   ];
 

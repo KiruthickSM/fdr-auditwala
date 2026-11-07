@@ -43,39 +43,40 @@ interface StoreContextType {
   submitReplacementFDR: (oldFdrId: string, replacementData: Partial<FDRRecord>) => Promise<FDRRecord>;
   triggerReVerification: (fdrId: string) => Promise<void>;
   resetToDefaultSeeds: () => void;
+  setCurrentUserDirectly: (user: UserSession) => void;
 }
 
 const StoreContext = createContext<StoreContextType | null>(null);
 
 const DEFAULT_USERS: Record<UserRole, UserSession> = {
   INSTITUTION: {
-    id: "usr-inst-1",
-    name: "Dr. K. S. Venkatesh (Principal)",
-    email: "principal@aryabhata-tech.edu.in",
+    id: "usr-inst-2",
+    name: "Dr. Arvind Patel",
+    email: "registrar.inst2@demo.fdrguard.test",
     role: "INSTITUTION",
-    institutionId: "inst-1",
+    institutionId: "inst-2",
     department: "Institutional Administration"
   },
   REVIEWER: {
     id: "usr-rev-1",
-    name: "Rajesh Sharma (Senior Reviewer)",
-    email: "rsharma@aicte-india.org",
+    name: "Rajesh Sharma",
+    email: "rajesh.sharma@demo.fdrguard.test",
     role: "REVIEWER",
     department: "FDR Verification & Inspection Cell"
   },
   ADMIN: {
     id: "usr-admin-1",
-    name: "Smt. Priya Sundaram (Portal Admin)",
-    email: "admin@aicte-portal.gov.in",
+    name: "Smt. Priya Sundaram",
+    email: "admin@demo.fdrguard.test",
     role: "ADMIN",
-    department: "System Governance & Rules Registry"
+    department: "AICTE Regulatory Governance Cell"
   },
   MANAGEMENT: {
     id: "usr-mgmt-1",
-    name: "Prof. Anil Sahasrabudhe (Executive Committee)",
-    email: "executive@aicte-india.org",
+    name: "Dr. Anil Sahasrabudhe",
+    email: "management@demo.fdrguard.test",
     role: "MANAGEMENT",
-    department: "Executive Directorate & Compliance Oversight"
+    department: "AICTE Executive Board"
   }
 };
 
@@ -113,6 +114,11 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const setCurrentRole = (role: UserRole) => {
     setCurrentRoleState(role);
     setCurrentUser(DEFAULT_USERS[role]);
+  };
+
+  const setCurrentUserDirectly = (user: UserSession) => {
+    setCurrentUser(user);
+    setCurrentRoleState(user.role);
   };
 
   const syncFdrs = (newFdrs: FDRRecord[]) => {
@@ -459,7 +465,8 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         submitFeedback,
         submitReplacementFDR,
         triggerReVerification,
-        resetToDefaultSeeds
+        resetToDefaultSeeds,
+        setCurrentUserDirectly
       }}
     >
       {children}

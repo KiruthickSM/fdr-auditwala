@@ -31,7 +31,7 @@ export default function ReviewerCaseHeroScreen() {
   const caseId = params.id as string;
   const { cases, fdrs, recordDecision, submitFeedback, triggerReVerification } = useStore();
 
-  const c = cases.find(item => item.id === caseId || item.fdrId === caseId);
+  const c = cases.find(item => item.id === caseId || item.caseNumber === caseId || item.fdrId === caseId);
   const fdr = fdrs.find(item => item.id === c?.fdrId || item.id === caseId);
 
   // Active highlighted field

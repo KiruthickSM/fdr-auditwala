@@ -1,4 +1,4 @@
-﻿import sys
+import sys
 import unittest
 from pathlib import Path
 
@@ -7,6 +7,9 @@ sys.path.insert(0, str(Path('tests/unit').resolve()))
 import test_rules_engine
 import test_lifecycle_fsm
 import test_risk_engine
+import test_data_consistency
+import test_priority_engine
+import test_auth_rbac
 
 passed = 0
 failed = 0
@@ -20,7 +23,13 @@ tests = [
     test_lifecycle_fsm.test_illegal_arbitrary_transition_blocked,
     test_risk_engine.test_clean_fdr_scores_low,
     test_risk_engine.test_mismatch_and_tamper_scores_critical,
-    test_risk_engine.test_extreme_risk_triggers
+    test_risk_engine.test_extreme_risk_triggers,
+    test_data_consistency.test_canonical_institution_names,
+    test_data_consistency.test_no_institution_has_two_names,
+    test_priority_engine.test_priority_ranking_order,
+    test_auth_rbac.test_safe_redirect,
+    test_auth_rbac.test_rate_limit_lockout,
+    test_auth_rbac.test_rbac_and_tenant_boundary
 ]
 
 print('=== RUNNING UNIT TEST SUITE ===')

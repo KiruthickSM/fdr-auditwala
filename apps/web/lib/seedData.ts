@@ -11276,7 +11276,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
 
 export const SEED_CASES: CaseRecord[] = [
   {
-    "id": "case-bench-2",
+    "id": "CASE-2024-CRIT-002",
     "caseNumber": "CASE-2024-CRIT-002",
     "fdrId": "fdr-benchmark-2",
     "fdrNumber": "FDR-PNB-2024-9981",
@@ -11293,7 +11293,7 @@ export const SEED_CASES: CaseRecord[] = [
     "updatedAt": "2024-06-11T14:30:00Z"
   },
   {
-    "id": "case-bench-4",
+    "id": "CASE-2024-CRIT-004",
     "caseNumber": "CASE-2024-CRIT-004",
     "fdrId": "fdr-benchmark-4",
     "fdrNumber": "FDR-HDFC-2024-55190",
@@ -11310,7 +11310,7 @@ export const SEED_CASES: CaseRecord[] = [
     "updatedAt": "2024-05-19T12:00:00Z"
   },
   {
-    "id": "case-bench-3",
+    "id": "CASE-2026-HIGH-003",
     "caseNumber": "CASE-2026-HIGH-003",
     "fdrId": "fdr-benchmark-3",
     "fdrNumber": "FDR-BOB-2019-44120",
@@ -11327,7 +11327,7 @@ export const SEED_CASES: CaseRecord[] = [
     "updatedAt": "2026-11-02T10:00:00Z"
   },
   {
-    "id": "case-bench-5",
+    "id": "CASE-2024-MED-005",
     "caseNumber": "CASE-2024-MED-005",
     "fdrId": "fdr-benchmark-5",
     "fdrNumber": "FDR-CAN-2016-10291",
@@ -11344,7 +11344,7 @@ export const SEED_CASES: CaseRecord[] = [
     "updatedAt": "2024-08-12T16:30:00Z"
   },
   {
-    "id": "case-bench-1",
+    "id": "CASE-2024-LOW-001",
     "caseNumber": "CASE-2024-LOW-001",
     "fdrId": "fdr-benchmark-1",
     "fdrNumber": "FDR-SBI-2024-81729",

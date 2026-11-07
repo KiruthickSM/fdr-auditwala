@@ -3,6 +3,7 @@ import React from "react";
 import { StoreProvider } from "@/lib/store";
 import { Navbar } from "@/components/Navbar";
 import { GuidedDemoBar } from "@/components/GuidedDemoBar";
+import { IdleTimeoutModal } from "@/components/IdleTimeoutModal";
 
 export const metadata = {
   title: "FDR AuditWala (FDRGuard) — AI-Powered FDR Lifecycle Platform",
@@ -20,6 +21,7 @@ export default function RootLayout({
         <StoreProvider>
           <Navbar />
           <GuidedDemoBar />
+          <IdleTimeoutModal />
           <main className="flex-1">{children}</main>
           <footer className="bg-slate-900 text-slate-400 text-xs py-6 border-t border-slate-800">
             <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-3">

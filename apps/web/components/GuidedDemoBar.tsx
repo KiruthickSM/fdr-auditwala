@@ -21,14 +21,14 @@ export const GuidedDemoBar: React.FC = () => {
       title: "Step 2: Core Banking Mismatch Detection (Benchmark Case #2)",
       description: "Inspect the ₹50L vs ₹45L bank CBS discrepancy with explainable risk breakdown and regulatory rule citations.",
       cta: "Inspect Mismatch Case in Reviewer Inbox",
-      href: "/reviewer/case/case-bench-2",
+      href: "/reviewer/case/CASE-2024-CRIT-002",
       role: "REVIEWER" as const
     },
     {
       title: "Step 3: Human-in-the-Loop Decision & Clarification Request",
       description: "Reviewer requests bank confirmation or makes consequential decision with mandatory justification.",
       cta: "Review Suspicious Scan Case #4",
-      href: "/reviewer/case/case-bench-4",
+      href: "/reviewer/case/CASE-2024-CRIT-004",
       role: "REVIEWER" as const
     },
     {
@@ -42,7 +42,7 @@ export const GuidedDemoBar: React.FC = () => {
       title: "Step 5: Release / Refund Authorization (Benchmark Case #5)",
       description: "10-Year permanent approval security deposit reaches complete lock-in and clears prerequisite checks.",
       cta: "Inspect Release Eligible Case",
-      href: "/reviewer/case/case-bench-5",
+      href: "/reviewer/case/CASE-2024-MED-005",
       role: "REVIEWER" as const
     },
     {
