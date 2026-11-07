@@ -51,6 +51,7 @@ export function middleware(req: NextRequest) {
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api/auth") ||
     pathname.startsWith("/static") ||
+    pathname === "/" ||
     pathname === "/login" ||
     pathname === "/403" ||
     pathname === "/favicon.ico" ||
@@ -59,8 +60,12 @@ export function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  // 2. Read session cookie
-  const token = req.cookies.get("fdrguard_session")?.value;
+  // 2. Read session cookie or Authorization header
+  const authHeader = req.headers.get("authorization");
+  let token = req.cookies.get("fdrguard_session")?.value;
+  if (!token && authHeader && authHeader.startsWith("Bearer ")) {
+    token = authHeader.substring(7).trim();
+  }
   const session = token ? verifyEdgeToken(token) : null;
 
   // Unauthenticated -> redirect to /login?next=<path>

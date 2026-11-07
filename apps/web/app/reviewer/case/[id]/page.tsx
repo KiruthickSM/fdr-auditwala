@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import React, { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
@@ -66,9 +68,9 @@ export default function ReviewerCaseHeroScreen() {
       status: "OPEN",
       ruleId: "AICTE-APH-CH4-v2026.1",
       ruleVersion: "2026.1",
-      title: fdr.verificationStatus === "MISMATCH" ? "Authoritative CBS Amount Discrepancy (-₹5,00,000)" : "Lien & Tenure Compliance Verified",
+      title: fdr.verificationStatus === "MISMATCH" ? "Verification Source (Simulated) Amount Discrepancy (-₹5,00,000)" : "Lien & Tenure Compliance Verified",
       explanation: fdr.verificationStatus === "MISMATCH"
-        ? "Authoritative bank integration response reported ₹45,00,000 balance against ₹50,00,000 claimed."
+        ? "Verification source (simulated) response reported ₹45,00,000 balance against ₹50,00,000 claimed."
         : "FDR tenor exceeds mandatory 60-month threshold and includes AICTE joint lien endorsement.",
       evidenceRefs: [
         {
@@ -186,9 +188,9 @@ export default function ReviewerCaseHeroScreen() {
       status: "OPEN",
       ruleId: "AICTE-APH-CH4-v2026.1",
       ruleVersion: "2026.1",
-      title: fdr.verificationStatus === "MISMATCH" ? "Authoritative CBS Amount Discrepancy (-₹5,00,000)" : "Lien & Tenure Compliance Verified",
+      title: fdr.verificationStatus === "MISMATCH" ? "Verification Source (Simulated) Amount Discrepancy (-₹5,00,000)" : "Lien & Tenure Compliance Verified",
       explanation: fdr.verificationStatus === "MISMATCH"
-        ? "Authoritative bank integration response reported ₹45,00,000 balance against ₹50,00,000 claimed."
+        ? "Verification source (simulated) response reported ₹45,00,000 balance against ₹50,00,000 claimed."
         : "FDR tenor exceeds mandatory 60-month threshold and includes AICTE joint lien endorsement.",
       evidenceRefs: [
         {
@@ -249,7 +251,7 @@ export default function ReviewerCaseHeroScreen() {
               className="flex items-center space-x-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold px-3 py-1.5 rounded-lg border transition-colors"
             >
               <RotateCw className={`w-3.5 h-3.5 ${isReVerifying ? "animate-spin text-blue-700" : ""}`} />
-              <span>{isReVerifying ? "Querying CBS..." : "Query Bank CBS API"}</span>
+              <span>{isReVerifying ? "Querying Verification Source (Simulated)..." : "Query Verification Source API (Simulated)"}</span>
             </button>
             <Link
               href={`/fdr/${fdr.id}`}
@@ -401,7 +403,7 @@ export default function ReviewerCaseHeroScreen() {
             <div className="flex items-center justify-between border-b pb-3">
               <div>
                 <h3 className="font-bold text-sm text-slate-900">FDR Digital Twin</h3>
-                <p className="text-xs text-slate-500">Claims vs Authoritative Facts</p>
+                <p className="text-xs text-slate-500">Claims vs Verification Facts (Simulated)</p>
               </div>
               <div className="flex rounded-lg border bg-slate-100 p-0.5 text-xs font-semibold">
                 <button
@@ -453,7 +455,7 @@ export default function ReviewerCaseHeroScreen() {
                         </span>
                       ) : (
                         <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
-                          Authoritative Match
+                          Verification Match (Simulated)
                         </span>
                       )}
                     </div>
@@ -467,7 +469,7 @@ export default function ReviewerCaseHeroScreen() {
                       </div>
                       <div className={`p-2 rounded-lg border ${item.conflict ? "bg-rose-100/50 border-rose-200" : "bg-blue-50/50 border-blue-200"}`}>
                         <div className="text-[9px] font-bold text-slate-500 uppercase tracking-wider mb-0.5 flex items-center justify-between">
-                          <span>Authoritative Fact</span>
+                          <span>Verification Fact (Simulated)</span>
                           <span className="text-[8px] bg-blue-100 text-blue-800 px-1 rounded">Gateway</span>
                         </div>
                         <div className={`font-bold truncate ${item.conflict ? "text-rose-900" : "text-slate-900"}`}>{item.auth}</div>
@@ -492,9 +494,9 @@ export default function ReviewerCaseHeroScreen() {
       status: "OPEN",
       ruleId: "AICTE-APH-CH4-v2026.1",
       ruleVersion: "2026.1",
-      title: fdr.verificationStatus === "MISMATCH" ? "Authoritative CBS Amount Discrepancy (-₹5,00,000)" : "Lien & Tenure Compliance Verified",
+      title: fdr.verificationStatus === "MISMATCH" ? "Verification Source (Simulated) Amount Discrepancy (-₹5,00,000)" : "Lien & Tenure Compliance Verified",
       explanation: fdr.verificationStatus === "MISMATCH"
-        ? "Authoritative bank integration response reported ₹45,00,000 balance against ₹50,00,000 claimed."
+        ? "Verification source (simulated) response reported ₹45,00,000 balance against ₹50,00,000 claimed."
         : "FDR tenor exceeds mandatory 60-month threshold and includes AICTE joint lien endorsement.",
       evidenceRefs: [
         {
@@ -584,7 +586,7 @@ export default function ReviewerCaseHeroScreen() {
 
                     {isMismatchField && (
                       <div className="mt-2 text-[11px] font-semibold text-rose-700 bg-rose-100/70 p-2 rounded border border-rose-200">
-                        Bank Core Banking System authoritative record states ₹45,00,000. (Discrepancy: -₹5,00,000).
+                        Verification source (simulated) record states ₹45,00,000. (Discrepancy: -₹5,00,000).
                       </div>
                     )}
                   </div>
@@ -609,7 +611,7 @@ export default function ReviewerCaseHeroScreen() {
                 </span>
               </div>
               <p className="text-xs text-blue-100 leading-relaxed font-medium">
-                {fdr.aiRecommendation?.rationale || "Authoritative review required based on cross-source findings."}
+                {fdr.aiRecommendation?.rationale || "Review recommended based on verification source (simulated) findings."}
               </p>
               <div className="mt-3 pt-2.5 border-t border-blue-800/80 flex items-center justify-between text-[11px] text-blue-300">
                 <span>Confidence: {((fdr.aiRecommendation?.confidence || 0.95) * 100).toFixed(0)}%</span>
@@ -664,7 +666,7 @@ export default function ReviewerCaseHeroScreen() {
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-bold uppercase text-slate-600 flex items-center space-x-1">
                   <Building className="w-3.5 h-3.5 mr-1 text-blue-800" />
-                  Bank CBS Verification
+                  Verification Source (Simulated)
                 </span>
                 <StatusBadge status={fdr.verificationStatus} size="sm" />
               </div>
@@ -811,7 +813,7 @@ export default function ReviewerCaseHeroScreen() {
                   type="button"
                   onClick={() => {
                     setDecisionAction("RECOMMEND_APPROVAL");
-                    setJustification("Case Officer recommends approval: Verified against authoritative records.");
+                    setJustification("Case Officer recommends approval: Verified against verification source (simulated).");
                   }}
                   className={`px-3 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all ${
                     decisionAction === "RECOMMEND_APPROVAL"

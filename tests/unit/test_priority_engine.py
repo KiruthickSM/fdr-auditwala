@@ -49,8 +49,8 @@ def test_priority_ranking_order():
     # Sort descending
     scored.sort(key=lambda x: x[0], reverse=True)
     
-    # Check top case is CASE-2024-CRIT-002
-    assert scored[0][1] == "CASE-2024-CRIT-002", f"Top case should be CASE-2024-CRIT-002, got {scored[0][1]}"
+    # Check top case is CASE-2024-CRITICAL-002
+    assert scored[0][1] == "CASE-2024-CRITICAL-002", f"Top case should be CASE-2024-CRITICAL-002, got {scored[0][1]}"
     # Check resolved case is at the bottom
     assert scored[-1][1] == "CASE-2024-LOW-001", f"Lowest case should be CASE-2024-LOW-001, got {scored[-1][1]}"
     assert scored[-1][2] == "Resolved"

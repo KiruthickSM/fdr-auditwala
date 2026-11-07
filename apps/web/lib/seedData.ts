@@ -540,7 +540,7 @@ export const BENCHMARK_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.98,
-      "rationale": "Authoritative bank records match 100%. Full regulatory compliance satisfied.",
+      "rationale": "Verification source (simulated) matches 100%. Full regulatory compliance satisfied.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "SBI API returned matching principal under lien to AICTE."
     },
@@ -686,7 +686,7 @@ export const BENCHMARK_FDRS: FDRRecord[] = [
           "submittedValue": 5000000,
           "authoritativeValue": 4500000,
           "severity": "CRITICAL",
-          "explanation": "Bank CBS record shows principal amount of \u20b945,00,000, whereas submitted certificate claims \u20b950,00,000. Deficit: \u20b95,00,000."
+          "explanation": "Verification source (simulated) shows principal amount of \u20b945,00,000, whereas submitted certificate claims \u20b950,00,000. Deficit: \u20b95,00,000."
         }
       ],
       "matchedFields": [
@@ -719,7 +719,7 @@ export const BENCHMARK_FDRS: FDRRecord[] = [
         "category": "FINANCIAL_THRESHOLD",
         "status": "FAIL",
         "severity": "CRITICAL",
-        "explanation": "Verified authoritative principal \u20b945 Lakhs leaves \u20b95 Lakh deficit."
+        "explanation": "Verification source (simulated) principal \u20b945 Lakhs leaves \u20b95 Lakh deficit."
       }
     ],
     "aiRecommendation": {
@@ -1061,7 +1061,7 @@ export const BENCHMARK_FDRS: FDRRecord[] = [
       "layoutIntegrity": 68,
       "alteredNumericsDetected": true,
       "metadataAnomalies": [
-        "PDF modified with Adobe Photoshop 24.1 (Windows)",
+        "Document analysis: review recommended (metadata inconsistency)",
         "Resolution mismatch: 150 DPI background canvas with 600 DPI pasted bank seal stamp"
       ],
       "sealSignatureCheck": "Anomalous",
@@ -1081,9 +1081,9 @@ export const BENCHMARK_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Escalate",
       "confidence": 0.91,
-      "rationale": "High-concern tampering signals detected: Photoshop modification tag and unverified branch certificate serial.",
+      "rationale": "Document analysis: review recommended (metadata inconsistency)e serial.",
       "applicableRuleId": "RULE-FDR-BANK-005",
-      "evidenceText": "Metadata contains software signature 'Photoshop 24.1'; stamp DPI is 4x background scan DPI."
+      "evidenceText": "Document analysis: review recommended (metadata inconsistency). Mismatched stamp DPI."
     },
     "createdAt": "2024-05-18T10:00:00Z",
     "updatedAt": "2024-05-19T12:00:00Z"
@@ -1447,7 +1447,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.98,
-      "rationale": "Authoritative bank records match 100%. Full regulatory compliance satisfied.",
+      "rationale": "Verification source (simulated) matches 100%. Full regulatory compliance satisfied.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "SBI API returned matching principal under lien to AICTE."
     },
@@ -1576,7 +1576,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "State Bank of India Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b93,500,000"
           }
         ],
@@ -1725,7 +1725,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           "submittedValue": 5000000,
           "authoritativeValue": 4500000,
           "severity": "CRITICAL",
-          "explanation": "Bank CBS record shows principal amount of \u20b945,00,000, whereas submitted certificate claims \u20b950,00,000. Deficit: \u20b95,00,000."
+          "explanation": "Verification source (simulated) shows principal amount of \u20b945,00,000, whereas submitted certificate claims \u20b950,00,000. Deficit: \u20b95,00,000."
         }
       ],
       "matchedFields": [
@@ -1758,7 +1758,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
         "category": "FINANCIAL_THRESHOLD",
         "status": "FAIL",
         "severity": "CRITICAL",
-        "explanation": "Verified authoritative principal \u20b945 Lakhs leaves \u20b95 Lakh deficit."
+        "explanation": "Verification source (simulated) principal \u20b945 Lakhs leaves \u20b95 Lakh deficit."
       }
     ],
     "aiRecommendation": {
@@ -1893,7 +1893,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "PNB CBS Gateway (Simulated)",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b945,00,000"
           }
         ],
@@ -2359,7 +2359,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       "layoutIntegrity": 68,
       "alteredNumericsDetected": true,
       "metadataAnomalies": [
-        "PDF modified with Adobe Photoshop 24.1 (Windows)",
+        "Document analysis: review recommended (metadata inconsistency)",
         "Resolution mismatch: 150 DPI background canvas with 600 DPI pasted bank seal stamp"
       ],
       "sealSignatureCheck": "Anomalous",
@@ -2379,9 +2379,9 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Escalate",
       "confidence": 0.91,
-      "rationale": "High-concern tampering signals detected: Photoshop modification tag and unverified branch certificate serial.",
+      "rationale": "Document analysis: review recommended (metadata inconsistency)e serial.",
       "applicableRuleId": "RULE-FDR-BANK-005",
-      "evidenceText": "Metadata contains software signature 'Photoshop 24.1'; stamp DPI is 4x background scan DPI."
+      "evidenceText": "Document analysis: review recommended (metadata inconsistency). Mismatched stamp DPI."
     },
     "createdAt": "2024-05-18T10:00:00Z",
     "updatedAt": "2024-05-19T12:00:00Z",
@@ -2504,7 +2504,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           {
             "source": "HDFC_Deposit_Receipt_25L.pdf",
             "provenance": "official document",
-            "value": "Creator tool tag: Adobe Photoshop 2023"
+            "value": "Document analysis: review recommended (metadata inconsistency)"
           }
         ],
         "nextStep": "Manual forensic inspection by Case Officer.",
@@ -2992,7 +2992,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -3121,7 +3121,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "ICICI Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b91,500,000"
           }
         ],
@@ -3306,7 +3306,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -3435,7 +3435,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Indian Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b92,500,000"
           }
         ],
@@ -3620,7 +3620,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -3749,7 +3749,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "State Bank of India Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b93,500,000"
           }
         ],
@@ -3934,7 +3934,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -4063,7 +4063,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Punjab National Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b95,000,000"
           }
         ],
@@ -4248,7 +4248,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -4377,7 +4377,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Bank of Baroda Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b97,500,000"
           }
         ],
@@ -4562,7 +4562,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -4691,7 +4691,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Canara Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b910,000,000"
           }
         ],
@@ -4876,7 +4876,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -5005,7 +5005,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Union Bank of India Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b91,500,000"
           }
         ],
@@ -5190,7 +5190,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -5319,7 +5319,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "HDFC Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b92,500,000"
           }
         ],
@@ -5504,7 +5504,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -5633,7 +5633,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "ICICI Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b93,500,000"
           }
         ],
@@ -5818,7 +5818,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -5947,7 +5947,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Indian Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b95,000,000"
           }
         ],
@@ -6132,7 +6132,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -6261,7 +6261,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "State Bank of India Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b97,500,000"
           }
         ],
@@ -6446,7 +6446,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -6575,7 +6575,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Punjab National Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b910,000,000"
           }
         ],
@@ -6760,7 +6760,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -6889,7 +6889,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Bank of Baroda Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b91,500,000"
           }
         ],
@@ -7074,7 +7074,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -7203,7 +7203,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Canara Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b92,500,000"
           }
         ],
@@ -7388,7 +7388,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -7517,7 +7517,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Union Bank of India Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b93,500,000"
           }
         ],
@@ -7702,7 +7702,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -7831,7 +7831,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "HDFC Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b95,000,000"
           }
         ],
@@ -8016,7 +8016,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -8145,7 +8145,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "ICICI Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b97,500,000"
           }
         ],
@@ -8330,7 +8330,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -8459,7 +8459,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Indian Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b910,000,000"
           }
         ],
@@ -8644,7 +8644,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -8773,7 +8773,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "State Bank of India Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b91,500,000"
           }
         ],
@@ -8958,7 +8958,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -9087,7 +9087,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Punjab National Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b92,500,000"
           }
         ],
@@ -9272,7 +9272,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -9401,7 +9401,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Bank of Baroda Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b93,500,000"
           }
         ],
@@ -9586,7 +9586,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -9715,7 +9715,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Canara Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b95,000,000"
           }
         ],
@@ -9900,7 +9900,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -10029,7 +10029,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Union Bank of India Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b97,500,000"
           }
         ],
@@ -10214,7 +10214,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -10343,7 +10343,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "HDFC Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b910,000,000"
           }
         ],
@@ -10528,7 +10528,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -10657,7 +10657,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "ICICI Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b91,500,000"
           }
         ],
@@ -10842,7 +10842,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -10971,7 +10971,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Indian Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b92,500,000"
           }
         ],
@@ -11156,7 +11156,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -11285,7 +11285,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "State Bank of India Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b93,500,000"
           }
         ],
@@ -11470,7 +11470,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -11599,7 +11599,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Punjab National Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b95,000,000"
           }
         ],
@@ -11784,7 +11784,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -11913,7 +11913,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Bank of Baroda Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b97,500,000"
           }
         ],
@@ -12098,7 +12098,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -12227,7 +12227,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Canara Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b910,000,000"
           }
         ],
@@ -12412,7 +12412,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -12541,7 +12541,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Union Bank of India Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b91,500,000"
           }
         ],
@@ -12726,7 +12726,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -12855,7 +12855,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "HDFC Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b92,500,000"
           }
         ],
@@ -13040,7 +13040,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -13169,7 +13169,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "ICICI Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b93,500,000"
           }
         ],
@@ -13354,7 +13354,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -13483,7 +13483,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Indian Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b95,000,000"
           }
         ],
@@ -13668,7 +13668,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -13797,7 +13797,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "State Bank of India Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b97,500,000"
           }
         ],
@@ -13982,7 +13982,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -14111,7 +14111,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Punjab National Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b910,000,000"
           }
         ],
@@ -14296,7 +14296,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -14425,7 +14425,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Bank of Baroda Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b91,500,000"
           }
         ],
@@ -14610,7 +14610,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -14739,7 +14739,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Canara Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b92,500,000"
           }
         ],
@@ -14924,7 +14924,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -15053,7 +15053,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Union Bank of India Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b93,500,000"
           }
         ],
@@ -15238,7 +15238,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -15367,7 +15367,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "HDFC Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b95,000,000"
           }
         ],
@@ -15552,7 +15552,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -15681,7 +15681,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "ICICI Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b97,500,000"
           }
         ],
@@ -15866,7 +15866,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -15995,7 +15995,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Indian Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b910,000,000"
           }
         ],
@@ -16180,7 +16180,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -16309,7 +16309,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "State Bank of India Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b91,500,000"
           }
         ],
@@ -16494,7 +16494,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -16623,7 +16623,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Punjab National Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b92,500,000"
           }
         ],
@@ -16808,7 +16808,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -16937,7 +16937,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Bank of Baroda Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b93,500,000"
           }
         ],
@@ -17122,7 +17122,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -17251,7 +17251,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Canara Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b95,000,000"
           }
         ],
@@ -17436,7 +17436,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -17565,7 +17565,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Union Bank of India Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b97,500,000"
           }
         ],
@@ -17750,7 +17750,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -17879,7 +17879,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "HDFC Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b910,000,000"
           }
         ],
@@ -18064,7 +18064,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -18193,7 +18193,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "ICICI Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b91,500,000"
           }
         ],
@@ -18378,7 +18378,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
     "aiRecommendation": {
       "action": "Approve",
       "confidence": 0.97,
-      "rationale": "Authoritative bank record matches submitted certificate details perfectly.",
+      "rationale": "Verification source (simulated) matches submitted certificate details perfectly.",
       "applicableRuleId": "RULE-FDR-BENEFICIARY-001",
       "evidenceText": "Core banking verification confirmed."
     },
@@ -18507,7 +18507,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
           },
           {
             "source": "Indian Bank Gateway",
-            "provenance": "authoritative integration response",
+            "provenance": "Verification source (simulated)",
             "value": "\u20b92,500,000"
           }
         ],
@@ -18521,8 +18521,8 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
 
 export const SEED_CASES: CaseRecord[] = [
   {
-    "id": "CASE-2024-CRIT-002",
-    "caseNumber": "CASE-2024-CRIT-002",
+    "id": "CASE-2024-CRITICAL-002",
+    "caseNumber": "CASE-2024-CRITICAL-002",
     "fdrId": "fdr-benchmark-2",
     "fdrNumber": "FDR-PNB-2024-9981",
     "institutionId": "inst-2",
@@ -18539,8 +18539,8 @@ export const SEED_CASES: CaseRecord[] = [
     "record_version": 1
   },
   {
-    "id": "CASE-2024-CRIT-004",
-    "caseNumber": "CASE-2024-CRIT-004",
+    "id": "CASE-2024-CRITICAL-004",
+    "caseNumber": "CASE-2024-CRITICAL-004",
     "fdrId": "fdr-benchmark-4",
     "fdrNumber": "FDR-HDFC-2024-55190",
     "institutionId": "inst-13",
@@ -18575,8 +18575,8 @@ export const SEED_CASES: CaseRecord[] = [
     "record_version": 1
   },
   {
-    "id": "CASE-2024-MED-005",
-    "caseNumber": "CASE-2024-MED-005",
+    "id": "CASE-2024-MEDIUM-005",
+    "caseNumber": "CASE-2024-MEDIUM-005",
     "fdrId": "fdr-benchmark-5",
     "fdrNumber": "FDR-CAN-2016-10291",
     "institutionId": "inst-7",

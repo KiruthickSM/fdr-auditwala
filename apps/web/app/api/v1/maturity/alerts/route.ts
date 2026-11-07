@@ -1,7 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ALL_SEED_FDRS } from "@/lib/seedData";
+import { getSessionFromCookie } from "@/lib/auth";
 
 export async function GET(request: NextRequest) {
+  const session = await getSessionFromCookie(request.headers.get("authorization"));
+  if (!session) {
+    const loginUrl = new URL("/login", request.url);
+    loginUrl.searchParams.set("next", request.nextUrl.pathname);
+    return NextResponse.redirect(loginUrl);
+  }
   const searchParams = request.nextUrl.searchParams;
   const windowDays = parseInt(searchParams.get("window") || "45", 10);
 

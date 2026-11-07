@@ -3,7 +3,12 @@ import { SEED_CASES } from "@/lib/seedData";
 import { getSessionFromCookie } from "@/lib/auth";
 
 export async function GET(request: NextRequest) {
-  const session = await getSessionFromCookie(request.headers.get("authorization"));
+    const session = await getSessionFromCookie(request.headers.get("authorization"));
+  if (!session) {
+    const loginUrl = new URL("/login", request.url);
+    loginUrl.searchParams.set("next", request.nextUrl.pathname);
+    return NextResponse.redirect(loginUrl);
+  }
   const searchParams = request.nextUrl.searchParams;
   const status = searchParams.get("status");
   const institutionId = searchParams.get("institution_id");

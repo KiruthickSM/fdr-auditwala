@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic";
+
 import React, { useState, useMemo, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -163,7 +165,7 @@ function ReviewerInboxContent() {
       return (
         <div className="text-xs text-rose-900 leading-snug">
           <span className="font-bold text-rose-700 block">
-            Bank CBS mismatch: ₹50,00,000 claimed vs ₹45,00,000 in bank record
+            Verification source (simulated) mismatch: ₹50,00,000 claimed vs ₹45,00,000 in simulated record
           </span>
           <Link
             href="/admin#rules"
@@ -181,7 +183,7 @@ function ReviewerInboxContent() {
       return (
         <div className="text-xs text-rose-900 leading-snug">
           <span className="font-bold text-rose-700 block">
-            High authenticity concern: metadata tampering detected
+            Document analysis: review recommended (metadata inconsistency)
           </span>
           <Link
             href="/admin#rules"
@@ -199,7 +201,7 @@ function ReviewerInboxContent() {
       return (
         <div className="text-xs text-amber-900 leading-snug">
           <span className="font-semibold text-amber-800 block">
-            Maturity in 18 days: renewal required
+            Maturity in 18 days: renewal review (RULE-FDR-EXP-003, marked Illustrative)
           </span>
           <Link
             href="/admin#rules"
@@ -267,7 +269,7 @@ function ReviewerInboxContent() {
             </span>
           </div>
           <p className="text-xs text-slate-600 mt-1 max-w-2xl">
-            Ranked by Risk (35%) × Urgency (25%) × Compliance (15%) × Financial Exposure (15%) × Verification (10%).
+            Ranked by computed priority score = Risk (35%) × Urgency (25%) × Compliance impact (15%) × Financial exposure (15%) × Verification status (10%). Default view shows open cases assigned to you.
           </p>
           <div className="text-[11px] text-slate-400 mt-1 flex items-center space-x-2">
             <span>Reviewer: <strong>{currentUser.name}</strong></span>
@@ -289,7 +291,7 @@ function ReviewerInboxContent() {
           <div className="bg-amber-50 border border-amber-300 rounded-2xl p-4 text-xs max-w-md shadow-sm">
             <div className="font-bold text-amber-950 flex items-center space-x-2">
               <AlertOctagon className="w-4 h-4 text-rose-600 shrink-0" />
-              <span>Next Best Action: Case {nextBestActionCase.caseNumber}</span>
+              <span>Next Best Action: {nextBestActionCase.caseNumber}</span>
             </div>
             <p className="text-amber-900 text-xs mt-1 leading-relaxed">
               Highest priority: amount mismatch, ₹5L deficit, {nextBestActionCase.sla.label}.

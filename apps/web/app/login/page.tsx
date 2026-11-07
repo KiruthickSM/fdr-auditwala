@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, Suspense, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Shield,
@@ -17,16 +17,23 @@ import {
   Building2,
   FileCheck2,
   Sliders,
-  BarChart3,
-  KeyRound
+  BarChart3
 } from "lucide-react";
 import { SEEDED_DEMO_ACCOUNTS, DEMO_PASSWORD } from "@/lib/auth";
 import { useStore } from "@/lib/store";
 
-function LoginContent() {
-  const router = useRouter();
+function NextParamTracker({ onParam }: { onParam: (param: string | null) => void }) {
   const searchParams = useSearchParams();
-  const nextPath = searchParams.get("next");
+  const next = searchParams.get("next");
+  useEffect(() => {
+    if (next) onParam(next);
+  }, [next, onParam]);
+  return null;
+}
+
+export default function LoginPage() {
+  const router = useRouter();
+  const [nextPath, setNextPath] = useState<string | null>(null);
 
   const [email, setEmail] = useState("rajesh.sharma@demo.fdrguard.test");
   const [password, setPassword] = useState("Demo@12345");
@@ -34,8 +41,17 @@ function LoginContent() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   const { setCurrentUserDirectly } = useStore();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const handleNextParam = useCallback((param: string | null) => {
+    setNextPath(param);
+  }, []);
 
   const handleLogin = async (overrideEmail?: string, overridePassword?: string) => {
     setLoading(true);
@@ -63,18 +79,15 @@ function LoginContent() {
         return;
       }
 
-      // Update store state with logged in user session
       if (data.user && setCurrentUserDirectly) {
         setCurrentUserDirectly(data.user);
       }
 
-      // Broadcast to other tabs
       if (typeof window !== "undefined" && "BroadcastChannel" in window) {
         const bc = new BroadcastChannel("fdrguard_auth");
         bc.postMessage({ type: "LOGIN", user: data.user });
       }
 
-      // Navigate to destination
       router.push(data.redirectTo || "/reviewer");
       router.refresh();
     } catch (err: any) {
@@ -97,10 +110,11 @@ function LoginContent() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-between">
-
+      <Suspense fallback={null}>
+        <NextParamTracker onParam={handleNextParam} />
+      </Suspense>
 
       <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start my-auto">
-        {/* Left: Login Form Card (5 cols) */}
         <div className="lg:col-span-5 bg-white border border-slate-200 rounded-2xl shadow-xl p-8 space-y-6">
           <div className="flex items-center space-x-3">
             <div className="w-11 h-11 rounded-xl bg-blue-900 text-white flex items-center justify-center shadow-md">
@@ -118,9 +132,9 @@ function LoginContent() {
           </div>
 
           <div>
-            <h2 className="text-lg font-bold text-slate-900">Sign in to your regulatory portal</h2>
+            <h2 className="text-lg font-bold text-slate-900">Sign in to FDR AuditWala</h2>
             <p className="text-xs text-slate-500 mt-1">
-              Enter your credentials to access the FDR inspection, verification, and audit suite.
+              Enter your official credentials or choose a pre-configured role below.
             </p>
           </div>
 
@@ -205,7 +219,6 @@ function LoginContent() {
           </div>
         </div>
 
-        {/* Right: Seeded Demo Accounts Panel (7 cols) */}
         <div className="lg:col-span-7 bg-white border border-slate-200 rounded-2xl shadow-sm p-6 space-y-4">
           <div className="flex items-center justify-between border-b pb-3">
             <div className="flex items-center space-x-2">
@@ -224,109 +237,118 @@ function LoginContent() {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[520px] overflow-y-auto pr-1">
-            {SEEDED_DEMO_ACCOUNTS.map(account => {
-              const isCurrent = email === account.email;
-              const roleIcon =
-                account.role === "REVIEWER"
-                  ? FileCheck2
-                  : account.role === "INSTITUTION"
-                  ? Building2
-                  : account.role === "ADMIN"
-                  ? Sliders
-                  : BarChart3;
-              const Icon = roleIcon;
-
-              const roleColor =
-                account.role === "REVIEWER"
-                  ? "bg-blue-50 text-blue-800 border-blue-200"
-                  : account.role === "INSTITUTION"
-                  ? "bg-emerald-50 text-emerald-800 border-emerald-200"
-                  : account.role === "ADMIN"
-                  ? "bg-purple-50 text-purple-800 border-purple-200"
-                  : "bg-indigo-50 text-indigo-800 border-indigo-200";
-
-              return (
-                <div
-                  key={account.id}
-                  className={`border rounded-xl p-3.5 flex flex-col justify-between transition-all ${
-                    isCurrent
-                      ? "border-blue-600 bg-blue-50/40 ring-1 ring-blue-500 shadow-sm"
-                      : "border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50/50"
-                  }`}
-                >
+          {!mounted ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[520px] overflow-hidden pr-1">
+              {[1, 2, 3, 4, 5, 6].map(i => (
+                <div key={i} className="border border-slate-200 rounded-xl p-3.5 space-y-3 animate-pulse bg-slate-50/50">
+                  <div className="flex justify-between items-center">
+                    <div className="h-4 w-16 bg-slate-200 rounded-full"></div>
+                    <div className="h-4 w-4 bg-slate-200 rounded"></div>
+                  </div>
                   <div className="space-y-1.5">
-                    <div className="flex items-center justify-between">
-                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${roleColor}`}>
-                        {account.role}
-                      </span>
-                      <Icon className="w-3.5 h-3.5 text-slate-400" />
+                    <div className="h-3.5 w-28 bg-slate-200 rounded"></div>
+                    <div className="h-2.5 w-36 bg-slate-200 rounded"></div>
+                  </div>
+                  <div className="h-6 bg-slate-200 rounded"></div>
+                  <div className="h-7 bg-slate-200 rounded"></div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[520px] overflow-y-auto pr-1">
+              {SEEDED_DEMO_ACCOUNTS.map(account => {
+                const isCurrent = email === account.email;
+                const roleIcon =
+                  account.role === "REVIEWER"
+                    ? FileCheck2
+                    : account.role === "INSTITUTION"
+                    ? Building2
+                    : account.role === "ADMIN"
+                    ? Sliders
+                    : BarChart3;
+                const Icon = roleIcon;
+
+                const roleColor =
+                  account.role === "REVIEWER"
+                    ? "bg-blue-50 text-blue-800 border-blue-200"
+                    : account.role === "INSTITUTION"
+                    ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+                    : account.role === "ADMIN"
+                    ? "bg-purple-50 text-purple-800 border-purple-200"
+                    : "bg-indigo-50 text-indigo-800 border-indigo-200";
+
+                return (
+                  <div
+                    key={account.id}
+                    className={`border rounded-xl p-3.5 flex flex-col justify-between transition-all ${
+                      isCurrent
+                        ? "border-blue-600 bg-blue-50/40 ring-1 ring-blue-500 shadow-sm"
+                        : "border-slate-200 hover:border-slate-300 bg-white hover:bg-slate-50/50"
+                    }`}
+                  >
+                    <div className="space-y-1.5">
+                      <div className="flex items-center justify-between">
+                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${roleColor}`}>
+                          {account.role}
+                        </span>
+                        <Icon className="w-3.5 h-3.5 text-slate-400" />
+                      </div>
+
+                      <div>
+                        <div className="font-bold text-xs text-slate-900">{account.name}</div>
+                        <div className="text-[11px] text-slate-600 leading-tight">{account.title}</div>
+                        <div className="text-[10px] text-slate-400 truncate mt-0.5">{account.department}</div>
+                      </div>
+
+                      <div className="flex items-center justify-between bg-slate-50 border rounded px-2 py-1 text-[11px] font-mono text-slate-600">
+                        <span className="truncate mr-1">{account.email}</span>
+                        <button
+                          type="button"
+                          onClick={() => handleCopy(account.email)}
+                          className="text-slate-400 hover:text-slate-700 shrink-0"
+                          title="Copy email"
+                        >
+                          {copiedEmail === account.email ? (
+                            <Check className="w-3 h-3 text-emerald-600" />
+                          ) : (
+                            <Copy className="w-3 h-3" />
+                          )}
+                        </button>
+                      </div>
                     </div>
 
-                    <div>
-                      <div className="font-bold text-xs text-slate-900">{account.name}</div>
-                      <div className="text-[11px] text-slate-600 leading-tight">{account.title}</div>
-                      <div className="text-[10px] text-slate-400 truncate mt-0.5">{account.department}</div>
-                    </div>
-
-                    <div className="flex items-center justify-between bg-slate-50 border rounded px-2 py-1 text-[11px] font-mono text-slate-600">
-                      <span className="truncate mr-1">{account.email}</span>
+                    <div className="pt-3 mt-2 border-t border-slate-100 flex items-center space-x-2">
                       <button
                         type="button"
-                        onClick={() => handleCopy(account.email)}
-                        className="text-slate-400 hover:text-slate-700 shrink-0"
-                        title="Copy email"
+                        onClick={() => handleQuickSignIn(account.email)}
+                        className="flex-1 bg-slate-900 hover:bg-blue-900 text-white font-bold text-[11px] py-1.5 rounded-lg shadow-sm transition-colors flex items-center justify-center space-x-1"
                       >
-                        {copiedEmail === account.email ? (
-                          <Check className="w-3 h-3 text-emerald-600" />
-                        ) : (
-                          <Copy className="w-3 h-3" />
-                        )}
+                        <UserCheck className="w-3 h-3" />
+                        <span>Sign In Instantly</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setEmail(account.email);
+                          setPassword(DEMO_PASSWORD);
+                        }}
+                        className="px-2 py-1.5 border border-slate-200 hover:bg-slate-100 text-slate-700 rounded-lg text-[11px] font-semibold"
+                        title="Fill form with credentials"
+                      >
+                        Fill
                       </button>
                     </div>
                   </div>
-
-                  <div className="pt-3 mt-2 border-t border-slate-100 flex items-center space-x-2">
-                    <button
-                      type="button"
-                      onClick={() => handleQuickSignIn(account.email)}
-                      className="flex-1 bg-slate-900 hover:bg-blue-900 text-white font-bold text-[11px] py-1.5 rounded-lg shadow-sm transition-colors flex items-center justify-center space-x-1"
-                    >
-                      <UserCheck className="w-3 h-3" />
-                      <span>Sign In Instantly</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setEmail(account.email);
-                        setPassword(DEMO_PASSWORD);
-                      }}
-                      className="px-2 py-1.5 border border-slate-200 hover:bg-slate-100 text-slate-700 rounded-lg text-[11px] font-semibold"
-                      title="Fill form with credentials"
-                    >
-                      Fill
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Footer */}
       <footer className="py-4 text-center text-xs text-slate-400 border-t bg-white">
         FDR AuditWala · AI-powered FDR lifecycle intelligence
       </footer>
     </div>
-  );
-}
-
-
-export default function LoginPage() {
-  return (
-    <Suspense fallback={<div className="p-8 text-center text-xs text-slate-500">Loading Login Portal...</div>}>
-      <LoginContent />
-    </Suspense>
   );
 }

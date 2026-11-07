@@ -62,6 +62,8 @@ export type RiskLevel = "Low" | "Medium" | "High" | "Critical";
 
 export type ProvenanceLabel =
   | "authoritative integration response"
+  | "Verification source (simulated)"
+  | "verification source (simulated)"
   | "official document"
   | "extracted claim"
   | "configured rule"

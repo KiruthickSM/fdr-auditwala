@@ -30,19 +30,14 @@ export const Navbar: React.FC = () => {
     isGuidedDemoActive
   } = useStore();
 
-  const [isDemoDropdownOpen, setIsDemoDropdownOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [showResetConfirmModal, setShowResetConfirmModal] = useState(false);
 
-  const demoDropdownRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (demoDropdownRef.current && !demoDropdownRef.current.contains(e.target as Node)) {
-        setIsDemoDropdownOpen(false);
-      }
       if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
         setIsUserMenuOpen(false);
       }
@@ -82,6 +77,38 @@ export const Navbar: React.FC = () => {
     }
   };
 
+  // If logged out or on login page, render bare minimal brand header with NO app nav, NO demo controls, and NO user persona badge
+  if (!currentUser || pathname === "/login") {
+    return (
+      <header className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="w-10 h-10 rounded-lg bg-blue-900 text-white flex items-center justify-center font-black text-xl shadow-md group-hover:bg-blue-800 transition-colors">
+              <Shield className="w-6 h-6 text-blue-200" />
+            </div>
+            <div>
+              <div className="flex items-center space-x-1.5">
+                <span className="font-bold text-lg text-slate-900 tracking-tight">FDR AuditWala</span>
+                <span className="text-[10px] font-extrabold uppercase bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded">
+                  FDRGuard
+                </span>
+              </div>
+              <p className="text-[11px] text-slate-500 hidden sm:block">AI FDR Lifecycle Intelligence Platform</p>
+            </div>
+          </Link>
+          {pathname !== "/login" && (
+            <Link
+              href="/login"
+              className="bg-blue-900 hover:bg-blue-800 text-white font-bold text-xs px-4 py-2 rounded-lg shadow-sm transition-colors"
+            >
+              Sign In
+            </Link>
+          )}
+        </div>
+      </header>
+    );
+  }
+
   const navLinks = [
     { href: "/institution", label: "Institution Portal", icon: Building2, roles: ["APPLICANT", "INSTITUTION", "SYSTEM_ADMIN", "ADMIN"] },
     { href: "/reviewer", label: "Reviewer Inbox", icon: FileCheck2, roles: ["CASE_OFFICER", "APPROVING_AUTHORITY", "REVIEWER", "SYSTEM_ADMIN", "ADMIN"] },
@@ -91,11 +118,12 @@ export const Navbar: React.FC = () => {
   ];
 
   const visibleLinks = navLinks.filter(l => l.roles.includes(currentUser.role));
+  const isAdmin = currentUser.role === "SYSTEM_ADMIN" || currentUser.role === "ADMIN";
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        {/* Brand: FDR AuditWala (with small FDRGuard subtitle) */}
+        {/* Brand: FDR AuditWala */}
         <div className="flex items-center space-x-8">
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="w-10 h-10 rounded-lg bg-blue-900 text-white flex items-center justify-center font-black text-xl shadow-md group-hover:bg-blue-800 transition-colors">
@@ -136,57 +164,8 @@ export const Navbar: React.FC = () => {
           </nav>
         </div>
 
-        {/* Right Section: Demo Controls & User Profile */}
+        {/* Right Section: User Profile & User Menu (with Demo controls inside) */}
         <div className="flex items-center space-x-3">
-          {/* Header Demo Dropdown Controls */}
-          <div className="relative" ref={demoDropdownRef}>
-            <button
-              onClick={() => setIsDemoDropdownOpen(!isDemoDropdownOpen)}
-              className="flex items-center space-x-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors border border-slate-200"
-              aria-expanded={isDemoDropdownOpen}
-              aria-haspopup="true"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-blue-700" />
-              <span className="hidden sm:inline">Demo Controls</span>
-              <ChevronDown className="w-3 h-3 text-slate-400" />
-            </button>
-
-            {isDemoDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-56 bg-white border border-slate-200 rounded-xl shadow-xl py-1 text-xs z-50 text-slate-800 animate-fadeIn">
-                <button
-                  onClick={() => {
-                    setIsDemoDropdownOpen(false);
-                    startGuidedDemo();
-                  }}
-                  className="w-full text-left px-3.5 py-2 hover:bg-blue-50 flex items-center space-x-2 text-blue-900 font-semibold"
-                >
-                  <Sparkles className="w-4 h-4 text-blue-600" />
-                  <div>
-                    <div>{isGuidedDemoActive ? "Guided Demo Active" : "Start Guided Demo"}</div>
-                    <div className="text-[10px] text-slate-500 font-normal">6-step automated evaluation tour</div>
-                  </div>
-                </button>
-
-                <div className="border-t border-slate-100 my-1"></div>
-
-                <button
-                  onClick={() => {
-                    setIsDemoDropdownOpen(false);
-                    setShowResetConfirmModal(true);
-                  }}
-                  className="w-full text-left px-3.5 py-2 hover:bg-rose-50 flex items-center space-x-2 text-rose-700 font-semibold"
-                >
-                  <RotateCcw className="w-4 h-4 text-rose-600" />
-                  <div>
-                    <div>Reset Demo Data</div>
-                    <div className="text-[10px] text-slate-500 font-normal">Restores benchmark cases & ledger</div>
-                  </div>
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* User Profile Menu */}
           <div className="relative" ref={userMenuRef}>
             <button
               onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
@@ -221,8 +200,43 @@ export const Navbar: React.FC = () => {
                   </div>
                 </div>
 
+                {/* Demo & Evaluation Section */}
+                <div className="px-4 pt-2.5 pb-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                  Demo & Evaluation
+                </div>
+                <button
+                  onClick={() => {
+                    setIsUserMenuOpen(false);
+                    startGuidedDemo();
+                  }}
+                  className="w-full text-left px-4 py-2 hover:bg-blue-50 flex items-center space-x-2 text-blue-900 font-semibold"
+                >
+                  <Sparkles className="w-4 h-4 text-blue-600" />
+                  <div>
+                    <div>{isGuidedDemoActive ? "Guided Demo Active" : "Start Guided Demo"}</div>
+                    <div className="text-[10px] text-slate-500 font-normal">6-step automated evaluation tour</div>
+                  </div>
+                </button>
+
+                {isAdmin && (
+                  <button
+                    onClick={() => {
+                      setIsUserMenuOpen(false);
+                      setShowResetConfirmModal(true);
+                    }}
+                    className="w-full text-left px-4 py-2 hover:bg-rose-50 flex items-center space-x-2 text-rose-700 font-semibold"
+                  >
+                    <RotateCcw className="w-4 h-4 text-rose-600" />
+                    <div>
+                      <div>Reset Demo Data</div>
+                      <div className="text-[10px] text-slate-500 font-normal">Restores benchmark cases & ledger (Admin)</div>
+                    </div>
+                  </button>
+                )}
+
                 {/* Switch Demo Persona */}
-                <div className="px-4 py-2 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                <div className="border-t border-slate-100 my-1"></div>
+                <div className="px-4 py-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                   Switch Demo Account
                 </div>
                 <div className="max-h-48 overflow-y-auto px-1 space-y-0.5">
@@ -263,7 +277,7 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Confirmation Modal for Reset Demo Data */}
+      {/* Confirmation Modal for Reset Demo Data (Admin Only) */}
       {showResetConfirmModal && (
         <div className="fixed inset-0 z-[100] bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-sm w-full p-6 text-center space-y-4 animate-scaleUp">

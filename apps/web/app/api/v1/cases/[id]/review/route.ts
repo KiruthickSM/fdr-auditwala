@@ -9,10 +9,9 @@ export async function POST(
 ) {
   const session = await getSessionFromCookie(request.headers.get("authorization"));
   if (!session) {
-    return NextResponse.json(
-      { success: false, error: "401_UNAUTHORIZED: Authentication required" },
-      { status: 401 }
-    );
+    const loginUrl = new URL("/login", request.url);
+    loginUrl.searchParams.set("next", request.nextUrl.pathname);
+    return NextResponse.redirect(loginUrl);
   }
 
   const caseId = params.id;

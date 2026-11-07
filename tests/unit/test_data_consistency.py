@@ -32,7 +32,7 @@ def test_canonical_institution_names():
         cnum = c["caseNumber"]
         assert cid == cnum, f"Case id {cid} must match caseNumber {cnum}"
         # Validate pattern CASE-<YYYY>-<PRIORITY>-<NNN>
-        m = re.match(r"^CASE-(\d{4})-(CRIT|HIGH|MED|LOW)-(\d{3})$", cid)
+        m = re.match(r"^CASE-(\d{4})-(CRITICAL|CRIT|HIGH|MEDIUM|MED|LOW)-(\d{3})$", cid)
         assert m, f"Case ID {cid} does not match canonical pattern CASE-<YYYY>-<PRIORITY>-<NNN>"
         # Year matches createdAt
         created_year = c["createdAt"][:4]

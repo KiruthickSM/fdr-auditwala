@@ -144,22 +144,43 @@ export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [guidedDemoStep, setGuidedDemoStep] = useState<number>(0);
   const [isGuidedDemoActive, setIsGuidedDemoActive] = useState<boolean>(false);
 
-  // Initialize from LocalStorage if present
+  // Initialize from LocalStorage and sync session from /api/auth/session
   useEffect(() => {
-    try {
-      const savedFdrs = localStorage.getItem("fdr_records_v1");
-      if (savedFdrs) setFdrs(JSON.parse(savedFdrs));
-      
-      const savedCases = localStorage.getItem("fdr_cases_v1");
-      if (savedCases) setCases(JSON.parse(savedCases));
-
-      const savedFeedbacks = localStorage.getItem("fdr_feedbacks_v1");
-      if (savedFeedbacks) setFeedbacks(JSON.parse(savedFeedbacks));
-
-      setAuditEvents(AuditLedgerService.getEvents());
-    } catch (e) {
-      console.warn("Storage hydration failed", e);
+    let isMounted = true;
+    async function syncAuthSession() {
+      try {
+        const res = await fetch("/api/auth/session");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.authenticated && data.user && isMounted) {
+            setCurrentUser(data.user);
+            setCurrentRoleState(data.user.role);
+          }
+        }
+      } catch {
+        // Unauthenticated visitor
+      }
     }
+    syncAuthSession();
+
+    if (typeof window !== "undefined" && "BroadcastChannel" in window) {
+      const bc = new BroadcastChannel("fdrguard_auth");
+      bc.onmessage = (event) => {
+        if (event.data?.type === "LOGIN" && event.data.user && isMounted) {
+          setCurrentUser(event.data.user);
+          setCurrentRoleState(event.data.user.role);
+        } else if (event.data?.type === "LOGOUT" && isMounted) {
+          setCurrentUser(DEFAULT_USERS["REVIEWER"]);
+        }
+      };
+      return () => {
+        isMounted = false;
+        bc.close();
+      };
+    }
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const setCurrentRole = (role: UserRole) => {

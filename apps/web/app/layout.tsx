@@ -6,8 +6,8 @@ import { GuidedDemoBar } from "@/components/GuidedDemoBar";
 import { IdleTimeoutModal } from "@/components/IdleTimeoutModal";
 
 export const metadata = {
-  title: "FDR AuditWala — AI-Powered FDR Lifecycle Intelligence",
-  description: "Intelligent Security Deposit and FDR Lifecycle Management & Decision-Support Platform",
+  title: "FDR AuditWala",
+  description: "AI-powered FDR lifecycle intelligence and decision support",
 };
 
 export default function RootLayout({

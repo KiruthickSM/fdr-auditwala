@@ -18,31 +18,31 @@ export const GuidedDemoBar: React.FC = () => {
       role: "INSTITUTION" as const
     },
     {
-      title: "Step 2: Core Banking Mismatch Detection (Benchmark Case #2)",
-      description: "Inspect the ₹50L vs ₹45L bank CBS discrepancy with explainable risk breakdown and regulatory rule citations.",
+      title: "Step 2: Core Banking Mismatch Detection (CASE-2024-CRITICAL-002)",
+      description: "Inspect the ₹50L vs ₹45L verification source discrepancy with explainable risk breakdown and regulatory rule citations.",
       cta: "Inspect Mismatch Case in Reviewer Inbox",
-      href: "/reviewer/case/CASE-2024-CRIT-002",
+      href: "/reviewer/case/CASE-2024-CRITICAL-002",
       role: "REVIEWER" as const
     },
     {
       title: "Step 3: Human-in-the-Loop Decision & Clarification Request",
       description: "Reviewer requests bank confirmation or makes consequential decision with mandatory justification.",
-      cta: "Review Suspicious Scan Case #4",
-      href: "/reviewer/case/CASE-2024-CRIT-004",
+      cta: "Review CASE-2024-CRITICAL-004",
+      href: "/reviewer/case/CASE-2024-CRITICAL-004",
       role: "REVIEWER" as const
     },
     {
       title: "Step 4: Imminent Maturity & Automated Renewal Workflow",
-      description: "FDR maturing within 45 days triggers Chapter IV renewal alert and replacement FDR linking.",
-      cta: "View Expiring FDR #3",
+      description: "FDR maturing within 45 days triggers Maturity in 18 days: renewal review (RULE-FDR-EXP-003, marked Illustrative) and replacement FDR linking.",
+      cta: "View Expiring FDR",
       href: "/fdr/fdr-benchmark-3",
       role: "REVIEWER" as const
     },
     {
-      title: "Step 5: Release / Refund Authorization (Benchmark Case #5)",
+      title: "Step 5: Release / Refund Authorization (CASE-2024-MEDIUM-005)",
       description: "10-Year permanent approval security deposit reaches complete lock-in and clears prerequisite checks.",
       cta: "Inspect Release Eligible Case",
-      href: "/reviewer/case/CASE-2024-MED-005",
+      href: "/reviewer/case/CASE-2024-MEDIUM-005",
       role: "REVIEWER" as const
     },
     {

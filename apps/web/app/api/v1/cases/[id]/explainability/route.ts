@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { SEED_CASES, ALL_SEED_FDRS } from "@/lib/seedData";
+import { getSessionFromCookie } from "@/lib/auth";
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  const session = await getSessionFromCookie(request.headers.get("authorization"));
+  if (!session) {
+    const loginUrl = new URL("/login", request.url);
+    loginUrl.searchParams.set("next", request.nextUrl.pathname);
+    return NextResponse.redirect(loginUrl);
+  }
   const caseId = params.id;
   const c = SEED_CASES.find(item => item.id === caseId || item.caseNumber === caseId);
   const fdrId = c ? c.fdrId : caseId;
