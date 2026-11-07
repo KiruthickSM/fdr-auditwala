@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 
 export default function InstitutionPage() {
-  const { fdrs, currentUser, submitNewFDR } = useStore();
+  const { fdrs, institutions, currentUser, submitNewFDR } = useStore();
   const [isWizardOpen, setIsWizardOpen] = useState(false);
   const [wizardStep, setWizardStep] = useState<1 | 2 | 3>(1);
 
@@ -42,8 +42,10 @@ export default function InstitutionPage() {
   const [agentTraces, setAgentTraces] = useState<AgentStepTrace[]>([]);
   const [createdFdrId, setCreatedFdrId] = useState<string | null>(null);
 
-  // Filter FDRs for current institution
-  const myFdrs = fdrs.filter(f => f.institutionId === currentUser.institutionId || f.institutionId === "inst-1");
+  // Tenant isolation & current institution resolution
+  const targetInstId = currentUser.institutionId || "inst-2";
+  const currentInstitution = institutions.find(i => i.id === targetInstId) || institutions[1];
+  const myFdrs = fdrs.filter(f => f.institutionId === targetInstId);
 
   const totalDeposit = myFdrs.reduce((acc, curr) => acc + (curr.amount || 0), 0);
   const activeCount = myFdrs.filter(f => f.lifecycleStatus === "Active").length;
@@ -135,7 +137,7 @@ export default function InstitutionPage() {
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <h1 className="text-xl font-bold text-slate-900">Aryabhata Institute of Technology & Engineering</h1>
+              <h1 className="text-xl font-bold text-slate-900">{currentInstitution?.name || "Institution FDR Management"}</h1>
               <span className="text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-full">
                 AICTE Compliant
               </span>
