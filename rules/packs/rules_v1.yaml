@@ -1,0 +1,97 @@
+﻿version: "1.0.0"
+pack_id: "aicte-fdr-regulatory-pack-v1"
+effective_date: "2026-01-01"
+rules:
+  - id: "RULE-FDR-BENEFICIARY-001"
+    name: "AICTE Mandatory Joint Beneficiary Requirement"
+    version: "1.0"
+    category: "MANDATORY_FIELD"
+    description: "FDR must be held jointly in the name of the Applicant Institution and Regional Officer/Member Secretary, AICTE."
+    severity: "CRITICAL"
+    condition:
+      field: "beneficiary"
+      operator: "CONTAINS_ANY"
+      values: ["AICTE", "All India Council for Technical Education", "Regional Officer AICTE", "Member Secretary AICTE"]
+    failure_message: "FDR beneficiary does not include AICTE as mandatory joint holder."
+
+  - id: "RULE-FDR-TENURE-002"
+    name: "Minimum Mandatory Security Deposit Tenure"
+    version: "1.0"
+    category: "TENURE_VALIDATION"
+    description: "Security deposit FDR tenure must be at least 60 months (5 years) or auto-renewal lien marked."
+    severity: "HIGH"
+    condition:
+      field: "tenure_months"
+      operator: "GREATER_THAN_OR_EQUAL"
+      value: 60
+    failure_message: "FDR tenure is less than the mandatory minimum 60 months."
+
+  - id: "RULE-FDR-EXP-003"
+    name: "Maturity Proximity & Renewal Trigger"
+    version: "2.0"
+    category: "LIFECYCLE_MATURITY"
+    description: "FDRs with maturity within 45 days must trigger mandatory renewal workflow."
+    severity: "HIGH"
+    condition:
+      field: "days_to_maturity"
+      operator: "LESS_THAN_OR_EQUAL"
+      value: 45
+    failure_message: "FDR is within 45-day maturity window. Renewal review required."
+
+  - id: "RULE-FDR-AMOUNT-004"
+    name: "Minimum Institutional Security Deposit Slab"
+    version: "1.0"
+    category: "FINANCIAL_THRESHOLD"
+    description: "Standard technical institution FDR amount must be at least ₹15,00,000 up to ₹1,00,00,000 based on program approval."
+    severity: "CRITICAL"
+    condition:
+      field: "amount"
+      operator: "GREATER_THAN_OR_EQUAL"
+      value: 1500000
+    failure_message: "FDR amount is below minimum security deposit requirement of ₹15 Lakhs."
+
+  - id: "RULE-FDR-BANK-005"
+    name: "Scheduled Commercial Bank Requirement"
+    version: "1.0"
+    category: "BANK_AUTHORIZATION"
+    description: "FDR must be drawn from an RBI-recognized Scheduled Commercial Bank or Nationalized Bank."
+    severity: "HIGH"
+    condition:
+      field: "bank_name"
+      operator: "IN_LIST"
+      values:
+        - "State Bank of India"
+        - "Punjab National Bank"
+        - "Bank of Baroda"
+        - "Canara Bank"
+        - "Union Bank of India"
+        - "HDFC Bank"
+        - "ICICI Bank"
+        - "Axis Bank"
+        - "Kotak Mahindra Bank"
+        - "Indian Bank"
+    failure_message: "Bank is not in the approved list of Scheduled Commercial / Nationalized Banks."
+
+  - id: "RULE-FDR-LIEN-006"
+    name: "Exclusive Lien Marking to AICTE"
+    version: "1.0"
+    category: "LIEN_VERIFICATION"
+    description: "FDR certificate must have clear unencumbered lien marked in favor of AICTE."
+    severity: "CRITICAL"
+    condition:
+      field: "lien_marked_aicte"
+      operator: "EQUALS"
+      value: true
+    failure_message: "Lien notation in favor of AICTE missing from certificate or bank confirmation."
+
+  - id: "RULE-FDR-RELEASE-007"
+    name: "Release Eligibility Prerequisite Check"
+    version: "1.0"
+    category: "RELEASE_PREREQUISITE"
+    description: "FDR release requires full tenure completion, zero pending deficiencies, and AICTE Executive Committee approval."
+    severity: "CRITICAL"
+    condition:
+      field: "release_prerequisites_met"
+      operator: "EQUALS"
+      value: true
+    failure_message: "Mandatory conditions for release/refund not satisfied."

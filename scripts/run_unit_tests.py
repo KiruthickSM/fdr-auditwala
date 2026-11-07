@@ -1,0 +1,38 @@
+﻿import sys
+import unittest
+from pathlib import Path
+
+# Add tests/unit to path
+sys.path.insert(0, str(Path('tests/unit').resolve()))
+import test_rules_engine
+import test_lifecycle_fsm
+import test_risk_engine
+
+passed = 0
+failed = 0
+
+tests = [
+    test_rules_engine.test_beneficiary_rule_passes_with_aicte,
+    test_rules_engine.test_beneficiary_rule_fails_without_aicte,
+    test_rules_engine.test_tenure_rule_validates_minimum_60_months,
+    test_rules_engine.test_amount_rule_validates_15_lakh_slab,
+    test_lifecycle_fsm.test_valid_sequential_transitions,
+    test_lifecycle_fsm.test_illegal_arbitrary_transition_blocked,
+    test_risk_engine.test_clean_fdr_scores_low,
+    test_risk_engine.test_mismatch_and_tamper_scores_critical,
+    test_risk_engine.test_extreme_risk_triggers
+]
+
+print('=== RUNNING UNIT TEST SUITE ===')
+for t in tests:
+    try:
+        t()
+        print(f'✓ {t.__name__} PASSED')
+        passed += 1
+    except Exception as e:
+        print(f'✗ {t.__name__} FAILED: {e}')
+        failed += 1
+
+print(f'\nResults: {passed} passed, {failed} failed.')
+if failed > 0:
+    sys.exit(1)
