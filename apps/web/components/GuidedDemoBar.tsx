@@ -71,7 +71,7 @@ export const GuidedDemoBar: React.FC = () => {
           <div>
             <div className="flex items-center space-x-2">
               <span className="text-xs font-bold uppercase tracking-wider text-amber-300">
-                SIH 2026 Evaluator Walkthrough
+                Interactive Guided Evaluation Walkthrough
               </span>
               <span className="text-slate-400 text-xs">({guidedDemoStep} of {steps.length})</span>
             </div>

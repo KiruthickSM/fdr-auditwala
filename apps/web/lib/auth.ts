@@ -193,7 +193,7 @@ export interface SessionPayload {
   exp: number; // 30 minutes expiration
 }
 
-// Simple deterministic HMAC-like signature for prototype tokens
+// Simple deterministic HMAC-like signature for demo tokens
 export function createSessionToken(user: DemoUserAccount): string {
   const now = Math.floor(Date.now() / 1000);
   const payload: SessionPayload = {

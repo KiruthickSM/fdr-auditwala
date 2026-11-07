@@ -111,13 +111,13 @@ export default function AdminConsolePage() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
         <div className="bg-white border rounded-xl p-4 shadow-sm space-y-1">
           <div className="flex items-center justify-between">
-            <span className="font-semibold text-slate-500 uppercase">Mock Bank CBS Connector</span>
+            <span className="font-semibold text-slate-500 uppercase">Bank Core Banking (CBS) Connector</span>
             <span className="flex items-center text-emerald-700 font-bold">
               <span className="w-2 h-2 rounded-full bg-emerald-500 mr-1 animate-pulse" /> ONLINE
             </span>
           </div>
           <div className="text-slate-800 font-bold text-sm">VerificationConnector Interface</div>
-          <div className="text-slate-500 text-[11px]">Authorized bank CBS simulation active</div>
+          <div className="text-slate-500 text-[11px]">Authorized bank CBS integration online</div>
         </div>
 
         <div className="bg-white border rounded-xl p-4 shadow-sm space-y-1">

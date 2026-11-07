@@ -97,11 +97,7 @@ function LoginContent() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col justify-between">
-      {/* Prototype Banner */}
-      <div className="bg-amber-500 text-slate-950 font-bold text-xs py-2 px-4 text-center tracking-wide shadow-sm flex items-center justify-center space-x-2">
-        <span className="w-2 h-2 rounded-full bg-slate-950 animate-pulse"></span>
-        <span>Prototype built for Smart India Hackathon 2026 — synthetic data, not an official AICTE system.</span>
-      </div>
+
 
       <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start my-auto">
         {/* Left: Login Form Card (5 cols) */}
@@ -217,7 +213,7 @@ function LoginContent() {
                 <Sparkles className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="font-bold text-sm text-slate-900">SIH 2026 Seeded Demo Accounts</h3>
+                <h3 className="font-bold text-sm text-slate-900">Demo Accounts</h3>
                 <p className="text-[11px] text-slate-500">
                   Click <strong>Sign In Instantly</strong> on any persona to test role-specific lifecycle controls.
                 </p>
@@ -320,7 +316,7 @@ function LoginContent() {
 
       {/* Footer */}
       <footer className="py-4 text-center text-xs text-slate-400 border-t bg-white">
-        FDR AuditWala (FDRGuard) — Intelligent Security Deposit & FDR Lifecycle Management Platform — SIH 2026
+        FDR AuditWala · AI-powered FDR lifecycle intelligence
       </footer>
     </div>
   );

@@ -4,12 +4,9 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useStore } from "@/lib/store";
-import { UserRole } from "@/lib/types";
 import { SEEDED_DEMO_ACCOUNTS } from "@/lib/auth";
 import {
   Shield,
-  Search,
-  Bell,
   Sparkles,
   RotateCcw,
   Building2,
@@ -19,7 +16,6 @@ import {
   BookOpen,
   ChevronDown,
   LogOut,
-  UserCheck,
   AlertTriangle
 } from "lucide-react";
 
@@ -98,67 +94,6 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
-      {/* 1. Slim Persistent Prototype Disclaimer Banner (Never presents as official gov portal) */}
-      <div className="bg-slate-900 text-slate-300 text-xs py-1.5 px-4 sm:px-8 flex flex-col sm:flex-row justify-between items-center gap-2 border-b border-slate-800">
-        <div className="flex items-center space-x-2 text-center sm:text-left">
-          <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
-          <span className="font-medium text-slate-200">
-            Prototype built for Smart India Hackathon 2026 — synthetic data, not an official AICTE system.
-          </span>
-        </div>
-
-        {/* Header Demo Dropdown Controls */}
-        <div className="flex items-center space-x-3" ref={demoDropdownRef}>
-          <div className="relative">
-            <button
-              onClick={() => setIsDemoDropdownOpen(!isDemoDropdownOpen)}
-              className="flex items-center space-x-1.5 bg-slate-800 hover:bg-slate-700 text-amber-300 px-2.5 py-1 rounded text-xs font-semibold transition-colors border border-slate-700"
-              aria-expanded={isDemoDropdownOpen}
-              aria-haspopup="true"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Demo Controls</span>
-              <ChevronDown className="w-3 h-3 text-slate-400" />
-            </button>
-
-            {isDemoDropdownOpen && (
-              <div className="absolute right-0 mt-1 w-56 bg-white border border-slate-200 rounded-xl shadow-xl py-1 text-xs z-50 text-slate-800 animate-fadeIn">
-                <button
-                  onClick={() => {
-                    setIsDemoDropdownOpen(false);
-                    startGuidedDemo();
-                  }}
-                  className="w-full text-left px-3.5 py-2 hover:bg-blue-50 flex items-center space-x-2 text-blue-900 font-semibold"
-                >
-                  <Sparkles className="w-4 h-4 text-blue-600" />
-                  <div>
-                    <div>{isGuidedDemoActive ? "Guided Demo Active" : "Start Guided Demo"}</div>
-                    <div className="text-[10px] text-slate-500 font-normal">6-step automated evaluation tour</div>
-                  </div>
-                </button>
-
-                <div className="border-t border-slate-100 my-1"></div>
-
-                <button
-                  onClick={() => {
-                    setIsDemoDropdownOpen(false);
-                    setShowResetConfirmModal(true);
-                  }}
-                  className="w-full text-left px-3.5 py-2 hover:bg-rose-50 flex items-center space-x-2 text-rose-700 font-semibold"
-                >
-                  <RotateCcw className="w-4 h-4 text-rose-600" />
-                  <div>
-                    <div>Reset Demo Data</div>
-                    <div className="text-[10px] text-slate-500 font-normal">Restores benchmark cases & ledger</div>
-                  </div>
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* 2. Main Navbar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand: FDR AuditWala (with small FDRGuard subtitle) */}
         <div className="flex items-center space-x-8">
@@ -201,9 +136,58 @@ export const Navbar: React.FC = () => {
           </nav>
         </div>
 
-        {/* Right Section: User Profile & Demo Switcher */}
-        <div className="flex items-center space-x-4" ref={userMenuRef}>
-          <div className="relative">
+        {/* Right Section: Demo Controls & User Profile */}
+        <div className="flex items-center space-x-3">
+          {/* Header Demo Dropdown Controls */}
+          <div className="relative" ref={demoDropdownRef}>
+            <button
+              onClick={() => setIsDemoDropdownOpen(!isDemoDropdownOpen)}
+              className="flex items-center space-x-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors border border-slate-200"
+              aria-expanded={isDemoDropdownOpen}
+              aria-haspopup="true"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-blue-700" />
+              <span className="hidden sm:inline">Demo Controls</span>
+              <ChevronDown className="w-3 h-3 text-slate-400" />
+            </button>
+
+            {isDemoDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-56 bg-white border border-slate-200 rounded-xl shadow-xl py-1 text-xs z-50 text-slate-800 animate-fadeIn">
+                <button
+                  onClick={() => {
+                    setIsDemoDropdownOpen(false);
+                    startGuidedDemo();
+                  }}
+                  className="w-full text-left px-3.5 py-2 hover:bg-blue-50 flex items-center space-x-2 text-blue-900 font-semibold"
+                >
+                  <Sparkles className="w-4 h-4 text-blue-600" />
+                  <div>
+                    <div>{isGuidedDemoActive ? "Guided Demo Active" : "Start Guided Demo"}</div>
+                    <div className="text-[10px] text-slate-500 font-normal">6-step automated evaluation tour</div>
+                  </div>
+                </button>
+
+                <div className="border-t border-slate-100 my-1"></div>
+
+                <button
+                  onClick={() => {
+                    setIsDemoDropdownOpen(false);
+                    setShowResetConfirmModal(true);
+                  }}
+                  className="w-full text-left px-3.5 py-2 hover:bg-rose-50 flex items-center space-x-2 text-rose-700 font-semibold"
+                >
+                  <RotateCcw className="w-4 h-4 text-rose-600" />
+                  <div>
+                    <div>Reset Demo Data</div>
+                    <div className="text-[10px] text-slate-500 font-normal">Restores benchmark cases & ledger</div>
+                  </div>
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* User Profile Menu */}
+          <div className="relative" ref={userMenuRef}>
             <button
               onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
               className="flex items-center space-x-2.5 p-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors"

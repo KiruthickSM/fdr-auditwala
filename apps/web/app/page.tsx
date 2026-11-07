@@ -82,7 +82,7 @@ export default function LandingPage() {
         <div className="max-w-5xl mx-auto text-center space-y-6">
           <div className="inline-flex items-center space-x-2 bg-blue-800/80 border border-blue-600/50 text-blue-200 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider backdrop-blur-sm">
             <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-            <span>Smart India Hackathon 2026 • AICTE Technical Education Context</span>
+            <span>AICTE Regulatory Compliance & Security Deposit Lifecycle</span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
@@ -226,7 +226,7 @@ export default function LandingPage() {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-xl font-bold text-slate-900">Scripted Benchmark Scenarios</h2>
-              <p className="text-xs text-slate-500">Reproduce any of the 5 official SIH test cases in a single click.</p>
+              <p className="text-xs text-slate-500">Test benchmark regulatory verification scenarios in a single click.</p>
             </div>
             <span className="text-xs text-slate-500 font-medium">Deterministic AICTE dataset</span>
           </div>

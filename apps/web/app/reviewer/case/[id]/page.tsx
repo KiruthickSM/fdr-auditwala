@@ -276,7 +276,7 @@ export default function ReviewerCaseHeroScreen() {
                   </div>
                 </div>
 
-                {/* Bank Seal / Stamp Mock */}
+                {/* Bank Seal / Branch Stamp */}
                 <div className="mt-8 pt-4 border-t flex justify-between items-center text-[8px] text-slate-500">
                   <div>
                     <div className="font-sans font-bold uppercase">Authorized Signatory</div>
@@ -427,7 +427,19 @@ export default function ReviewerCaseHeroScreen() {
                 </span>
                 <StatusBadge status={fdr.verificationStatus} size="sm" />
               </div>
-              <p className="text-xs text-slate-500">Source: {fdr.verification?.source || "Bank API Connector"}</p>
+              <div className="flex items-center space-x-2">
+                <p className="text-xs text-slate-500">Source: {fdr.verification?.source || "Bank API Connector"}</p>
+                {process.env.NEXT_PUBLIC_SHOW_DEMO_LABELS === "true" && (
+                  <span className="text-[10px] font-semibold bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded border">
+                    Simulated source
+                  </span>
+                )}
+              </div>
+              {process.env.NEXT_PUBLIC_SHOW_DEMO_LABELS === "true" && (fdr.lifecycleStatus === "Release Eligible" || fdr.lifecycleStatus === "Refund Processing" || fdr.lifecycleStatus === "Released/Refunded") && (
+                <div className="text-[11px] text-slate-500 italic mt-1.5 bg-slate-50 p-2 rounded border border-slate-200">
+                  Notice: No funds are moved by this system. Review and regulatory clearance only.
+                </div>
+              )}
               
               {fdr.verification?.discrepancies && fdr.verification.discrepancies.length > 0 && (
                 <div className="mt-2 bg-rose-50 border border-rose-200 rounded p-2 text-xs text-rose-800 space-y-1">

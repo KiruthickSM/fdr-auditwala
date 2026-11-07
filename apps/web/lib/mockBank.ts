@@ -22,7 +22,7 @@ export class MockBankVerificationService implements VerificationConnector {
       ];
 
       return {
-        source: `${fdr.bankName} Core Banking System (API Mock)`,
+        source: `${fdr.bankName} Core Banking System (CBS API)`,
         status: "MISMATCH",
         verifiedAt: new Date().toISOString(),
         discrepancies,

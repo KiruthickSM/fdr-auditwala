@@ -51,7 +51,7 @@ export default function InstitutionPage() {
   const activeCount = myFdrs.filter(f => f.lifecycleStatus === "Active").length;
   const pendingCount = myFdrs.filter(f => f.lifecycleStatus !== "Active" && f.lifecycleStatus !== "Closed").length;
 
-  // Handle preset synthetic files
+  // Handle preset document files
   const applyPreset = (preset: string) => {
     setSelectedPreset(preset);
     if (preset === "clean_sbi") {
@@ -302,7 +302,7 @@ export default function InstitutionPage() {
 
                   <div>
                     <label className="text-xs font-bold text-slate-700 block mb-1.5 uppercase">
-                      Or Select Sample Synthetic Test Case
+                      Or Select Sample Document Preset
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
                       <button

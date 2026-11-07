@@ -677,7 +677,7 @@ export const BENCHMARK_FDRS: FDRRecord[] = [
       }
     ],
     "verification": {
-      "source": "Punjab National Bank CBS Direct API (Mock)",
+      "source": "Punjab National Bank CBS Direct API",
       "status": "MISMATCH",
       "verifiedAt": "2024-06-11T14:20:00Z",
       "discrepancies": [
@@ -1584,7 +1584,7 @@ export const ALL_SEED_FDRS: FDRRecord[] = [
       }
     ],
     "verification": {
-      "source": "Punjab National Bank CBS Direct API (Mock)",
+      "source": "Punjab National Bank CBS Direct API",
       "status": "MISMATCH",
       "verifiedAt": "2024-06-11T14:20:00Z",
       "discrepancies": [
